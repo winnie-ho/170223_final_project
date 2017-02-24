@@ -1,0 +1,19 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: 
+  date: 
+  time: 
+  location: 
+  description: 
+  route: MyString
+  group: one
+
+two:
+  name: 
+  date: 
+  time: 
+  location: 
+  description: 
+  route: MyString
+  group: two
