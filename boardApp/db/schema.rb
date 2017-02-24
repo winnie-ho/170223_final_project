@@ -33,10 +33,10 @@ ActiveRecord::Schema.define(version: 20170224120621) do
 
   create_table "messages", force: :cascade do |t|
     t.text     "msg"
-    t.integer  "Group_id"
+    t.integer  "group_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["Group_id"], name: "index_messages_on_Group_id"
+    t.index ["group_id"], name: "index_messages_on_group_id"
   end
 
   create_table "users", force: :cascade do |t|
