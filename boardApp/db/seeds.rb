@@ -15,3 +15,16 @@ user_two = User.create(
     password_confirmation: "password"
   }
 )
+
+g1 = Group.create(
+  {
+    name: "Running"
+  }
+)
+
+g2 = Group.create(
+  {
+    name: "Cycling"
+  }
+)
+
