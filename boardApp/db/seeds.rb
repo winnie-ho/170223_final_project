@@ -31,15 +31,20 @@ group2 = Group.create(
   }
 )
 
-event1 = Event.create(
+group3 = Group.create(
+  {
+    name: "Atkins Run Group"
+  }
+)
+
+group3.events.create(
   { 
     name: "Thursday Run",
     date: "2017-02-23",
     time: "17:30:00",
     location: "Run4it",
     description: "Usual Thursday long",
-    route: "routeString",
-    group: group2
+    route: "routeString"
   }
 )
 
@@ -62,8 +67,7 @@ group1.events.create(
     time: "19:30:00",
     location: "Foxlake",
     description: "Night trail race, need to bring head torch",
-    route: "routeString",
-    group: group1
+    route: "routeString"
   }
 )
 
