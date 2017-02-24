@@ -2,11 +2,11 @@ class GroupsController < ApplicationController
 
 # before_action :authenticate_user!
 
-  def groups_params
+  def groups_params()
     params.require(:group).permit([:name])
   end
 
-  def index
+  def index()
     groups = Group.all
     render ({:json => groups.as_json(
       {include: 
@@ -18,26 +18,26 @@ class GroupsController < ApplicationController
     })
   end
 
-  def show
+  def show()
     group = Group.find(params[:id])
     render({:json => group})
   end
 
-  def create
-    group = Group.create(groups_params)
+  def create()
+    group = Group.create(groups_params())
     render({:json => group})
   end
 
-  def update
+  def update()
     group = Group.find(params[:id])
-    if group.update_attributes(groups_params)
+    if group.update_attributes(groups_params())
       render({:json => group})
     else
       render ({json: :update_failed})
     end
   end
 
-  def destroy
+  def destroy()
     group = Group.find(params[:id])
     if group.destroy!
       render({:json => {status: :success}})
@@ -45,6 +45,5 @@ class GroupsController < ApplicationController
       render({:json => {status: :update_failed}})
     end
   end
-
 
 end
