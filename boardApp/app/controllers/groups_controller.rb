@@ -1,6 +1,6 @@
 class GroupsController < ApplicationController
 
-before_action :authenticate_user!
+# before_action :authenticate_user!
 
   def groups_params
     params.require(:group).permit([:name])
@@ -28,6 +28,23 @@ before_action :authenticate_user!
     render({:json => group})
   end
 
+  def update
+    group = Group.find(params[:id])
+    if group.update_attributes(groups_params)
+      render({:json => group})
+    else
+      render ({json: :update_failed})
+    end
+  end
+
+  def destroy
+    group = Group.find(params[:id])
+    if group.destroy!
+      render({:json => {status: :success}})
+    else
+      render({:json => {status: :update_failed}})
+    end
+  end
 
 
 end
