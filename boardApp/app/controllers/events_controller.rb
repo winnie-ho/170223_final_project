@@ -1,6 +1,6 @@
 class EventsController < ApplicationController
 
-  # before_action :authenticate_user!
+  before_action :authenticate_user!
 
   def events_params
     params.require(:event).permit([:id, :name, :date, :time, :location, :description, :route, :group_id])

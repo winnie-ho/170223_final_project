@@ -1,6 +1,6 @@
 class GroupsController < ApplicationController
 
-# before_action :authenticate_user!
+before_action :authenticate_user!
 
   def groups_params()
     params.require(:group).permit([:name])
