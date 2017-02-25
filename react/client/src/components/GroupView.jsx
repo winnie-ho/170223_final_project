@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link, browserHistory } from 'react-router'
 
 class GroupView extends React.Component {
 
@@ -10,6 +11,7 @@ class GroupView extends React.Component {
       events: [] 
     }
   }
+
 
   componentDidMount(){
     var url = 'http://localhost:5000/groups'
@@ -47,7 +49,7 @@ class GroupView extends React.Component {
   render(){
     return(
       <div className="group-view">
-        <h1>Group View</h1>
+        <h1>{this.state.events[0]}</h1>
         <div className = "group-main">
           <div className = "message-board">
             <h2>Message Board</h2>

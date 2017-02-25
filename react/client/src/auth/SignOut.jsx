@@ -19,17 +19,14 @@ class SignOut extends React.Component{
       console.log("signed out", request.status);
       if (request.status === 204) {
         this.props.onSignOut(null);
-      } 
+      }  
     }
     request.send(null);
   }
 
   render() {
     return (
-       <div>
-        <Link className='groups-link' to='/groups'>Groups</Link>
         <button onClick={this.signOut}>SIGN OUT</button>
-      </div>
     )
   }
 }

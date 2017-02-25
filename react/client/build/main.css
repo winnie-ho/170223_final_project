@@ -5,17 +5,34 @@ body{
   align-content: center;
 }
 
-.title{
-  font-size: 50px;
-}
-
 .home{
-  width: 500px;
-  height: 500px;
+  width: 1000px;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+}
+.top{
+  min-width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-content: center;
+  align-items: center;
+  border: red dashed 1px;
+}
+
+
+.sign-out{
+  width: 100%;
+  border: red dashed 1px;
+  display: flex;
+  justify-content: flex-end;
+  flex-direction: row;
+  align-content: flex-start;
+}
+h1{
+  font-size: 50px;
 }
 
 a{
@@ -32,7 +49,12 @@ a:hover{
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
+  justify-content: space-between;
+  align-content: space-around;
+  border: blue 1px dashed;
+  margin:20px;
+  
+  
 }
 
 .intro{
@@ -41,9 +63,9 @@ a:hover{
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  margin:20px;
+  border:red 1px dashed;
 }
-
-
 
 
 .login-form{
@@ -74,7 +96,10 @@ button{
   margin:5px;
   width: 100px;
   font-family: GeoSansLight;
-  font-size: 14px;
+  font-size: 13px;
+  background-color: white;
+  border-radius: 4px;
+  border: 1px gray solid;
 }
 
 button:hover{
@@ -84,7 +109,6 @@ button:hover{
 nav{
   border: red dashed 1px;
   max-width: 100%;
-
 }
 
 .group{
@@ -137,14 +161,9 @@ nav{
    overflow-x: scroll;
 }
 
-.sign-in{
-  display: flex;
-  flex-direction: column;
-  width: 100px;
-}
 
 .group-view{
-  width: 1200px;
+  width: 800px;
   display: flex;
   flex-direction: column;
   margin:20px;
@@ -156,7 +175,7 @@ nav{
 .group-main{
   display: flex;
   flex-direction: row;
-  margin:20px;
+  margin: 20px;
   border: dashed red 1px;
   justify-content: space-around;
   align-content: center;

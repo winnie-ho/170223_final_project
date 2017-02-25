@@ -2,7 +2,7 @@ import React from 'react'
 import { Link, browserHistory } from 'react-router'
 import Group from './Group'
 
-class Listing extends React.Component {
+class GroupListing extends React.Component {
 
   constructor(props) {
     super(props)
@@ -50,7 +50,7 @@ class Listing extends React.Component {
     return(
       <div className="listing">
         <nav>
-          <h1>WHOP</h1>
+          <h1>WHOOP</h1>
           <input className='search-box' type='text' placeholder='Search...' value = {this.state.searchQuery} onChange={this.doSearch} />
         </nav>
 
@@ -70,4 +70,4 @@ class Listing extends React.Component {
 
 }
 
-export default Listing
+export default GroupListing
