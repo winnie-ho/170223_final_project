@@ -1,11 +1,12 @@
 import React from 'react'
+import { Link } from 'react-router'
+
 
 const Group = (props) => (
-  <div className='group'>
-    <div className='group-name'>
-      <h3 className='group-date'>{props.name}</h3>
-    </div>
+  <div className='group' onClick = {props.handleGroupView}>
+    <Link to='/groups/:id'>{props.name}</Link>
   </div>
+
 )
 
 const { string, number } = React.PropTypes

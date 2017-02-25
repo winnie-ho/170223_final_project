@@ -50,8 +50,10 @@ class LoginBox extends React.Component {
 
       if(this.state.currentUser){
         mainDiv = <div className = "sign-in">
-          <h4> Hi {this.state.currentUser.email}</h4>
-          <SignOut url={this.props.url + "users/sign_out.json"} onSignOut={this.setUser}></SignOut>
+          <div className = "intro">
+            <h1> Hi {this.state.currentUser.name}!</h1>
+            <a href = "/#/groups">My Groups</a>
+          </div>
         </div>
       }
       return (

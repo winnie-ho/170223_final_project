@@ -32,7 +32,18 @@ a:hover{
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
 }
+
+.intro{
+  width: 400px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+
 
 
 .login-form{
@@ -70,11 +81,15 @@ button:hover{
   opacity: 0.5;
 }
 
+nav{
+  border: red dashed 1px;
+  max-width: 100%;
+
+}
 
 .group{
-  height: 250px;
-  width: 250px;
-  margin: auto;
+  height: 200px;
+  width: 200px;
   text-align: center;
   display: flex;
   flex-direction: row; 
@@ -85,10 +100,30 @@ button:hover{
 }
 
 .group:hover{
+  margin: 10px;
   opacity: 0.5;
   border: black 1px solid;
   border-radius: 10px;
-  font-size: 30px;
+}
+
+.new-group{
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  align-items: center;
+  height: 200px;
+  width: 200px;
+}
+
+.new-group{
+  margin: 10px;
+  opacity: 0.5;
+  border: black 1px solid;
+  border-radius: 10px;
+}
+
+.listing{
+  border: red dashed 1px;
 }
 
 .groups-container{
@@ -98,4 +133,32 @@ button:hover{
    justify-content: center;
    align-items: center;
    align-content: center;
+   overflow-y: hidden;
+   overflow-x: scroll;
+}
+
+.sign-in{
+  display: flex;
+  flex-direction: column;
+  width: 100px;
+}
+
+.group-view{
+  width: 1200px;
+  display: flex;
+  flex-direction: column;
+  margin:20px;
+  border: dashed red 1px;
+  justify-content: center;
+  align-content: center;
+}
+
+.group-main{
+  display: flex;
+  flex-direction: row;
+  margin:20px;
+  border: dashed red 1px;
+  justify-content: space-around;
+  align-content: center;
+  align-items: center;
 }

@@ -48,7 +48,7 @@ class SignIn extends React.Component {
       <form  className='login-form' >
         <input type="text" onChange={this.handleOnChangeEmail}  placeholder="email" />
         <input type="password" onChange={this.handleOnChangePassword}  placeholder="password" />
-        <button onClick={this.signIn}> SIGN IN </button>
+        <button onClick={this.signIn} > SIGN IN </button>
       </form>
     )
   }

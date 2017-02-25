@@ -38,22 +38,30 @@ class Listing extends React.Component {
     this.setState({searchQuery: event.target.value})
   }
 
+  handleNewGroup(){
+    console.log("new group clicked");
+  }
+
+  handleGroupView(){
+    console.log("view group clicked");
+  }
+
   render(){
     return(
       <div className="listing">
         <nav>
           <h1>WHOP</h1>
-          <input className='search-box' type='text' placeholder='Search...' value={this.state.searchQuery} onChange={this.doSearch} />
+          <input className='search-box' type='text' placeholder='Search...' value = {this.state.searchQuery} onChange={this.doSearch} />
         </nav>
 
         <div className='groups-container'>
           {
             this.state.groups.filter((group) => `${group.name}`.toUpperCase().indexOf(this.state.searchQuery.toUpperCase()) >= 0)
              .map((group) => (
-              <Group { ...group } key={group.id}/>
+              <Group { ...group } key={group.id} handleGroupView = {this.handleGroupView}/>
             ))
-
           }
+          <div className = "new-group" onClick = {this.handleNewGroup}><h1>+</h1></div>
         </div>
       
       </div>
