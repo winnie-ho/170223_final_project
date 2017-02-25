@@ -71,6 +71,17 @@ group1.events.create(
   }
 )
 
+group1.events.create(
+  { 
+    name: "Arthurs Seat",
+    date: "2017-12-20",
+    time: "17:30:00",
+    location: "Run4it",
+    description: "Long but hilly",
+    route: "routeString"
+  }
+)
+
 group1.messages.create(
   {
     msg: "Yes, cool with me.",

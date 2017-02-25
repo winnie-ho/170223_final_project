@@ -11,7 +11,7 @@ class GroupsController < ApplicationController
     render ({:json => groups.as_json(
       {include: 
         [
-          {events: {only: [:name, :date, :time, :location, :description, :route]}},
+          {events: {only: [:id, :name, :date, :time, :location, :description, :route]}},
           {messages: {only: :msg}}
         ]
       })
@@ -20,7 +20,10 @@ class GroupsController < ApplicationController
 
   def show()
     group = Group.find(params[:id])
-    render({:json => group})
+    render({:json => group.as_json(
+        {include: [:events, :messages]}
+      )
+    })
   end
 
   def create()

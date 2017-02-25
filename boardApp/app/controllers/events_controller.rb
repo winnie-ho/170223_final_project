@@ -2,8 +2,8 @@ class EventsController < ApplicationController
 
   # before_action :authenticate_user!
 
-  def events_params()
-    params.require(:event).permit([:name, :date, :time, :location, :description, :route])
+  def events_params
+    params.require(:event).permit([:id, :name, :date, :time, :location, :description, :route, :group_id])
   end
 
   def index()
@@ -17,7 +17,7 @@ class EventsController < ApplicationController
   end
 
   def create()
-    event = Event.create(events_params())
+    event = Event.create(events_params)
     render({:json => event})
   end
 
