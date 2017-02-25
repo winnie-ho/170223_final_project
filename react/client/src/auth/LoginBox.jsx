@@ -42,7 +42,7 @@ class LoginBox extends React.Component {
 
   render () {
       var mainDiv = <div>
-        <h4> Please Sign In/Up </h4>
+        <h2>Login</h2>
         <SignIn url={this.props.url + "users/sign_in.json"} onSignIn={this.setUser}></SignIn>
         <SignUp url={this.props.url + "users.json"} onSignUp={this.setUser}></SignUp>
       </div>
