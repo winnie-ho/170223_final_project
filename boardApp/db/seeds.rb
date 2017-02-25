@@ -5,6 +5,7 @@ Message.delete_all()
 
 user_one = User.create(
   {
+    name: "Winnie Ho",
     email: "winnie@email.com",
     password: "password",
     password_confirmation: "password"
@@ -13,6 +14,7 @@ user_one = User.create(
 
 user_two = User.create(
   {
+    name: "Tegan Gallacher",
     email: "tegan@email.com",
     password: "password",
     password_confirmation: "password"

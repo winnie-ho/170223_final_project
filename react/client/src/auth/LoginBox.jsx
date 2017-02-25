@@ -1,6 +1,6 @@
 import React from 'react'
 import SignIn from './SignIn'
-// import SignUp from './SignUp' 
+import SignUp from './SignUp' 
 import SignOut from './SignOut'
 
 class LoginBox extends React.Component {
@@ -41,10 +41,13 @@ class LoginBox extends React.Component {
   }
 
   render () {
+      <h4>LOGIN</h4>
+
       var mainDiv = <div className = "sign-in" >
-        <h4>LOGIN</h4>
-        <SignIn url={this.props.url + "users/sign_in.json"} onSignIn={this.setUser}></SignIn>
+      <SignIn url={this.props.url + "users/sign_in.json"} onSignIn={this.setUser}></SignIn>
+      <SignUp url={this.props.url + "users.json"} onSignUp={this.setUser}></SignUp>
       </div>
+
       if(this.state.currentUser){
         mainDiv = <div className = "sign-in">
           <h4> Hi {this.state.currentUser.email}</h4>
@@ -60,4 +63,3 @@ class LoginBox extends React.Component {
 }
 
 export default LoginBox
-      //  <SignUp url={this.props.url + "users.json"} onSignUp={this.setUser}></SignUp>

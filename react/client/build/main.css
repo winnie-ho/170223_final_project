@@ -18,6 +18,16 @@ body{
   align-items: center;
 }
 
+a{
+  text-decoration: none;
+  color: black;
+}
+
+a:hover{
+  opacity: 0.5;
+
+}
+
 .sign-in{
   display: flex;
   flex-direction: column;
@@ -58,4 +68,34 @@ button{
 
 button:hover{
   opacity: 0.5;
+}
+
+
+.group{
+  height: 250px;
+  width: 250px;
+  margin: auto;
+  text-align: center;
+  display: flex;
+  flex-direction: row; 
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+  margin: 10px;
+}
+
+.group:hover{
+  opacity: 0.5;
+  border: black 1px solid;
+  border-radius: 10px;
+  font-size: 30px;
+}
+
+.groups-container{
+   margin: 10px;
+   display: flex;
+   flex-direction: row; 
+   justify-content: center;
+   align-items: center;
+   align-content: center;
 }

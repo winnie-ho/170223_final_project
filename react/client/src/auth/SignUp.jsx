@@ -5,10 +5,12 @@ class SignUp extends React.Component {
   constructor(props) {
     super(props)
     this.signUp = this.signUp.bind(this)
+    this.handleOnChangeName = this.handleOnChangeName.bind(this)
     this.handleOnChangeEmail = this.handleOnChangeEmail.bind(this)
     this.handleOnChangePassword = this.handleOnChangePassword.bind(this)
     this.handleOnChangePassConf = this.handleOnChangePassConf.bind(this)
     this.state = {
+      name:"",
       email:"", 
       password:"", 
       passwordConfirmation:""
@@ -30,12 +32,17 @@ class SignUp extends React.Component {
     }
     const data = {
       user: {
+        name: this.state.name,
         email: this.state.email,
         password: this.state.password,
         password_confirmation: this.state.passwordConfirmation
       }
     }
     request.send(JSON.stringify(data));
+  }
+
+  handleOnChangeName(event) {
+    this.setState({name: event.target.value})
   }
 
   handleOnChangeEmail(event) {
@@ -53,11 +60,12 @@ class SignUp extends React.Component {
   render() {
     return (
       <form onSubmit={this.signUp} className='login-form'>
-        <input type="text" onChange={this.handleOnChangeEmail}  placeholder="Email" />
-        <input type="password" onChange={this.handleOnChangePassword}  placeholder="Password" />
-        <input type="password" onChange={this.handleOnChangePassConf}  placeholder="Password Confirmation" />
+        <input type="text" onChange={this.handleOnChangeName}  placeholder="name" />
+        <input type="text" onChange={this.handleOnChangeEmail}  placeholder="email" />
+        <input type="password" onChange={this.handleOnChangePassword}  placeholder="password" />
+        <input type="password" onChange={this.handleOnChangePassConf}  placeholder="password Confirmation" />
 
-        <button onClick={this.signUp}>  Sign Up </button>
+        <button onClick={this.signUp}>  SIGN UP </button>
       </form>
     )
   }

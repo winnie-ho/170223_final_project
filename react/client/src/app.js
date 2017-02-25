@@ -3,6 +3,7 @@ import ReactDOM from "react-dom"
 import Home from "./components/Home"
 import Listing from "./components/Listing"
 import Main from "./components/Main"
+import SignUp from "./auth/SignUp"
 import {Router, Route, IndexRoute, hashHistory} from "react-router"
 
 class App extends React.Component{
@@ -12,6 +13,7 @@ class App extends React.Component{
       <Route path = "/" component = {Main}>
         <IndexRoute component = {Home}/>
         <Route path = "/groups" component = {Listing}/>
+        <Route path = "/signUp" component = {SignUp}/>
       </Route>
     </Router>
     )
