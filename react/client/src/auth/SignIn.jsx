@@ -22,7 +22,6 @@ class SignIn extends React.Component {
   }
 
   signIn(event){
-    //prevents the default button activities occuring, and prioritises the code set out below.
     event.preventDefault();
     const request = new XMLHttpRequest();
     request.open("POST", this.props.url);
@@ -47,9 +46,9 @@ class SignIn extends React.Component {
   render() {
     return (
       <form  className='login-form' >
-        <input type="text" onChange={this.handleOnChangeEmail}  placeholder="Email" />
-        <input type="password" onChange={this.handleOnChangePassword}  placeholder="Password" />
-        <button onClick={this.signIn}>  Sign In </button>
+        <input type="text" onChange={this.handleOnChangeEmail}  placeholder="email" />
+        <input type="password" onChange={this.handleOnChangePassword}  placeholder="password" />
+        <button onClick={this.signIn}> SIGN IN </button>
       </form>
     )
   }

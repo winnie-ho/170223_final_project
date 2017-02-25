@@ -1,5 +1,8 @@
 body{
   font-family: GeoSansLight;
+  display: flex;
+  justify-content: center;
+  align-content: center;
 }
 
 .title{
@@ -7,9 +10,52 @@ body{
 }
 
 .home{
+  width: 500px;
+  height: 500px;
   display: flex;
   flex-direction: column;
   justify-content: center;
+  align-items: center;
+}
+
+.sign-in{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+
+.login-form{
+  width: 300px;
+  font-family: GeoSansLight;
+  display: flex;
+  justify-content: center;
   align-content: center;
   align-items: center;
+  flex-direction: column;
+  padding: 10px;
+}
+
+.home:hover{
+  border-color: #ff9966;
+}
+
+input{
+  width: 300px;
+  padding: 5px;
+  margin:5px;
+  font-size: 14px;
+  font-family: GeoSansLight;
+}
+
+button{
+  padding: 5px;
+  margin:5px;
+  width: 100px;
+  font-family: GeoSansLight;
+  font-size: 14px;
+}
+
+button:hover{
+  opacity: 0.5;
 }
