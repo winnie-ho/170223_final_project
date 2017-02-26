@@ -9,9 +9,10 @@ class GroupsListing extends React.Component{
     super(props)
     this.doSearch = this.doSearch.bind(this)
     this.handleNewGroup = this.handleNewGroup.bind(this)
+    this.resetNewGroup = this.resetNewGroup.bind(this)
     this.state = {
       searchQuery: "",
-      newGroup: null 
+      newGroup: false 
     }
   }
 
@@ -21,19 +22,26 @@ class GroupsListing extends React.Component{
 
   handleNewGroup(){
     console.log("new group clicked");
-    this.setState({newGroup:"Yes"});
+    this.setState({newGroup:true});
   }
 
   handleGroupView(){
     console.log("view group clicked");
   }
 
+  resetNewGroup(){
+      this.setState({newGroup:false})  
+      console.log("reset", this.state.newGroup)
+  }
+
   render() {
-    if (this.state.newGroup === "Yes"){
-      var newGroupForm = <GroupNew/>
-    }else{
+    if (this.state.newGroup === true){
+      var newGroupForm = <GroupNew reset = {this.resetNewGroup}update = {this.props.update}/>
+    }else if (this.state.newGroup === false) {
       newGroupForm = "+";
     }
+
+
 
     return(
       <div>
@@ -43,9 +51,6 @@ class GroupsListing extends React.Component{
         </nav>
 
         <div className='groups-scroll'>
-          <div className = "new-group" onClick = {this.handleNewGroup}>
-          {newGroupForm}
-          </div>
 
         {/*does the search filtering for the search bar*/}
         {
@@ -54,6 +59,9 @@ class GroupsListing extends React.Component{
             <Group { ...group } key={group.id} handleGroupView = {this.handleGroupView}/>
             ))
         }
+          <div className = "new-group" onClick = {this.handleNewGroup}>
+          {newGroupForm}
+          </div>
 
         </div>
       </div>

@@ -6,8 +6,10 @@ class GroupsContainer extends React.Component {
 
   constructor(props) {
     super(props)
+    this.update = this.update.bind(this)
     this.state = { 
       groups: [],
+      update: null
     }
   }
 
@@ -20,7 +22,6 @@ class GroupsContainer extends React.Component {
     request.withCredentials = true
     request.onload = () => {
        if(request.status === 200){
-        console.log("request: ", request.responseText)
         var data = JSON.parse(request.responseText)
         this.setState( { groups: data } )
        } else{
@@ -31,12 +32,16 @@ class GroupsContainer extends React.Component {
     request.send(null)
   }
 
-
+  update(){
+    this.setState({update: "Yes"})
+    this.componentDidMount()
+    this.render()
+  }
 
   render(){
     return(
       <div className="listing">
-        <GroupsListing groups = {this.state.groups}/>
+        <GroupsListing update={this.update} groups = {this.state.groups}/>
       </div>
     )
   }

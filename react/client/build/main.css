@@ -171,6 +171,7 @@ nav{
   border: red dashed 1px;
   display: flex;
   flex: 0 0 200px;
+  height: 200px;
   align-content: center;
   align-items: center;
   justify-content: center;  
@@ -178,7 +179,7 @@ nav{
   margin: 10px;
 }
 
-.new-group:hover{
+.new-group: hover{
   margin: 10px;
   opacity: 0.5;
   border: black 1px solid;
@@ -186,7 +187,7 @@ nav{
 }
 
 .new-group-form-div>input{
-  width: 100px;
+  flex: 0 0 200px;
 }
 
 form{
