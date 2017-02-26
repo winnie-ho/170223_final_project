@@ -36,16 +36,15 @@ class GroupView extends React.Component {
     return(
       <div className="group-view">
         <div className = "group-main">
+
           <div className = "message-board">
-
-            <h2>Messages</h2>
-
+            <h2>MESSAGES</h2>
             <MessagesContainer info = {this.state.groupData}/>
           </div>
 
 
           <div className = "events-scroll">
-            <h2>Events</h2>
+            <h2>EVENTS</h2>
             <EventsContainer info = {this.state.groupData}/>
           </div>
 

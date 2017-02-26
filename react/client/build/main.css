@@ -217,8 +217,20 @@ form{
   margin: 20px;
   border: dashed red 1px;
   justify-content: space-around;
-  align-content: center;
-  align-items: center;
+  align-content: flex-start;
+  align-items: flex-start;
+}
+
+.message-div{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-content: flex-start;
+  align-items: flex-start;
+  width: 300px;
+  border: red dashed 1px;
+  overflow-y: scroll;
+  overflow-x: hidden;
 }
 
 

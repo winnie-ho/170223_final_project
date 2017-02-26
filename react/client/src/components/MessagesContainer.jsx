@@ -10,8 +10,7 @@ constructor(props){
 render() {
   var messageNodes = this.props.info.map((item, index)=>{
     return(
-      <div key = {item.id}>
-      <p>GROUP {item.id}: {item.name}</p>
+      <div className = "message-div" key = {item.id}>
       {item.messages.map((message, index)=>{
         return(
 
