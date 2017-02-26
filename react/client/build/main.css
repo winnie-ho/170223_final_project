@@ -106,8 +106,7 @@ input{
 }
 
 button{
-  padding: 5px;
-  margin:5px;
+  margin:10px;
   width: 100px;
   font-family: GeoSansLight;
   font-size: 13px;
@@ -154,9 +153,7 @@ nav{
 .group{
   height:200px;
   width: 200px;
-  line-height: 200px;
   text-align: center;
-  display: block;
   margin: 10px;
   border: red dashed 1px;
 }
@@ -169,10 +166,10 @@ nav{
 }
 
 .new-group{
-  border: red dashed 1px;
-  display: flex;
   height:200px;
   width: 200px;
+  border: red dashed 1px;
+  display: flex;
   align-content: center;
   align-items: center;
   justify-content: center;  
@@ -222,4 +219,32 @@ form{
   justify-content: space-around;
   align-content: center;
   align-items: center;
+}
+
+
+.event-div{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-content: center;
+  align-items: center;
+  width: 300px;
+  border: red dashed 1px;
+  overflow-y: scroll;
+  overflow-x: hidden;
+}
+
+.event-box{
+  height:100px;
+  width: 200px;
+  text-align: center;
+  margin: 10px;
+  border: red dashed 1px;
+}
+
+.event-box:hover{
+  margin: 10px;
+  opacity: 0.5;
+  border: black 1px solid;
+  border-radius: 10px;
 }

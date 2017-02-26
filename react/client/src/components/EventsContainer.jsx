@@ -9,10 +9,13 @@ constructor(props){
 render() {
   var eventNodes = this.props.info.map((item, index)=>{
     return(
-      <div key = {item.id}>
+      <div className = "event-div" key = {item.id}>
       {item.events.map((event, index)=>{
         return(
-          <p key = {index}>{event.name}</p>
+          <button className = "event-box" key = {index}>
+            <h3>{event.name}</h3>
+            ({event.time})
+          </button>
           )
       })
     }

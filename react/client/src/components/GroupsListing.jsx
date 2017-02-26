@@ -30,10 +30,7 @@ class GroupsListing extends React.Component{
       console.log("reset", this.state.newGroup)
   }
 
-  handleGroupView(event){
-    console.log("group id", event.target.value)
-    console.log("view group clicked");
-  }
+
 
 
   render() {
@@ -58,7 +55,7 @@ class GroupsListing extends React.Component{
         {
           this.props.groups.filter((group) => `${group.name}`.toUpperCase().indexOf(this.state.searchQuery.toUpperCase()) >= 0)
           .map((group) => (
-            <Group { ...group } key={group.id} handleGroupView = {this.handleGroupView} groups = {this.props.groups}/>
+            <Group { ...group } key={group.id}  groups = {this.props.groups} handleGroupView = {this.props.handleGroupView} />
             ))
         }
           <div className = "new-group" onClick = {this.handleNewGroup}>

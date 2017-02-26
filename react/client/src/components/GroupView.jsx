@@ -8,12 +8,10 @@ class GroupView extends React.Component {
     super(props)
     this.state = { 
       groupData: [],
-      // groupId: event.target.value
     }
   }
 
   componentDidMount(){
-    // console.log(groupId)
     var url = "http://localhost:5000/groups"
     var request = new XMLHttpRequest()
     request.open("GET", url)
@@ -34,6 +32,7 @@ class GroupView extends React.Component {
   }
 
   render(){
+    console.log("group id", this.props.route.groupId)
     return(
       <div className="group-view">
         <div className = "group-main">
