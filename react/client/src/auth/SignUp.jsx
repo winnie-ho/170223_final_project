@@ -63,7 +63,7 @@ class SignUp extends React.Component {
         <input type="text" onChange={this.handleOnChangeName}  placeholder="name" />
         <input type="text" onChange={this.handleOnChangeEmail}  placeholder="email" />
         <input type="password" onChange={this.handleOnChangePassword}  placeholder="password" />
-        <input type="password" onChange={this.handleOnChangePassConf}  placeholder="password Confirmation" />
+        <input type="password" onChange={this.handleOnChangePassConf}  placeholder="password confirmation" />
 
         <button onClick={this.signUp}>  SIGN UP </button>
       </form>
