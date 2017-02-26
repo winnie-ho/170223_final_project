@@ -1,6 +1,6 @@
 import React from 'react'
 
-class GroupView extends React.Component {
+class GroupNew extends React.Component {
 
   constructor(props) {
     super(props)
@@ -27,20 +27,13 @@ class GroupView extends React.Component {
 
   render(){
     return(
-      <div className="group-view">
-        <h1>{this.state.events[0]}</h1>
-        <div className = "group-main">
-          <div className = "message-board">
-            <h2>Message Board</h2>
-          </div>
-          <div className = "events-scroll">
-            <h2>Events Scroll</h2>
-          </div>
-        </div>
+      <div className="group-new">
+        <h1>Create New Group</h1>
+
       </div>
     )
   }
 
 }
 
-export default GroupView
+export default GroupNew

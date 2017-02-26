@@ -22,7 +22,6 @@ body{
   /*border: red dashed 1px;*/
 }
 
-
 .sign-out{
   width: 100%;
   /*border: red dashed 1px;*/
@@ -119,20 +118,26 @@ button:hover{
 }
 
 nav{
-  border: red dashed 1px;
+  height: 50px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  align-content: flex-start;
   max-width: 100%;
+  /*border: red dashed 1px;*/
 }
+
 
 .group{
   height: 200px;
   width: 200px;
+  line-height: 200px;
   text-align: center;
-  display: flex;
-  flex-direction: row; 
-  justify-content: center;
-  align-items: center;
-  align-content: center;
+  display: block;
   margin: 10px;
+  border: red dashed 1px;
+
 }
 
 .group:hover{
@@ -143,12 +148,12 @@ nav{
 }
 
 .new-group{
-  display: flex;
-  justify-content: center;
-  align-content: center;
-  align-items: center;
+  display: block;
   height: 200px;
   width: 200px;
+  text-align: center;
+  font-size: 50px;
+  line-height: 200px;
 }
 
 .new-group{
@@ -163,14 +168,15 @@ nav{
 }
 
 .groups-container{
-   margin: 10px;
-   display: flex;
-   flex-direction: row; 
-   justify-content: center;
-   align-items: center;
-   align-content: center;
-   overflow-y: hidden;
-   overflow-x: scroll;
+  border: red dashed 1px;
+  margin: 10px;
+  display: flex;
+  flex-direction: row; 
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+  overflow-y: hidden;
+  overflow-x: scroll;
 }
 
 

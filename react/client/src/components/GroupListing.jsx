@@ -51,7 +51,7 @@ class GroupListing extends React.Component {
       <div className="listing">
         <nav>
           <h1>WHOOP</h1>
-          <input className='search-box' type='text' placeholder='Search...' value = {this.state.searchQuery} onChange={this.doSearch} />
+          <input className='search-box' type='text' placeholder='🔎 search' value = {this.state.searchQuery} onChange={this.doSearch} />
         </nav>
 
         <div className='groups-container'>
@@ -61,7 +61,9 @@ class GroupListing extends React.Component {
               <Group { ...group } key={group.id} handleGroupView = {this.handleGroupView}/>
             ))
           }
-          <div className = "new-group" onClick = {this.handleNewGroup}><h1>+</h1></div>
+
+          <Link className="new-group" to='/newgroup'>+</Link>
+
         </div>
       
       </div>

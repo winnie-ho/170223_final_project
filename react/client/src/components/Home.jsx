@@ -1,8 +1,8 @@
-import React from 'react'
-import { Link, browserHistory } from 'react-router'
-import SignOut from '../auth/SignOut'
-import SignIn from '../auth/SignIn'
-import SignUp from '../auth/SignUp'
+import React from "react";
+import { Link, browserHistory } from "react-router";
+import SignOut from "../auth/SignOut";
+import SignIn from "../auth/SignIn";
+import SignUp from "../auth/SignUp";
 
 class Home extends React.Component {
 
@@ -70,7 +70,7 @@ if(this.state.currentUser){
   mainDiv = <div className = "sign-in">
       <div className = "intro">
         <h1> Hi {this.state.currentUser.name}!</h1>
-        <a href = "/#/groups">My Groups</a>
+        <Link to='/groups'>my groups</Link>
       </div>
     </div>
     createAccDiv = <div></div>
@@ -95,4 +95,4 @@ if(this.state.currentUser){
     ) 
   }
 }
-export default Home
+export default Home;
