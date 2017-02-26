@@ -30,14 +30,15 @@ class GroupsListing extends React.Component{
       console.log("reset", this.state.newGroup)
   }
 
-  handleGroupView(){
+  handleGroupView(event){
+    console.log("group id", event.target.value)
     console.log("view group clicked");
   }
 
 
   render() {
     if (this.state.newGroup === true){
-      var newGroupForm = <GroupNew reset = {this.resetNewGroup}update = {this.props.update}/>
+      var newGroupForm = <GroupNew reset = {this.resetNewGroup} update = {this.props.update}/>
     }else if (this.state.newGroup === false) {
       newGroupForm = "+";
     }

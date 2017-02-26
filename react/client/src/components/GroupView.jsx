@@ -7,11 +7,13 @@ class GroupView extends React.Component {
   constructor(props) {
     super(props)
     this.state = { 
-      groupData: [] 
+      groupData: [],
+      // groupId: event.target.value
     }
   }
 
   componentDidMount(){
+    // console.log(groupId)
     var url = "http://localhost:5000/groups"
     var request = new XMLHttpRequest()
     request.open("GET", url)
@@ -37,14 +39,14 @@ class GroupView extends React.Component {
         <div className = "group-main">
           <div className = "message-board">
 
-            <h2>Message Board</h2>
+            <h2>Messages</h2>
 
             <MessagesContainer info = {this.state.groupData}/>
           </div>
 
 
           <div className = "events-scroll">
-            <h2>Events Scroll</h2>
+            <h2>Events</h2>
             <EventsContainer info = {this.state.groupData}/>
           </div>
 

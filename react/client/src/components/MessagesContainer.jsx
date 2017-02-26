@@ -8,35 +8,20 @@ constructor(props){
 }
 
 render() {
-  console.log(this.props.info)
-  var groupDataObject = this.props.info
-  var messagesArray = groupDataObject.messages
-  var eventsArray = groupDataObject.events
-  console.log(groupDataObject)
-  console.log("array of Messages", messagesArray)
-  console.log("array of Events", eventsArray)
-
-
-
-
-
-
-
-  var messageNodes = groupDataObject.map((item, index)=>{
+  var messageNodes = this.props.info.map((item, index)=>{
     return(
-        <div key = {item.id}>
-          <p>GROUP {item.id}: {item.name}</p>
-          {item.messages.map((message, index)=>{
-            return(
-              <p>{message.msg}</p>
-              )
-            })
-          }
-        </div>
-      )
+      <div key = {item.id}>
+      <p>GROUP {item.id}: {item.name}</p>
+      {item.messages.map((message, index)=>{
+        return(
+
+          <p key = {index}> {message.msg} </p>
+          )
+      })
+    }
+    </div>
+    )
   })
-
-
 
   return(
     <div>
@@ -45,7 +30,7 @@ render() {
     <p>{this.props.info.id}</p>
     </div>
     )
-  }
+}
 
 }
 
