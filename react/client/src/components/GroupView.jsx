@@ -1,5 +1,6 @@
 import React from "react"
 import MessagesContainer from "./MessagesContainer"
+import EventsContainer from "./EventsContainer"
 
 class GroupView extends React.Component {
 
@@ -44,6 +45,7 @@ class GroupView extends React.Component {
 
           <div className = "events-scroll">
             <h2>Events Scroll</h2>
+            <EventsContainer info = {this.state.groupData}/>
           </div>
 
 

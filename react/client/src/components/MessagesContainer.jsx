@@ -25,24 +25,18 @@ render() {
   var messageNodes = groupDataObject.map((item, index)=>{
     return(
         <div key = {item.id}>
-          <p>{item.id}</p>
-          <p>{item.name}</p>
-          {item.events.map((event, index)=>{
+          <p>GROUP {item.id}: {item.name}</p>
+          {item.messages.map((message, index)=>{
             return(
-              <p>{event.name}</p>
+              <p>{message.msg}</p>
               )
-          })
-        }
+            })
+          }
         </div>
       )
   })
 
 
-  // var eventNodes = eventsArray.map((event, index)=>{
-  //   return(
-  //         <p>{event.name}</p>
-  //     )
-  // })
 
   return(
     <div>
