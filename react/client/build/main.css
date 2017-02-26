@@ -133,19 +133,22 @@ nav{
 
 .listing{
   border: green dashed 1px;
+  width: 100vw;
+  display: flex;
+  justify-content: center;
 }
 
 .groups-scroll{
-  overflow-y: hidden;
-  overflow-x: scroll;
   border: blue dashed 1px;
-  width: 90vw;
+  width: 670px;
+  height: 600px;
   margin: 10px;
-  display: inline-flex;
-/*  flex-direction: row; 
-  justify-content: center;
-  align-items: center;
-  align-content: center;*/
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row; 
+  justify-content: flex-start;
+  overflow-y: scroll;
+  overflow-x: hidden;
 }
 
 .group{

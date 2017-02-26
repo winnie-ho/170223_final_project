@@ -31,14 +31,12 @@ class GroupsContainer extends React.Component {
     request.send(null)
   }
 
-  update(){
-    this.componentDidMount();
-  }
+
 
   render(){
     return(
       <div className="listing">
-        <GroupsListing update = {this.componentDidMount} groups = {this.state.groups}/>
+        <GroupsListing groups = {this.state.groups}/>
       </div>
     )
   }

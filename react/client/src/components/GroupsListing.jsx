@@ -43,6 +43,9 @@ class GroupsListing extends React.Component{
         </nav>
 
         <div className='groups-scroll'>
+          <div className = "new-group" onClick = {this.handleNewGroup}>
+          {newGroupForm}
+          </div>
 
         {/*does the search filtering for the search bar*/}
         {
@@ -52,9 +55,6 @@ class GroupsListing extends React.Component{
             ))
         }
 
-          <div className = "new-group" update = {this.props.update} onClick = {this.handleNewGroup}>
-          {newGroupForm}
-          </div>
         </div>
       </div>
       )
