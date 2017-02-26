@@ -3,7 +3,7 @@ import ReactDOM from "react-dom"
 import Home from "./components/Home"
 import Main from "./components/Main"
 import SignUp from "./auth/SignUp"
-import GroupListing from "./components/GroupListing"
+import GroupsContainer from "./components/GroupsContainer"
 import GroupView from "./components/GroupView"
 import GroupNew from "./components/GroupNew"
 import EventListing from "./components/EventListing"
@@ -16,7 +16,7 @@ class App extends React.Component{
     <Router history = {hashHistory}>
       <Route path = "/" component = {Main}>
         <IndexRoute component = {Home}/>
-        <Route path = "/groups" component = {GroupListing}/>
+        <Route path = "/groups" component = {GroupsContainer}/>
         <Route path = "/groups/:id" component = {GroupView}/>
         <Route path = "newgroup" component = {GroupNew}/>
 

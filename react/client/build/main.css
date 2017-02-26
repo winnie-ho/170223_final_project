@@ -35,6 +35,10 @@ h1{
   font-size: 50px;
 }
 
+p{
+  font-size: 14px;
+}
+
 a{
   text-decoration: none;
   color: black;
@@ -52,7 +56,7 @@ a:hover{
   justify-content: space-between;
   align-content: space-around;
   margin:20px;
-  /*border: red dashed 1px;*/
+  border: red dashed 1px;
 }
 
 .create-acc:hover{
@@ -80,7 +84,6 @@ a:hover{
 
 
 .login-form{
-  width: 300px;
   font-family: GeoSansLight;
   display: flex;
   justify-content: center;
@@ -95,7 +98,7 @@ a:hover{
 }
 
 input{
-  width: 300px;
+  width:170px;
   padding: 5px;
   margin:5px;
   font-size: 14px;
@@ -128,16 +131,30 @@ nav{
   /*border: red dashed 1px;*/
 }
 
+.listing{
+  border: green dashed 1px;
+}
+
+.groups-scroll{
+  overflow-y: hidden;
+  overflow-x: scroll;
+  border: blue dashed 1px;
+  width: 90vw;
+  margin: 10px;
+  display: inline-flex;
+/*  flex-direction: row; 
+  justify-content: center;
+  align-items: center;
+  align-content: center;*/
+}
 
 .group{
-  height: 200px;
-  width: 200px;
+  flex: 0 0 200px;
   line-height: 200px;
   text-align: center;
   display: block;
   margin: 10px;
   border: red dashed 1px;
-
 }
 
 .group:hover{
@@ -148,36 +165,38 @@ nav{
 }
 
 .new-group{
-  display: block;
-  height: 200px;
-  width: 200px;
-  text-align: center;
+  border: red dashed 1px;
+  display: flex;
+  flex: 0 0 200px;
+  align-content: center;
+  align-items: center;
+  justify-content: center;  
   font-size: 50px;
-  line-height: 200px;
+  margin: 10px;
 }
 
-.new-group{
+.new-group:hover{
   margin: 10px;
   opacity: 0.5;
   border: black 1px solid;
   border-radius: 10px;
 }
 
-.listing{
-  border: red dashed 1px;
+.new-group-form-div>input{
+  width: 100px;
 }
 
-.groups-container{
-  border: red dashed 1px;
-  margin: 10px;
+form{
   display: flex;
-  flex-direction: row; 
-  justify-content: center;
-  align-items: center;
+  flex-direction: column;
   align-content: center;
-  overflow-y: hidden;
-  overflow-x: scroll;
+  align-items: center;
+  justify-content: center; 
 }
+
+
+
+
 
 
 .group-view{

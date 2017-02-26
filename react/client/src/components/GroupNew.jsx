@@ -4,32 +4,48 @@ class GroupNew extends React.Component {
 
   constructor(props) {
     super(props)
-    this.doSearch = this.doSearch.bind(this)
+    this.addGroup = this.addGroup.bind(this)
+    this.handleOnChangeName = this.handleOnChangeName.bind(this)
     this.state = { 
-      searchQuery: '', 
-      events: [] 
+      name: "" 
     }
   }
 
+  addGroup(event){
+    event.preventDefault();
+    const request = new XMLHttpRequest();
+    request.open("POST", "http://localhost:5000/groups.json");
+    request.setRequestHeader("content-type", "application/json");
+    request.withCredentials = true;
 
+    request.onload = () => {
+      if (request.status === 201) {
+        const user = JSON.parse(request.responseText);
+      }
+    }
 
-  doSearch(event){
-    this.setState({searchQuery: event.target.value})
+    const data = {
+      group: {
+        name: this.state.name
+      }
+    }
+    request.send(JSON.stringify(data));
+    this.props.update
+    console.log("group added");
   }
 
-  handleNewEvent(){
-    console.log("new event clicked");
+  handleOnChangeName(event){
+    this.setState({name: event.target.value})
   }
-
-  handleEventView(){
-    console.log("view event clicked");
-  }
+  
 
   render(){
     return(
-      <div className="group-new">
-        <h1>Create New Group</h1>
-
+      <div className = "new-group-form-div">
+      <form onSubmit={this.addGroup} className="new-group-form">
+        <input type="text" onChange={this.handleOnChangeName} placeholder="name" />
+        <button onClick={this.addGroup}> ADD GROUP </button>
+      </form>
       </div>
     )
   }
