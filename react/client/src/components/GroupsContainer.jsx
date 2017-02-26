@@ -24,7 +24,7 @@ class GroupsContainer extends React.Component {
        if(request.status === 200){
         var data = JSON.parse(request.responseText)
         this.setState( { groups: data } )
-       } else{
+       } else {
         console.log("Uh oh you're not logged in!")
         browserHistory.goBack()
        }

@@ -30,10 +30,11 @@ class GroupNew extends React.Component {
       }
     }
     request.send(JSON.stringify(data));
-    // location.reload()
     this.props.update()
     this.props.reset()
+    this.render()
     console.log("group added",data);
+
   }
 
   handleOnChangeName(event){
