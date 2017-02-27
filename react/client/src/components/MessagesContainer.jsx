@@ -27,6 +27,8 @@ render() {
     {messageNodes}
     <p>{this.props.info.name}</p>
     <p>{this.props.info.id}</p>
+    <input placeholder = "message" className = "message-box"/> 
+    <button>post</button>
     </div>
     )
 }

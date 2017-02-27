@@ -12,13 +12,18 @@ render() {
       <div className = "event-div" key = {item.id}>
       {item.events.map((event, index)=>{
         return(
+
           <button className = "event-box" key = {index}>
             <h3>{event.name}</h3>
             ({event.time})
           </button>
+
           )
+
       })
     }
+          <button className = "event-box"><h1>+</h1>
+          </button>
     </div>
     )
   })

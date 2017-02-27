@@ -249,7 +249,11 @@ form{
 .event-box{
   height:100px;
   width: 200px;
-  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  align-content: center;
+  justify-content: center;
   margin: 10px;
   border: red dashed 1px;
 }
@@ -260,3 +264,4 @@ form{
   border: black 1px solid;
   border-radius: 10px;
 }
+
