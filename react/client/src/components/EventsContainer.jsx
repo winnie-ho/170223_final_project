@@ -22,15 +22,13 @@ render() {
   console.log("Events in Eventcontainer:", this.props.events)
 
 
+      
+  
 
-  var eventNodes = this.props.events.map(function(event, index){
-    return(
-      <div className="event-div" key={event.id}>
-        <h2>{event.name}</h2>
-        <p>{event.date}</p>
-    </div>
-    )
-  }.bind(this))
+
+    
+    
+  
 
     //   {item.events.map((event, index)=>{
     //     return(
@@ -53,11 +51,26 @@ render() {
 
 
   return(
-    <div>
+    <div className="event-div" >
     <input className='search-box' type='text' placeholder='🔎 search' value = {this.state.searchQuery} onChange={this.doSearch} />
-    {eventNodes}
+    {
+      this.props.events.filter((event) => `${event.name}`.toUpperCase().indexOf(this.state.searchQuery.toUpperCase()) >= 0)
+            .map((event) => (
+        <div>
+          <button className = "event-box" >
+            <h3>{event.name}</h3>
+            <p>{event.time}</p>
+          </button>
+        </div>
+      ))
+    }
+
+      <button className = "event-box">
+        <h1>+</h1>
+      </button>
     </div>
-    )}
+    )
+  }
 }
 
 
