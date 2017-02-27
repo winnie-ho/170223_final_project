@@ -7,10 +7,12 @@ class GroupsContainer extends React.Component {
   constructor(props) {
     super(props)
     this.addGroup = this.addGroup.bind(this);
-    this.handleOnChangeName = this.handleOnChangeName.bind(this);
+    this.setAddedGroup = this.setAddedGroup.bind(this);
+    this.handleNewGroup = this.handleNewGroup.bind(this);
     this.state = { 
       groups: [],
-      name: ""
+      addedGroup: null,
+      newGroup: false
     }
   }
 
@@ -30,6 +32,9 @@ class GroupsContainer extends React.Component {
        if(request.status === 200){
         var data = JSON.parse(request.responseText)
         this.setState( { groups: data } )
+        this.setState({ newGroup:false })
+        console.log("reset", this.state.newGroup)
+
        } else {
         console.log("Uh oh you're not logged in!")
         browserHistory.goBack()
@@ -37,6 +42,8 @@ class GroupsContainer extends React.Component {
     }
     request.send(null)
   }
+
+  
 
   addGroup(event){
     event.preventDefault();
@@ -53,30 +60,31 @@ class GroupsContainer extends React.Component {
 
     const data = {
         group: {
-        name: this.state.name
+        name: this.state.addedGroup
       }
     }
     request.send(JSON.stringify(data));
-    this.getGroups()
     console.log("group added",data);
-
-  }
-
-  handleOnChangeName(event){
-    this.setState({name: event.target.value})
+        this.setState({ newGroup:false })
+        console.log("reset2", this.state.newGroup)
+        this.getGroups()
   }
   
 
+
+  handleNewGroup(){
+    this.setState({newGroup:true})
+  }
+
+  setAddedGroup(addedGroup){
+    this.setState({addedGroup: addedGroup})
+  }
+
   render(){
+    console.log(this.state.newGroup)
     return(
       <div className="listing">
-        <GroupsListing addGroup={this.addGroup} groups = {this.state.groups}/>
-        <div className = "new-group-form-div">
-        <form onSubmit={this.addGroup} className="new-group-form">
-          <input type="text" onChange={this.handleOnChangeName} placeholder="name" />
-          <button onClick={this.addGroup}> ADD GROUP </button>
-        </form>
-        </div>
+        <GroupsListing newGroup = {this.state.newGroup}setGroup = {this.setAddedGroup}addGroup={this.addGroup} groups = {this.state.groups} handleNewGroup = {this.handleNewGroup}/>
       </div>
     )
   }

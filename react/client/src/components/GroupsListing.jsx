@@ -13,7 +13,6 @@ class GroupsListing extends React.Component{
     this.updateGroupsListing = this.updateGroupsListing.bind(this)
     this.state = {
       searchQuery: "",
-      newGroup: false,
       update: false
     }
   }
@@ -28,8 +27,8 @@ class GroupsListing extends React.Component{
   }
 
   resetNewGroup(){
-    this.setState({newGroup:false});
     console.log("reset", this.state.newGroup)
+    this.setState({newGroup:this.props.newGroup});
   }
 
   updateGroupsListing(){
@@ -38,9 +37,9 @@ class GroupsListing extends React.Component{
 
 
   render() {
-    if (this.state.newGroup === true){
-      var newGroupForm = <GroupNew reset = {this.resetNewGroup} addGroup = {this.props.addGroup}/>
-    }else if (this.state.newGroup === false) {
+    if (this.props.newGroup === true){
+      var newGroupForm = <GroupNew reset = {this.resetNewGroup} setGroup = {this.props.setGroup}addGroup = {this.props.addGroup}/>
+    }else if (this.props.newGroup === false) {
       newGroupForm = "+";
     }
 
@@ -62,7 +61,7 @@ class GroupsListing extends React.Component{
             <Group { ...group } key={group.id}  groups = {this.props.groups} />
             ))
         }
-          <div className = "new-group" onClick = {this.handleNewGroup}>
+          <div className = "new-group" onClick = {this.props.handleNewGroup}>
           {newGroupForm}
           </div>
 
