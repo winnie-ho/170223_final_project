@@ -156,6 +156,7 @@ nav{
   height:200px;
   width: 200px;
   text-align: center;
+  line-height: 200px;
   margin: 10px;
   border: red dashed 1px;
 }
@@ -267,3 +268,7 @@ form{
   border-radius: 10px;
 }
 
+.new-message-form{
+  display: flex;
+  flex-direction: row;
+}

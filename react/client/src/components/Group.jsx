@@ -17,12 +17,3 @@ const Group = (props) => (
   )
 
 export default Group;
-
-
-
-
-// <form method = "get" action = "/#/groups/:id">
-// <button className="group" value = {props.id} onClick = {props.handleGroupView} type = "submit" >
-//  <h3>{props.name}</h3>
-// </button>
-// </form>

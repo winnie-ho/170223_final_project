@@ -10,9 +10,11 @@ class GroupsListing extends React.Component{
     this.doSearch = this.doSearch.bind(this)
     this.handleNewGroup = this.handleNewGroup.bind(this)
     this.resetNewGroup = this.resetNewGroup.bind(this)
+    this.updateGroupsListing = this.updateGroupsListing.bind(this)
     this.state = {
       searchQuery: "",
-      newGroup: false 
+      newGroup: false,
+      update: false
     }
   }
 
@@ -26,16 +28,18 @@ class GroupsListing extends React.Component{
   }
 
   resetNewGroup(){
-      this.setState({newGroup:false})  
-      console.log("reset", this.state.newGroup)
+    this.setState({newGroup:false});
+    console.log("reset", this.state.newGroup)
   }
 
-
+  updateGroupsListing(){
+    this.setState({update:true});
+  }
 
 
   render() {
     if (this.state.newGroup === true){
-      var newGroupForm = <GroupNew reset = {this.resetNewGroup} update = {this.props.update}/>
+      var newGroupForm = <GroupNew reset = {this.resetNewGroup} update = {this.updateGroupsListing}/>
     }else if (this.state.newGroup === false) {
       newGroupForm = "+";
     }
@@ -55,7 +59,7 @@ class GroupsListing extends React.Component{
         {
           this.props.groups.filter((group) => `${group.name}`.toUpperCase().indexOf(this.state.searchQuery.toUpperCase()) >= 0)
           .map((group) => (
-            <Group { ...group } key={group.id}  groups = {this.props.groups} handleGroupView = {this.props.handleGroupView} />
+            <Group { ...group } key={group.id}  groups = {this.props.groups} />
             ))
         }
           <div className = "new-group" onClick = {this.handleNewGroup}>

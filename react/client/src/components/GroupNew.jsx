@@ -4,8 +4,8 @@ class GroupNew extends React.Component {
 
   constructor(props) {
     super(props)
-    this.addGroup = this.addGroup.bind(this)
-    this.handleOnChangeName = this.handleOnChangeName.bind(this)
+    this.addGroup = this.addGroup.bind(this);
+    this.handleOnChangeName = this.handleOnChangeName.bind(this);
     this.state = { 
       name: "" 
     }
@@ -32,7 +32,6 @@ class GroupNew extends React.Component {
     request.send(JSON.stringify(data));
     this.props.update()
     this.props.reset()
-    this.render()
     console.log("group added",data);
 
   }

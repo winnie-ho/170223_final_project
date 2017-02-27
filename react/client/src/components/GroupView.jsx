@@ -7,14 +7,23 @@ class GroupView extends React.Component {
   constructor(props) {
     super(props)
     this.groupSelected = props.location.query.groupId
+    this.addMessage = this.addMessage.bind(this)
+    this.handleOnChangeMsg = this.handleOnChangeMsg.bind(this);
+
     this.state = { 
       groupData: [],
       events: [],
-      messages: []
+      messages: [],
+      update:null,
+      msg: ""
       }
   }
 
   componentDidMount(){
+    this.getMessages()
+  }
+
+  getMessages(){
     var url = "http://localhost:5000/groups"
     var request = new XMLHttpRequest()
     request.open("GET", url)
@@ -24,7 +33,7 @@ class GroupView extends React.Component {
     request.onload = () => {
        if(request.status === 200){
         var data = JSON.parse(request.responseText)
-        console.log("api data", data[this.groupSelected-1]);
+        console.log("updated api data", data[this.groupSelected-1]);
         this.setState({groupData: data[this.groupSelected-1]})
         this.setState({events: data[this.groupSelected-1].events})
         this.setState({messages: data[this.groupSelected-1].messages})
@@ -36,29 +45,68 @@ class GroupView extends React.Component {
     request.send(null)
   }
 
+  addMessage(event){
+    event.preventDefault();
+    const request = new XMLHttpRequest();
+    request.open("POST", "http://localhost:5000/groups/:id/messages.json");
+    request.setRequestHeader("content-type", "application/json");
+    request.withCredentials = true;
+
+    request.onload = ()=>{
+      if(request.status === 201){
+        const user = JSON.parse(request.responseText);
+      }
+    }
+
+    const data = {
+      message: {
+        msg: this.state.msg,
+        group_id: this.groupSelected
+      }
+    }
+    request.send(JSON.stringify(data));
+    this.getMessages()
+    console.log("message added", data);
+
+
+
+    // var messageArray = this.state.messages
+    // console.log("currentarray", messageArray)
+    // var newMessage = this.state.msg
+    // console.log("message to add", newMessage)
+
+    // var newMessageArray = messageArray.push(newMessage)
+    // this.setState({messages: newMessageArray})
+  }
+
+
+
+
+
+
+
+
+  handleOnChangeMsg(event){
+    this.setState({msg: event.target.value})
+  }
   render(){
-    
-    //get rid of this trail below
-    // console.log("group id", this.props.route.groupId)
-    //
-
-    console.log("messages:", this.state.messages)
-    console.log("events:", this.state.events)
-
-
     return(
       <div className="group-view">
         <div className = "group-main">
 
           <div className = "message-board">
             <h2>MESSAGES</h2>
-            <MessagesContainer messages={this.state.messages}/>
+            <form onSubmit = {this.addMessage} className = "new-message-form">
+            <input type = "text" onChange = {this.handleOnChangeMsg} placeholder = "message" className = "message-box"/> 
+            <button onClick = {this.addMessage}>POST</button>
+            </form>
+            <MessagesContainer groupId = {this.groupSelected} messages={this.state.messages}/>
           </div>
 
 
           <div className = "events-scroll">
             <h2>EVENTS</h2>
-            <EventsContainer events={this.state.events}/>
+            <EventsContainer groupId = {this.groupSelected}events={this.state.events}/>
           </div>
 
 

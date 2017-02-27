@@ -41,7 +41,7 @@ class GroupsContainer extends React.Component {
   render(){
     return(
       <div className="listing">
-        <GroupsListing update={this.update} groups = {this.state.groups} handleGroupView = {this.props.route.handleGroupView}/>
+        <GroupsListing update={this.update} groups = {this.state.groups}/>
       </div>
     )
   }
