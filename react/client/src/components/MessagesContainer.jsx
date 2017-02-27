@@ -4,20 +4,15 @@ class MessagesContainer extends React.Component{
 
 constructor(props){
   super(props)
-
 }
 
 render() {
-  var messageNodes = this.props.info.map((item, index)=>{
+  console.log("messages in MsgContainer:", this.props.messages)
+  var messageNodes = this.props.messages.map((message, index)=>{
     return(
-      <div className = "message-div" key = {item.id}>
-      {item.messages.map((message, index)=>{
-        return(
-
+      <div className = "message-div" key = {message.id}>
           <p key = {index}> {message.msg} </p>
-          )
-      })
-    }
+
     </div>
     )
   })
@@ -25,8 +20,6 @@ render() {
   return(
     <div>
     {messageNodes}
-    <p>{this.props.info.name}</p>
-    <p>{this.props.info.id}</p>
     <input placeholder = "message" className = "message-box"/> 
     <button>post</button>
     </div>

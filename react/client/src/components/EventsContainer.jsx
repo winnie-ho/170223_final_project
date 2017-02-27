@@ -5,6 +5,7 @@ class EventsContainer extends React.Component{
 constructor(props){
   super(props)
   this.doSearch = this.doSearch.bind(this)
+  console.log("Events in Eventcontainer:", this.props.events)
 
   this.state = {
     searchQuery: "",
@@ -15,30 +16,38 @@ doSearch(event){
   this.setState({searchQuery: event.target.value})
 }
 
+
+
 render() {
-  var eventNodes = this.props.info.map((item, index)=>{
+  console.log("Events in Eventcontainer:", this.props.events)
+
+
+
+  var eventNodes = this.props.events.map(function(event, index){
     return(
-      <div className = "event-div" key = {item.id}>
-      {item.events.map((event, index)=>{
-        return(
-
-          item.events.filter((event) => `${event.name}`.toUpperCase().indexOf(this.state.searchQuery.toUpperCase()) >= 0)
-          .map((event) => (
-
-            <button className = "event-box" key = {index.id}>
-            <h3>{event.name}</h3>
-            ({event.time})
-            </button>
-
-            ))
-          )
-      })
-    }
-    <button className = "event-box"><h1>+</h1></button>
+      <div className="event-div" key={event.id}>
+        <h2>{event.name}</h2>
+        <p>{event.date}</p>
     </div>
     )
-  })
+  }.bind(this))
 
+    //   {item.events.map((event, index)=>{
+    //     return(
+
+    //       item.events.filter((event) => `${event.name}`.toUpperCase().indexOf(this.state.searchQuery.toUpperCase()) >= 0)
+    //       .map((event) => (
+
+    //         <button className = "event-box" key = {index.id}>
+    //         <h3>{event.name}</h3>
+    //         ({event.time})
+    //         </button>
+
+    //         ))
+    //       )
+    //   })
+    // }
+    // <button className = "event-box"><h1>+</h1></button>
 
 
 

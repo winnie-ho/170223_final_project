@@ -6,11 +6,12 @@ class GroupView extends React.Component {
 
   constructor(props) {
     super(props)
-    console.log("the props coming through", props)
-    console.log("query props:", props.location.query)
+    this.groupSelected = props.location.query.groupId
     this.state = { 
       groupData: [],
-    }
+      events: [],
+      messages: []
+      }
   }
 
   componentDidMount(){
@@ -23,8 +24,10 @@ class GroupView extends React.Component {
     request.onload = () => {
        if(request.status === 200){
         var data = JSON.parse(request.responseText)
-        console.log("api data", data);
-        this.setState({groupData: data})
+        console.log("api data", data[this.groupSelected-1]);
+        this.setState({groupData: data[this.groupSelected-1]})
+        this.setState({events: data[this.groupSelected-1].events})
+        this.setState({messages: data[this.groupSelected-1].messages})
        } else {
         console.log("Uh oh you're not logged in!")
         browserHistory.goBack()
@@ -34,20 +37,28 @@ class GroupView extends React.Component {
   }
 
   render(){
-    console.log("group id", this.props.route.groupId)
+    
+    //get rid of this trail below
+    // console.log("group id", this.props.route.groupId)
+    //
+
+    console.log("messages:", this.state.messages)
+    console.log("events:", this.state.events)
+
+
     return(
       <div className="group-view">
         <div className = "group-main">
 
           <div className = "message-board">
             <h2>MESSAGES</h2>
-            <MessagesContainer info = {this.state.groupData}/>
+            <MessagesContainer messages={this.state.messages}/>
           </div>
 
 
           <div className = "events-scroll">
             <h2>EVENTS</h2>
-            <EventsContainer info = {this.state.groupData}/>
+            <EventsContainer events={this.state.events}/>
           </div>
 
 

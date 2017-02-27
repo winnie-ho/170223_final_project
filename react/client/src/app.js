@@ -46,7 +46,3 @@ class App extends React.Component{
 
 ReactDOM.render(<App/>, document.getElementById("app"))
 
-if (this.state. number) {
-  <Show />
-}
-<Index />
