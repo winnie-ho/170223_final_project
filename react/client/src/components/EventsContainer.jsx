@@ -1,4 +1,6 @@
 import React from "react"
+import { Link, browserHistory, hashHistory } from "react-router";
+
 
 class EventsContainer extends React.Component{
 
@@ -19,11 +21,16 @@ doSearch(event){
 render() {
   return(
     <div className="event-div" >
+    <div className = "event-tools">
     <input className='search-box' type='text' placeholder='🔎 search' value = {this.state.searchQuery} onChange={this.doSearch} />
+    
+    <Link to = "/groups/:id/newEvent"><h1>+</h1></Link>
+    </div>
+    <div className = "event-inner-div">
     {
       this.props.events.filter((event) => `${event.name}`.toUpperCase().indexOf(this.state.searchQuery.toUpperCase()) >= 0)
             .map((event) => (
-        <div key = {event.id}>
+        <div className = "event-list" key = {event.id}>
           <button className = "event-box" >
             <h3>{event.name}</h3>
             <p>{event.time}</p>
@@ -35,6 +42,7 @@ render() {
       <button className = "event-box">
         <h1>+</h1>
       </button>
+    </div>
     </div>
     )
   }

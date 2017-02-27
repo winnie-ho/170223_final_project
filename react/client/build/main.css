@@ -199,29 +199,62 @@ form{
   justify-content: center; 
 }
 
-
+.icon-button{
+  width: 30px;
+  height: 30px;
+  margin: 5px;
+  border-radius: 20px;
+}
 
 
 
 
 .group-view{
-  width: 800px;
   display: flex;
   flex-direction: column;
-  margin:20px;
-  border: dashed red 1px;
+  padding:10px;
+  /*border: dashed red 1px;*/
   justify-content: center;
-  align-content: center;
+  align-content: space-between;
+  align-items: center;
+}
+
+.top-bar-right{
+  width: 80vw;
+  display: flex;
+  flex-direction: row;
+  /*border: dashed red 1px;*/
+  justify-content: flex-end;
+  align-content: space-between;
+  align-items: center;
+}
+
+.top-bar{
+  display: flex;
+  flex-direction: row;
+  /*border: dashed red 1px;*/
+  justify-content: flex-end;
+  align-content: space-between;
+  align-items: center;
 }
 
 .group-main{
   display: flex;
   flex-direction: row;
-  margin: 20px;
+  margin: 10px;
+  padding-left:50px;
+  padding-right:50px;
   border: dashed red 1px;
-  justify-content: space-around;
+  justify-content: space-between;
   align-content: flex-start;
   align-items: flex-start;
+}
+
+.message-list{
+  height: 500px;
+  border: red dashed 1px;
+  overflow-y: scroll;
+  overflow-x: hidden;
 }
 
 .message-div{
@@ -232,12 +265,12 @@ form{
   align-items: flex-start;
   width: 300px;
   border: red dashed 1px;
-  overflow-y: scroll;
-  overflow-x: hidden;
+
 }
 
 
 .event-div{
+  margin:10px;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -248,21 +281,44 @@ form{
   overflow-y: scroll;
   overflow-x: hidden;
 }
+.event-tools{
+  width: 250px;
+  height: 40px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  align-content: center;
+  border: red dashed 1px;
+
+}
+.event-inner-div{
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-content: flex-start;
+  align-items: flex-start;
+  border: red dashed 1px;
+  overflow-y: scroll;
+  overflow-x: hidden;
+  height: 500px;
+}
+
 
 .event-box{
   height:100px;
-  width: 200px;
+  width: 250px;
+  flex: 0 0 100px ;
   display: flex;
   flex-direction: column;
   align-items: center;
-  align-content: center;
   justify-content: center;
-  margin: 10px;
+  margin: 5px;
   border: red dashed 1px;
 }
 
 .event-box:hover{
-  margin: 10px;
+  margin: 5px;
   opacity: 0.5;
   border: black 1px solid;
   border-radius: 10px;

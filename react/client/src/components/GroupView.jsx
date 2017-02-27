@@ -2,6 +2,7 @@ import React from "react"
 import ReactDOM from "react-dom"
 import MessagesContainer from "./MessagesContainer"
 import EventsContainer from "./EventsContainer"
+import { Link, browserHistory, hashHistory } from "react-router";
 
 class GroupView extends React.Component {
 
@@ -10,20 +11,27 @@ class GroupView extends React.Component {
     this.groupSelected = props.location.query.groupId
     this.addMessage = this.addMessage.bind(this)
     this.handleOnChangeMsg = this.handleOnChangeMsg.bind(this);
+    this.addEvent = this.addEvent.bind(this)
 
     this.state = { 
       groupData: [],
       events: [],
       messages: [],
-      msg: ""
+      msg: null,
+      name: null,
+      date: null,
+      time: null,
+      location: null,
+      description: null,
+      route: null
       }
   }
 
   componentDidMount(){
-    this.getMessages()
+    this.getData()
   }
 
-  getMessages(){
+  getData(){
     var url = "http://localhost:5000/groups"
     var request = new XMLHttpRequest()
     request.open("GET", url)
@@ -66,9 +74,38 @@ class GroupView extends React.Component {
     }
     request.send(JSON.stringify(data));
     console.log("message added", data);
-    this.getMessages()
+    this.getData()
     ReactDOM.findDOMNode(this.refs.form).value = "";
+  }
 
+  addEvent(event){
+    event.preventDefault();
+    const request = new XMLHttpRequest();
+    request.open("POST", "http://localhost:5000/groups/:id/events.json");
+    request.setRequestHeader("content-type", "application/json");
+    request.withCredentials = true;
+
+    request.onload = ()=>{
+      if(request.status === 201){
+        const user = JSON.parse(request.responseText);
+      }
+    }
+
+    const data = {
+      event: {
+        name: this.state.name,
+        date: this.state.date,
+        time: this.state.time,
+        location: this.state.location,
+        description: this.state.description,
+        route: this.state.route,
+        group_id: this.groupSelected
+      }
+    }
+    request.send(JSON.stringify(data));
+    console.log("event added", data);
+    this.getData()
+    ReactDOM.findDOMNode(this.refs.form).value = "";
   }
 
   handleOnChangeMsg(event){
@@ -77,10 +114,20 @@ class GroupView extends React.Component {
   render(){
     return(
       <div className="group-view">
+        <h2>{this.state.groupData.name}</h2>
+        <div className = "top-bar">
+          <div>
+          <Link to = "/groups">←my groups</Link>
+          </div>
+          <div className = "top-bar-right">
+          <button className = "icon-button">✄</button>
+          <button className = "icon-button">✎</button>
+          </div>
+        </div>
         <div className = "group-main">
 
           <div className = "message-board">
-            <h2>MESSAGES</h2>
+            <h3>MESSAGES</h3>
             <form onSubmit = {this.addMessage} className = "new-message-form">
             <input ref="form" type = "text" onChange = {this.handleOnChangeMsg} placeholder = "message" className = "message-box"/> 
             <button onClick = {this.addMessage}>POST</button>
@@ -90,8 +137,9 @@ class GroupView extends React.Component {
 
 
           <div className = "events-scroll">
-            <h2>EVENTS</h2>
-            <EventsContainer groupId = {this.groupSelected}events={this.state.events}/>
+            <h3>EVENTS</h3>
+
+            <EventsContainer addEvent = {this.addEvent}groupId = {this.groupSelected} events={this.state.events}/>
           </div>
 
 

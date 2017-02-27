@@ -16,7 +16,6 @@ class GroupsContainer extends React.Component {
     }
   }
 
-
   componentDidMount(){
     this.getGroups()
   }

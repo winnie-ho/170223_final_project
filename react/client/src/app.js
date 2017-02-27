@@ -8,6 +8,7 @@ import GroupView from "./components/GroupView"
 import GroupNew from "./components/GroupNew"
 import EventListing from "./components/EventListing"
 import EventView from "./components/EventView"
+import EventNew from "./components/EventNew"
 import {Router, Route, IndexRoute, hashHistory} from "react-router"
 
 class App extends React.Component{
@@ -19,7 +20,7 @@ class App extends React.Component{
         <IndexRoute component = {Home}/>
         <Route path = "/groups" component = {GroupsContainer}/>
         <Route path = "/groups/:id" component = {GroupView}/>
-        <Route path = "newgroup" component = {GroupNew}/>
+        <Route path = "/groups/:id/newEvent" component = {EventNew}/>
 
         <Route path = "/events" component = {EventListing}/>
         <Route path = "/events/:id" component = {EventView}/>
