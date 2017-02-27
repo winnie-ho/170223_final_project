@@ -6,6 +6,8 @@ class GroupView extends React.Component {
 
   constructor(props) {
     super(props)
+    console.log("the props coming through", props)
+    console.log("query props:", props.location.query)
     this.state = { 
       groupData: [],
     }

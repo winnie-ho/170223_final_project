@@ -56,8 +56,8 @@ a:hover{
   justify-content: space-between;
   align-content: space-around;
   margin:20px;
-  border: red dashed 1px;
-}
+/*  border: red dashed 1px;
+*/}
 
 .create-acc:hover{
   opacity: 0.5
@@ -79,8 +79,8 @@ a:hover{
   align-items: center;
   justify-content: center;
   margin:20px;
-  border:red 1px dashed;
-}
+/*  border:red 1px dashed;
+*/}
 
 
 .login-form{

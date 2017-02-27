@@ -22,27 +22,19 @@ render() {
       {item.events.map((event, index)=>{
         return(
 
+          item.events.filter((event) => `${event.name}`.toUpperCase().indexOf(this.state.searchQuery.toUpperCase()) >= 0)
+          .map((event) => (
 
-
-  
-    item.events.filter((event) => `${event.name}`.toUpperCase().indexOf(this.state.searchQuery.toUpperCase()) >= 0)
-    .map((event) => (
-
-          <button className = "event-box" key = {index.id}>
+            <button className = "event-box" key = {index.id}>
             <h3>{event.name}</h3>
             ({event.time})
-          </button>
+            </button>
 
-
-
-      ))
-  
-
+            ))
           )
       })
     }
-          <button className = "event-box"><h1>+</h1>
-          </button>
+    <button className = "event-box"><h1>+</h1></button>
     </div>
     )
   })
