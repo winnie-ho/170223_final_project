@@ -1,4 +1,5 @@
 import React from "react"
+import ReactDOM from "react-dom"
 import MessagesContainer from "./MessagesContainer"
 import EventsContainer from "./EventsContainer"
 
@@ -64,8 +65,9 @@ class GroupView extends React.Component {
       }
     }
     request.send(JSON.stringify(data));
-    this.getMessages()
     console.log("message added", data);
+    this.getMessages()
+    ReactDOM.findDOMNode(this.refs.form).value = "";
 
   }
 
@@ -80,7 +82,7 @@ class GroupView extends React.Component {
           <div className = "message-board">
             <h2>MESSAGES</h2>
             <form onSubmit = {this.addMessage} className = "new-message-form">
-            <input type = "text" onChange = {this.handleOnChangeMsg} placeholder = "message" className = "message-box"/> 
+            <input ref="form" type = "text" onChange = {this.handleOnChangeMsg} placeholder = "message" className = "message-box"/> 
             <button onClick = {this.addMessage}>POST</button>
             </form>
             <MessagesContainer groupId = {this.groupSelected} messages={this.state.messages}/>

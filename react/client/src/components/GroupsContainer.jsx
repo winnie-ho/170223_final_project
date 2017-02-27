@@ -33,7 +33,6 @@ class GroupsContainer extends React.Component {
         var data = JSON.parse(request.responseText)
         this.setState( { groups: data } )
         this.setState({ newGroup:false })
-        console.log("reset", this.state.newGroup)
 
        } else {
         console.log("Uh oh you're not logged in!")
@@ -66,7 +65,6 @@ class GroupsContainer extends React.Component {
     request.send(JSON.stringify(data));
     console.log("group added",data);
         this.setState({ newGroup:false })
-        console.log("reset2", this.state.newGroup)
         this.getGroups()
   }
   
