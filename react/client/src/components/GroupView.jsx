@@ -14,7 +14,6 @@ class GroupView extends React.Component {
       groupData: [],
       events: [],
       messages: [],
-      update:null,
       msg: ""
       }
   }
@@ -68,23 +67,7 @@ class GroupView extends React.Component {
     this.getMessages()
     console.log("message added", data);
 
-
-
-    // var messageArray = this.state.messages
-    // console.log("currentarray", messageArray)
-    // var newMessage = this.state.msg
-    // console.log("message to add", newMessage)
-
-    // var newMessageArray = messageArray.push(newMessage)
-    // this.setState({messages: newMessageArray})
   }
-
-
-
-
-
-
-
 
   handleOnChangeMsg(event){
     this.setState({msg: event.target.value})

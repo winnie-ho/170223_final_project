@@ -7,7 +7,7 @@ constructor(props){
 }
 
 render() {
-  console.log("messages in MsgContainer:", this.props.messages)
+  // console.log("messages in MsgContainer:", this.props.messages)
   var messageNodes = this.props.messages.map((message, index)=>{
     return(
       <div className = "message-div" key = {index}>

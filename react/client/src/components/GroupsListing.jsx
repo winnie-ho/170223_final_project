@@ -39,7 +39,7 @@ class GroupsListing extends React.Component{
 
   render() {
     if (this.state.newGroup === true){
-      var newGroupForm = <GroupNew reset = {this.resetNewGroup} update = {this.updateGroupsListing}/>
+      var newGroupForm = <GroupNew reset = {this.resetNewGroup} addGroup = {this.props.addGroup}/>
     }else if (this.state.newGroup === false) {
       newGroupForm = "+";
     }
