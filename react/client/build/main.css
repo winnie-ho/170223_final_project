@@ -103,6 +103,8 @@ input{
   margin:5px;
   font-size: 14px;
   font-family: GeoSansLight;
+  border: 1px gray solid;
+  border-radius: 4px;
 }
 
 button{

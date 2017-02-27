@@ -4,6 +4,8 @@ class EventsContainer extends React.Component{
 
 constructor(props){
   super(props)
+  this.doSearch = this.doSearch.bind(this)
+
   this.state = {
     searchQuery: "",
   }
@@ -20,13 +22,23 @@ render() {
       {item.events.map((event, index)=>{
         return(
 
-          <button className = "event-box" key = {index}>
+
+
+  
+    item.events.filter((event) => `${event.name}`.toUpperCase().indexOf(this.state.searchQuery.toUpperCase()) >= 0)
+    .map((event) => (
+
+          <button className = "event-box" key = {index.id}>
             <h3>{event.name}</h3>
             ({event.time})
           </button>
 
-          )
 
+
+      ))
+  
+
+          )
       })
     }
           <button className = "event-box"><h1>+</h1>
@@ -34,6 +46,10 @@ render() {
     </div>
     )
   })
+
+
+
+
 
   return(
     <div>
