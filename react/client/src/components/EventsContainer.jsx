@@ -4,6 +4,13 @@ class EventsContainer extends React.Component{
 
 constructor(props){
   super(props)
+  this.state = {
+    searchQuery: "",
+  }
+}
+
+doSearch(event){
+  this.setState({searchQuery: event.target.value})
 }
 
 render() {
@@ -30,6 +37,7 @@ render() {
 
   return(
     <div>
+    <input className='search-box' type='text' placeholder='🔎 search' value = {this.state.searchQuery} onChange={this.doSearch} />
     {eventNodes}
     </div>
     )}
