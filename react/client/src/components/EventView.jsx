@@ -12,6 +12,9 @@ class EventView extends React.Component{
   render() {
     return(
         <div className = "event-view-div">
+        <div>
+        <Link to = "/groups/:id">←back</Link>
+        </div>
           <h2>{this.props.location.query.name}</h2>
           <h3>{this.props.location.query.date}</h3>
           <h4>{this.props.location.query.time}</h4>
