@@ -128,16 +128,14 @@ class GroupView extends React.Component {
         const user = JSON.parse(request.responseText);
       }
     }
-
     const data = {
-        group: {
-        name: this.state.changedName
-      }
+        group:{
+              name:this.state.changedName
+              }
     }
     request.send(JSON.stringify(data));
     console.log("group updated",data);
-        this.setState({ newGroup:false })
-        this.getData()
+    this.getData()
   }
 
   handleEditGroup(){
@@ -146,8 +144,8 @@ class GroupView extends React.Component {
   }
 
   handleOnChangeGroupName(event){
-    var changedName = event.target.value
-    this.setState({changedName: changedName}) 
+    var updatedName = event.target.value
+    this.setState({changedName: updatedName}) 
   }
 
   render(){
@@ -156,7 +154,7 @@ class GroupView extends React.Component {
 
     if (this.state.editGroup===true){
       var header = <div>
-      <input placeholder = "group name"></input>
+      <input onChange = {this.handleOnChangeGroupName}placeholder = "group name"></input>
       <button onClick = {this.editGroup} >update</button>
       </div>
       }else if (this.state.editGroup === false) {

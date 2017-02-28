@@ -3,7 +3,7 @@ class GroupsController < ApplicationController
 before_action :authenticate_user!
 
   def groups_params()
-    params.require(:group).permit([:name])
+    params.require(:group).permit(:name)
   end
 
   def index()
