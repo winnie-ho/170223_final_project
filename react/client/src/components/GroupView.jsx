@@ -112,9 +112,12 @@ class GroupView extends React.Component {
     this.setState({msg: event.target.value})
   }
   render(){
+
+    var groupTitle = this.state.groupData.name
+    var upperGroupTitle = `${this.state.groupData.name}`.toUpperCase()
     return(
       <div className="group-view">
-        <h2>{this.state.groupData.name}</h2>
+        <h2>{upperGroupTitle}</h2>
         <div className = "top-bar">
           <div>
           <Link to = "/groups">←my groups</Link>
