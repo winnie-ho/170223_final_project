@@ -13,6 +13,7 @@ class GroupView extends React.Component {
     this.addMessage = this.addMessage.bind(this)
     this.handleOnChangeMsg = this.handleOnChangeMsg.bind(this);
     this.addEventUpdate = this.addEventUpdate.bind(this)
+    this.deleteGroup = this.deleteGroup.bind(this)
 
     this.state = { 
       groupData: [],
@@ -87,6 +88,25 @@ class GroupView extends React.Component {
   handleOnChangeMsg(event){
     this.setState({msg: event.target.value})
   }
+
+  deleteGroup(){
+    event.preventDefault();
+    var url = "http://localhost:5000/groups/" + this.groupSelected + ".json"
+
+    const request = new XMLHttpRequest();
+    request.open("DELETE", url);
+    request.setRequestHeader("content-type", "application/json");
+    request.withCredentials = true;
+
+    request.onload = ()=>{
+      if(request.status === 201){
+        console.log("group deleted", data);
+      }
+        this.props.router.push("/groups")
+    }
+    request.send()
+  }
+
   render(){
 
     var groupTitle = this.state.groupData.name
@@ -99,7 +119,7 @@ class GroupView extends React.Component {
           <Link to = "/groups">←my groups</Link>
           </div>
           <div className = "top-bar-right">
-          <button className = "icon-button">✄</button>
+          <button onClick = {this.deleteGroup} className = "icon-button">✄</button>
           <button className = "icon-button">✎</button>
           </div>
         </div>

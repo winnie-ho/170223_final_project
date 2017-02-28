@@ -20,7 +20,6 @@ class EventView extends React.Component{
     var eventId = this.props.location.query.id
     var url = "http://localhost:5000/groups/:id/events/" + eventId + ".json"
 
-
     const request = new XMLHttpRequest();
     request.open("DELETE", url);
     request.setRequestHeader("content-type", "application/json");
