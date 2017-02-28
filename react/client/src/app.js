@@ -21,7 +21,7 @@ class App extends React.Component{
         <Route path = "/groups" component = {GroupsContainer}/>
         <Route path = "/groups/:id" component = {GroupView}/>
         <Route path = "/groups/:id/newEvent" component = {EventNew}/>
-        <Route path = "/groups/:id/event/:id" component = {EventView}/>
+        <Route path = "/groups/:id/showEvent" component = {EventView}/>
 
         <Route path = "/events" component = {EventListing}/>
         <Route path = "/events/:id" component = {EventView}/>

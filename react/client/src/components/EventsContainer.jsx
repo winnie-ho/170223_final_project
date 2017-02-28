@@ -1,5 +1,6 @@
 import React from "react"
 import { Link, browserHistory, hashHistory } from "react-router";
+import EventListing from "./EventListing"
 
 
 class EventsContainer extends React.Component{
@@ -7,27 +8,40 @@ class EventsContainer extends React.Component{
 constructor(props){
   super(props)
   this.doSearch = this.doSearch.bind(this)
-  this.eventView = this.eventView.bind(this)
-  console.log("props", this.props)
-  console.log("Events in Eventcontainer:", this.props.events)
+  this.setEventView = this.setEventView.bind(this)
 
   this.state = {
     searchQuery: "",
+    showEvent: null,
+    eventId: "",
+    eventToView: null
   }
+}
+
+componentDidMount(){
+  this.setEventView
 }
 
 doSearch(event){
   this.setState({searchQuery: event.target.value})
 }
 
-eventView(){
-  console.log("clicking to view event")
-  this.props.router.push("/groups/:id/event/:id")
+setEventView(event){
+  // this.props.router.push("/groups/:id/event/:id")
+  this.setState({eventId: event.target.value})
+  console.log("event id", this.state.eventId)
+
+  for (var item of this.props.events){
+    console.log(item.id)
+    if(item.id === this.state.eventId){
+      this.setState({eventToView: item})
+    }
+  }
+  console.log("event to view:", this.state.eventToView)
 }
 
 
 render() {
-    console.log(this.props.groupId)
   return(
     <div className="event-div" >
       <div className = "event-tools">
@@ -42,19 +56,8 @@ render() {
 
         <h1>+</h1></Link>
       </div>
-      <div className = "event-inner-div">
-        {
-          this.props.events.filter((event) => `${event.name}`.toUpperCase().indexOf(this.state.searchQuery.toUpperCase()) >= 0)
-                .map((event) => (
-            <div className = "event-list" key = {event.id}>
-              <button onClick = {this.eventView} className = "event-box" >
-                <h3>{event.name}</h3>
-                <p>{event.time}</p>
-              </button>
-            </div>
-          ))
-        }
-      </div>
+        <EventListing searchQuery = {this.state.searchQuery} events = {this.props.events} setEventView = {this.setEventView}/>
+      
     </div>
     )
   }

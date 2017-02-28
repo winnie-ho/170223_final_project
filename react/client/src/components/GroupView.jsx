@@ -118,7 +118,7 @@ class GroupView extends React.Component {
           <div className = "events-scroll">
             <h3>EVENTS</h3>
 
-            <EventsContainer chiildren = {this.props.children}router = {this.props.router} addEventUpdate = {this.addEventUpdate}groupId = {this.groupSelected} events={this.state.events}/>
+            <EventsContainer selectedEvent = {this.state.selectedEvent} router = {this.props.router} addEventUpdate = {this.addEventUpdate}groupId = {this.groupSelected} events={this.state.events}/>
           </div>
 
 

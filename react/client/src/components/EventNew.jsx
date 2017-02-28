@@ -29,7 +29,6 @@ class EventNew extends React.Component{
 
   handleOnChangeName(event){
     this.setState({name: event.target.value})
-    console.log(this.state.name)
   }
 
   handleOnChangeDate(event){

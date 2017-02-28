@@ -15,4 +15,4 @@ const Group = (props) => (
   </div>
   )
 
-export default Group;
+export default Group

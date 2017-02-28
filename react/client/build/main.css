@@ -300,31 +300,54 @@ form{
   flex-direction: column;
   justify-content: flex-start;
   align-content: flex-start;
-  align-items: flex-start;
+  align-items: center;
   border: red dashed 1px;
   overflow-y: scroll;
   overflow-x: hidden;
   height: 500px;
+  width: 300px;
+  border: green dashed 1px;
 }
 
-
-.event-box{
-  height:100px;
-  width: 250px;
-  flex: 0 0 100px ;
+.event-list{
   display: flex;
-  flex-direction: column;
-  align-items: center;
+  flex-direction: row;
   justify-content: center;
+  align-items: center;
+  align-content: center;
+  /*border: green dashed 1px;*/
+  width: 300px;
+  height: 150px;
   margin: 5px;
-  border: red dashed 1px;
 }
 
-.event-box:hover{
+.event-list:hover{
   margin: 5px;
   opacity: 0.5;
   border: black 1px solid;
   border-radius: 10px;
+}
+
+.event-list>button{
+  border: none;
+}
+.event-box{
+  margin:5px;
+  padding: 10px;
+  width: 300px;
+  display: flex;
+  line-height: 0px;
+  flex-direction: column;
+  align-items: flex-start;
+  align-content: center;
+  justify-content: center;
+  /*border: blue dashed 1px;*/
+}
+
+
+.more{
+  justify-content: right;
+  margin: 5px;
 }
 
 .new-message-form{
