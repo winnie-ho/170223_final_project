@@ -48,7 +48,7 @@ class GroupsListing extends React.Component{
     return(
       <div>
         <nav>
-          <h1>⃞⃞⃞</h1>
+          <h1>WH◉◎P</h1>
           <input className='search-box' type='text' placeholder='🔎 search' value = {this.state.searchQuery} onChange={this.doSearch} />
         </nav>
 

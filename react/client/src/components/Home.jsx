@@ -102,7 +102,7 @@ if(this.state.currentUser){
       <div className="home">
         <div className ="top">
           {signOutDiv}
-          <h1 className='title'>⃞⃞⃞</h1>
+          <h1 className='title'>WH◉◎P</h1>
         
         </div>
           <div className = "sign-in">
