@@ -18,7 +18,15 @@ class EventView extends React.Component{
     return(
         <div className = "event-view-div">
         <div>
-        <div onClick = {this.goBack}>←back</div>
+        <div className = "top-bar">
+
+          <div onClick = {this.goBack}>←back</div>
+
+          <div className = "top-bar-right">
+          <button className = "icon-button">✄</button>
+          <button className = "icon-button">✎</button>
+          </div>
+        </div>
         </div>
           <h2>{this.props.location.query.name}</h2>
           <h3>{this.props.location.query.date}</h3>
