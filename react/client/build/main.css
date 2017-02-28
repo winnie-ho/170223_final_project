@@ -137,8 +137,9 @@ nav{
 }
 
 .listing{
-/*  border: green dashed 1px;
-*/  width: 100vw;
+  margin: 20px;
+  /*border: green dashed 1px;*/
+  width: 100vw;
   display: flex;
   justify-content: center;
 }
@@ -146,7 +147,7 @@ nav{
 .groups-scroll{
   /*border: blue dashed 1px;*/
   width: 670px;
-  height: 600px;
+  height: 670px;
   margin: 10px;
   display: flex;
   flex-wrap: wrap;
@@ -247,16 +248,22 @@ form{
   display: flex;
   flex-direction: row;
   margin: 10px;
-  padding-left:50px;
-  padding-right:50px;
+  padding-left:100px;
+  padding-right:100px;
   /*border: dashed red 1px;*/
   justify-content: space-between;
   align-content: flex-start;
   align-items: flex-start;
 }
 
+.message-board{
+  /*border: red dashed 1px;*/
+  margin-right: 70px;
+  text-align: center;
+}
+
 .message-list{
-  height: 500px;
+  height: 450px;
   /*border: red dashed 1px;*/
   overflow-y: scroll;
   overflow-x: hidden;
@@ -265,13 +272,20 @@ form{
 .message-div{
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  align-content: flex-start;
-  align-items: flex-start;
+  text-align: left;
   width: 300px;
   /*border: red dashed 1px;*/
 }
 
+.events-scroll{
+  height: 500px;
+  /*border: red dashed 1px;*/
+  margin-left: 70px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 400px;
+}
 
 .event-div{
   margin:10px;
@@ -280,20 +294,20 @@ form{
   justify-content: center;
   align-content: center;
   align-items: center;
-  width: 300px;
-  border: red dashed 1px;
+  width: 350px;
+  /*border: red dashed 1px;*/
   overflow-y: scroll;
   overflow-x: hidden;
 }
 .event-tools{
-  width: 250px;
+  width: 300px;
   height: 40px;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
   align-content: center;
-  border: red dashed 1px;
+  /*border: red dashed 1px;*/
 
 }
 .event-inner-div{
@@ -302,13 +316,12 @@ form{
   justify-content: flex-start;
   align-content: flex-start;
   align-items: center;
-  border: red dashed 1px;
   overflow-y: scroll;
   overflow-x: hidden;
   height: 500px;
-  width: 300px;
-/*  border: green dashed 1px;
-*/}
+  width: 400px;
+  /*border: green dashed 1px;*/
+}
 
 .event-list{
   display: flex;
