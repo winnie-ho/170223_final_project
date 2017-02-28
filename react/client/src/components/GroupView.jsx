@@ -14,6 +14,9 @@ class GroupView extends React.Component {
     this.handleOnChangeMsg = this.handleOnChangeMsg.bind(this);
     this.addEventUpdate = this.addEventUpdate.bind(this)
     this.deleteGroup = this.deleteGroup.bind(this)
+    this.editGroup = this.editGroup.bind(this)
+    this.handleOnChangeGroupName = this.handleOnChangeGroupName.bind(this)
+    this.handleEditGroup = this.handleEditGroup.bind(this)
 
     this.state = { 
       groupData: [],
@@ -25,7 +28,10 @@ class GroupView extends React.Component {
       time: null,
       location: null,
       description: null,
-      route: null
+      route: null,
+      editGroup: false,
+      editedGroupId: null,
+      changedName: ""
       }
   }
 
@@ -107,20 +113,67 @@ class GroupView extends React.Component {
     request.send()
   }
 
-  render(){
+  editGroup(){
+    event.preventDefault();
+    this.setState({editGroup:false})
 
+    var url = "http://localhost:5000/groups/" + this.groupSelected + ".json"
+    const request = new XMLHttpRequest();
+    request.open("PUT", url);
+    request.setRequestHeader("content-type", "application/json");
+    request.withCredentials = true;
+
+    request.onload = () => {
+      if (request.status === 201) {
+        const user = JSON.parse(request.responseText);
+      }
+    }
+
+    const data = {
+        group: {
+        name: this.state.changedName
+      }
+    }
+    request.send(JSON.stringify(data));
+    console.log("group updated",data);
+        this.setState({ newGroup:false })
+        this.getData()
+  }
+
+  handleEditGroup(){
+    this.setState({editGroup: true})
+    console.log("edit clicked")
+  }
+
+  handleOnChangeGroupName(event){
+    var changedName = event.target.value
+    this.setState({changedName: changedName}) 
+  }
+
+  render(){
     var groupTitle = this.state.groupData.name
     var upperGroupTitle = `${this.state.groupData.name}`.toUpperCase()
+
+    if (this.state.editGroup===true){
+      var header = <div>
+      <input placeholder = "group name"></input>
+      <button onClick = {this.editGroup} >update</button>
+      </div>
+      }else if (this.state.editGroup === false) {
+        header = <div> {upperGroupTitle}</div>
+      }
+    
+
     return(
       <div className="group-view">
-        <h2>{upperGroupTitle}</h2>
+        <h2>{header}</h2>
         <div className = "top-bar">
           <div>
           <Link to = "/groups">←my groups</Link>
           </div>
           <div className = "top-bar-right">
           <button onClick = {this.deleteGroup} className = "icon-button">✄</button>
-          <button className = "icon-button">✎</button>
+          <button onClick = {this.handleEditGroup} className = "icon-button">✎</button>
           </div>
         </div>
         <div className = "group-main">

@@ -6,7 +6,7 @@ const Group = (props) => (
    <Link to={
       {
         "pathname": "/groups/:id",
-        "query": {"groupId": props.id},
+        "query": {"groupId": props.groupId},
         "state": "something being passed through",
       }
     }>
