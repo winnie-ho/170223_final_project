@@ -78,34 +78,9 @@ class GroupView extends React.Component {
     ReactDOM.findDOMNode(this.refs.form).value = "";
   }
 
-  addEvent(event){
-    event.preventDefault();
-    const request = new XMLHttpRequest();
-    request.open("POST", "http://localhost:5000/groups/:id/events.json");
-    request.setRequestHeader("content-type", "application/json");
-    request.withCredentials = true;
-
-    request.onload = ()=>{
-      if(request.status === 201){
-        const user = JSON.parse(request.responseText);
-      }
-    }
-
-    const data = {
-      event: {
-        name: this.state.name,
-        date: this.state.date,
-        time: this.state.time,
-        location: this.state.location,
-        description: this.state.description,
-        route: this.state.route,
-        group_id: this.groupSelected
-      }
-    }
-    request.send(JSON.stringify(data));
-    console.log("event added", data);
+  addEventUpdate(event){
+    
     this.getData()
-    ReactDOM.findDOMNode(this.refs.form).value = "";
   }
 
   handleOnChangeMsg(event){

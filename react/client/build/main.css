@@ -256,7 +256,7 @@ form{
 
 .message-list{
   height: 500px;
-  border: red dashed 1px;
+  /*border: red dashed 1px;*/
   overflow-y: scroll;
   overflow-x: hidden;
 }
@@ -268,8 +268,7 @@ form{
   align-content: flex-start;
   align-items: flex-start;
   width: 300px;
-  border: red dashed 1px;
-
+  /*border: red dashed 1px;*/
 }
 
 
@@ -331,4 +330,13 @@ form{
 .new-message-form{
   display: flex;
   flex-direction: row;
+}
+
+.new-event-form{
+  margin-top: 100px;
+  display:flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
 }
