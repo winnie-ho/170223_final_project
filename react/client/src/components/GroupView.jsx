@@ -8,6 +8,7 @@ class GroupView extends React.Component {
 
   constructor(props) {
     super(props)
+    console.log("props in groupView", this.props)
     this.groupSelected = props.location.query.groupId
     this.addMessage = this.addMessage.bind(this)
     this.handleOnChangeMsg = this.handleOnChangeMsg.bind(this);
@@ -117,7 +118,7 @@ class GroupView extends React.Component {
           <div className = "events-scroll">
             <h3>EVENTS</h3>
 
-            <EventsContainer addEventUpdate = {this.addEventUpdate}groupId = {this.groupSelected} events={this.state.events}/>
+            <EventsContainer chiildren = {this.props.children}router = {this.props.router} addEventUpdate = {this.addEventUpdate}groupId = {this.groupSelected} events={this.state.events}/>
           </div>
 
 

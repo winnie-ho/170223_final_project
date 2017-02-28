@@ -7,6 +7,8 @@ class EventsContainer extends React.Component{
 constructor(props){
   super(props)
   this.doSearch = this.doSearch.bind(this)
+  this.eventView = this.eventView.bind(this)
+  console.log("props", this.props)
   console.log("Events in Eventcontainer:", this.props.events)
 
   this.state = {
@@ -17,6 +19,12 @@ constructor(props){
 doSearch(event){
   this.setState({searchQuery: event.target.value})
 }
+
+eventView(){
+  console.log("clicking to view event")
+  this.props.router.push("/groups/:id/event/:id")
+}
+
 
 render() {
     console.log(this.props.groupId)
@@ -39,7 +47,7 @@ render() {
           this.props.events.filter((event) => `${event.name}`.toUpperCase().indexOf(this.state.searchQuery.toUpperCase()) >= 0)
                 .map((event) => (
             <div className = "event-list" key = {event.id}>
-              <button className = "event-box" >
+              <button onClick = {this.eventView} className = "event-box" >
                 <h3>{event.name}</h3>
                 <p>{event.time}</p>
               </button>
