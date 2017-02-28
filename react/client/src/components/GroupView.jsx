@@ -115,7 +115,6 @@ class GroupView extends React.Component {
 
   editGroup(){
     event.preventDefault();
-    this.setState({editGroup:false})
 
     var url = "http://localhost:5000/groups/" + this.groupSelected + ".json"
     const request = new XMLHttpRequest();
@@ -135,6 +134,7 @@ class GroupView extends React.Component {
     }
     request.send(JSON.stringify(data));
     console.log("group updated",data);
+    this.setState({editGroup:false})
     this.getData()
   }
 
