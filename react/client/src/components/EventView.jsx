@@ -9,11 +9,16 @@ class EventView extends React.Component{
 
   }
 
+  goBack(){
+  browserHistory.goBack();
+  }
+
+
   render() {
     return(
         <div className = "event-view-div">
         <div>
-        <Link to = "/groups/:id">←back</Link>
+        <div onClick = {this.goBack}>←back</div>
         </div>
           <h2>{this.props.location.query.name}</h2>
           <h3>{this.props.location.query.date}</h3>
