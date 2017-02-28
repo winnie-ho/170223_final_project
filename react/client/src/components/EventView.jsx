@@ -50,8 +50,8 @@ class EventView extends React.Component{
         </div>
         </div>
           <h2>{this.props.location.query.name}</h2>
-          <h3>{this.props.location.query.date}</h3>
-          <h4>{this.props.location.query.time}</h4>
+          <h3>{this.props.location.query.date.slice(0,10)}</h3>
+          <h4>{this.props.location.query.time.slice(11,16)}</h4>
           <h4>{this.props.location.query.location}</h4>
           <h4>{this.props.location.query.description}</h4>
           <h4>{this.props.location.query.route}</h4>

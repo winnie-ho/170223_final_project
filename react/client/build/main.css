@@ -137,14 +137,14 @@ nav{
 }
 
 .listing{
-  border: green dashed 1px;
-  width: 100vw;
+/*  border: green dashed 1px;
+*/  width: 100vw;
   display: flex;
   justify-content: center;
 }
 
 .groups-scroll{
-  border: blue dashed 1px;
+  /*border: blue dashed 1px;*/
   width: 670px;
   height: 600px;
   margin: 10px;
@@ -163,7 +163,7 @@ nav{
   text-align: center;
   line-height: 200px;
   margin: 10px;
-  border: red dashed 1px;
+  /*border: red dashed 1px;*/
 }
 
 .group:hover{
@@ -176,7 +176,7 @@ nav{
 .new-group{
   height:200px;
   width: 200px;
-  border: red dashed 1px;
+  /*border: red dashed 1px;*/
   display: flex;
   align-content: center;
   align-items: center;
@@ -249,7 +249,7 @@ form{
   margin: 10px;
   padding-left:50px;
   padding-right:50px;
-  border: dashed red 1px;
+  /*border: dashed red 1px;*/
   justify-content: space-between;
   align-content: flex-start;
   align-items: flex-start;
@@ -307,8 +307,8 @@ form{
   overflow-x: hidden;
   height: 500px;
   width: 300px;
-  border: green dashed 1px;
-}
+/*  border: green dashed 1px;
+*/}
 
 .event-list{
   display: flex;
