@@ -3,8 +3,8 @@ import ReactDOM from "react-dom"
 import { Link, browserHistory, hashHistory } from "react-router";
 
 class EventNew extends React.Component{
-
   constructor(props){
+    console.log("group id through route:", props.location.query.groupId)
     super(props)
     this.handleOnChangeName = this.handleOnChangeName.bind(this);
     this.handleOnChangeDate = this.handleOnChangeDate.bind(this);
@@ -20,7 +20,8 @@ class EventNew extends React.Component{
       time: null,
       location: null,
       description: null,
-      route: null
+      route: null,
+      groupSelected: props.location.query.groupId
     }
   }
 
@@ -72,15 +73,16 @@ class EventNew extends React.Component{
         location: this.state.location,
         description: this.state.description,
         route: this.state.route,
-        group_id: this.groupSelected
+        group_id: this.state.groupSelected
       }
     }
     request.send(JSON.stringify(data));
     console.log("event added", data);
-    ReactDOM.findDOMNode(this.refs.form).value = "";
+    this.props.router.goBack();
   }
 
   render(){
+    console.log("this props", this.props);
     return(
       <div className = "new-event-form">
       <h4>ADD EVENT</h4>
@@ -93,11 +95,6 @@ class EventNew extends React.Component{
           <input type = "text" onChange = {this.handleOnChangeRoute} placeholder = "route" className = "event-form-input"/>         
           <button onClick = {this.addEvent}>ADD</button>
         </form>
-
-
-
-
-
       </div>
       )
   }

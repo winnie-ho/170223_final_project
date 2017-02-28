@@ -11,7 +11,7 @@ class GroupView extends React.Component {
     this.groupSelected = props.location.query.groupId
     this.addMessage = this.addMessage.bind(this)
     this.handleOnChangeMsg = this.handleOnChangeMsg.bind(this);
-    this.addEvent = this.addEvent.bind(this)
+    this.addEventUpdate = this.addEventUpdate.bind(this)
 
     this.state = { 
       groupData: [],
@@ -29,6 +29,7 @@ class GroupView extends React.Component {
 
   componentDidMount(){
     this.getData()
+    console.log("getting data")
   }
 
   getData(){
@@ -79,7 +80,6 @@ class GroupView extends React.Component {
   }
 
   addEventUpdate(event){
-    
     this.getData()
   }
 
@@ -117,7 +117,7 @@ class GroupView extends React.Component {
           <div className = "events-scroll">
             <h3>EVENTS</h3>
 
-            <EventsContainer addEvent = {this.addEvent}groupId = {this.groupSelected} events={this.state.events}/>
+            <EventsContainer addEventUpdate = {this.addEventUpdate}groupId = {this.groupSelected} events={this.state.events}/>
           </div>
 
 

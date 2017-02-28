@@ -19,12 +19,20 @@ doSearch(event){
 }
 
 render() {
+    console.log(this.props.groupId)
   return(
     <div className="event-div" >
       <div className = "event-tools">
         <input className='search-box' type='text' placeholder='🔎 search' value = {this.state.searchQuery} onChange={this.doSearch} />
         
-        <Link to = "/groups/:id/newEvent"><h1>+</h1></Link>
+        <Link to = {
+          {
+            "pathname": "/groups/:id/newEvent",
+            "query": {"groupId": this.props.groupId}
+          }
+        }>
+
+        <h1>+</h1></Link>
       </div>
       <div className = "event-inner-div">
         {

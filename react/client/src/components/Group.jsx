@@ -9,8 +9,7 @@ const Group = (props) => (
         "query": {"groupId": props.id},
         "state": "something being passed through",
       }
-    }
-   >
+    }>
      {props.name}
    </Link>
   </div>
