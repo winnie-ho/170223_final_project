@@ -39,7 +39,7 @@ class EventView extends React.Component{
         <div>
         <div className = "top-bar">
 
-          <div onClick = {this.goBack}>←back</div>
+          <div className = "go-back" onClick = {this.goBack}>←back</div>
 
           <div className = "top-bar-right">
           <button onClick = {this.deleteEvent} className = "icon-button">✄</button>

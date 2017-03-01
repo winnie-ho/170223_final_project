@@ -47,7 +47,7 @@ render() {
       <div className = "event-tools">
         <input className='search-box' type='text' placeholder='🔎 search' value = {this.state.searchQuery} onChange={this.doSearch} />
         
-        <Link to = {
+        <Link className = "add-event-plus" to = {
           {
             "pathname": "/groups/:id/newEvent",
             "query": {"groupId": this.props.groupId}
