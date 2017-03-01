@@ -52,7 +52,7 @@ class GroupsListing extends React.Component{
         <nav>
           <div className = "logo">
           <Link to = "/">←home </Link>
-          <h1>WH◉◎P</h1>
+          <h1>WH<span className='title'>◉◎</span>P</h1>
           </div>
           <input className='search-box' type='text' placeholder='🔎 search' value = {this.state.searchQuery} onChange={this.doSearch} />
         </nav>

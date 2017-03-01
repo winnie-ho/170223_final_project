@@ -91,7 +91,6 @@ class EventNew extends React.Component{
           <input type = "text" onChange = {this.handleOnChangeTime} placeholder = "time" className = "event-form-input"/> 
           <input type = "text" onChange = {this.handleOnChangeLocation} placeholder = "location" className = "event-form-input"/> 
           <input type = "text" onChange = {this.handleOnChangeDescription} placeholder = "description" className = "event-form-input"/> 
-          <input type = "text" onChange = {this.handleOnChangeRoute} placeholder = "route" className = "event-form-input"/>         
           <button onClick = {this.addEvent}>ADD</button>
         </form>
       </div>
@@ -102,3 +101,4 @@ class EventNew extends React.Component{
 }
 
 export default EventNew
+          // <input type = "text" onChange = {this.handleOnChangeRoute} placeholder = "route" className = "event-form-input"/>         

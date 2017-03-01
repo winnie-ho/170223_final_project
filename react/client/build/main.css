@@ -5,6 +5,24 @@ body{
   align-content: center;
 }
 
+
+.title {
+    color: black;
+    font-size: 50px;
+
+    -webkit-animation-name: example;
+    -webkit-animation-duration: 1s;
+    animation-name: example;
+    animation-duration: 1s;
+    animation-iteration-count: 1;
+}
+
+@keyframes example {
+    from {font-size: 20px}
+    to {font-size: 50px }
+}
+
+
 .home{
   width: 1000px;
   display: flex;
@@ -357,10 +375,12 @@ form{
   justify-content: center;
   align-items: center;
   align-content: center;
-  /*border: green dashed 1px;*/
-  width: 300px;
-  height: 150px;
+  /*border: red dashed 1px;*/
+  width: 320px;
+  height: 100px;
   margin: 5px;
+  padding: 5px;
+  flex: 0 0 90px;
 }
 
 .event-list:hover{
@@ -374,11 +394,13 @@ form{
   border: none;
 }
 .event-box{
+  line-height: 0px;
+  height: 100px;
   margin:5px;
   padding: 10px;
-  width: 300px;
+  width: 350px;
   display: flex;
-  line-height: 0px;
+  flex: 350 0 0px;
   flex-direction: column;
   align-items: flex-start;
   align-content: center;
@@ -390,7 +412,9 @@ form{
 .more{
   justify-content: right;
   margin: 5px;
-}
+  padding: 5px;
+/*  border: red 1px dashed;
+*/}
 
 .new-message-form{
   display: flex;

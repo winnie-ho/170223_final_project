@@ -14,25 +14,25 @@ class EventListing extends React.Component{
                 .map((event) => (
             <div className = "event-list" key = {event.id}>
  
-        <div className = "event-box" onClick = {this.props.setEventView}>
-        <h4>{event.name}</h4>
-        <p>{event.date.slice(0,10)}</p>
-        <p>{event.time.slice(11,16)}</p>
-        </div>
-        <Link to = {
-          {
-            "pathname": "/groups/:id/showEvent",
-            "query":{
-              "id": event.id,
-              "name": event.name,
-              "date": event.date,
-              "time": event.time,
-              "location": event.location,
-              "description": event.description,
-              "route": event.route
-            }
-          }
-        }>more▷</Link>
+              <div className = "event-box" onClick = {this.props.setEventView}>
+              <h4>{event.name}</h4>
+              <p>{event.date.slice(0,10)}</p>
+              <p>{event.time.slice(11,16)}</p>
+              </div>
+              <Link className = "more" to = {
+                {
+                  "pathname": "/groups/:id/showEvent",
+                  "query":{
+                    "id": event.id,
+                    "name": event.name,
+                    "date": event.date,
+                    "time": event.time,
+                    "location": event.location,
+                    "description": event.description,
+                    "route": event.route
+                  }
+                }
+              }>more▷</Link>
              
             </div>
           ))

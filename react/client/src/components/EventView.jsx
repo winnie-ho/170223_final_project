@@ -54,7 +54,6 @@ class EventView extends React.Component{
           <h4>{this.props.location.query.time.slice(11,16)}</h4>
           <h4>{this.props.location.query.location}</h4>
           <h4>{this.props.location.query.description}</h4>
-          <h4>{this.props.location.query.route}</h4>
 
         </div>
       )
