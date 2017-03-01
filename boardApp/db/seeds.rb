@@ -39,6 +39,12 @@ group3 = Group.create(
   }
 )
 
+group4 = Group.create(
+  {
+    name: "Cohort 8"
+  }
+)
+
 group3.events.create(
   { 
     name: "Thursday Run",
@@ -84,6 +90,29 @@ group1.events.create(
   }
 )
 
+group4.events.create(
+  { 
+    name: "End of Projects Pub",
+    date: "2017-03-02",
+    time: "16:30:00",
+    location: "Footlights",
+    description: "What a long week! What a long 16 weeks! A little beverage.",
+    route: "NA"
+  }
+)
+
+group4.events.create(
+  { 
+    name: "Graduation",
+    date: "2017-03-03",
+    time: "16:30:00",
+    location: "Frankensteins",
+    description: "GRADUATION!",
+    route: "NA"
+  }
+)
+
+
 group1.messages.create(
   {
     msg: "Yes, cool with me.",
@@ -93,6 +122,31 @@ group1.messages.create(
 group1.messages.create(
   {
     msg: "I can't make it, sorry guys",
+  }
+)
+
+group4.messages.create(
+  {
+    msg: "Last week!!" 
+  }
+)
+
+
+group4.messages.create(
+  {
+    msg: "Last project presentations ahh!😖." 
+  }
+)
+
+group4.messages.create(
+  {
+    msg: "Footlights for afters?!" 
+  }
+)
+
+group4.messages.create(
+  {
+    msg: "It's part of the project process!" 
   }
 )
 

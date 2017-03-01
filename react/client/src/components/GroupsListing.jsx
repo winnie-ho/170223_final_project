@@ -1,6 +1,8 @@
 import React from 'react'
 import Group from "./Group"
 import GroupNew from "./GroupNew"
+import { Link, browserHistory, hashHistory } from "react-router";
+
 
 
 class GroupsListing extends React.Component{
@@ -38,7 +40,7 @@ class GroupsListing extends React.Component{
 
   render() {
     if (this.props.newGroup === true){
-      var newGroupForm = <GroupNew reset = {this.resetNewGroup} setGroup = {this.props.setGroup}addGroup = {this.props.addGroup}/>
+      var newGroupForm = <GroupNew reset = {this.resetNewGroup} setGroup = {this.props.setGroup} addGroup = {this.props.addGroup}/>
     }else if (this.props.newGroup === false) {
       newGroupForm = "+";
     }
@@ -46,9 +48,12 @@ class GroupsListing extends React.Component{
 
 
     return(
-      <div>
+      <div className = "outer">
         <nav>
+          <div className = "logo">
+          <Link to = "/">←home </Link>
           <h1>WH◉◎P</h1>
+          </div>
           <input className='search-box' type='text' placeholder='🔎 search' value = {this.state.searchQuery} onChange={this.doSearch} />
         </nav>
 

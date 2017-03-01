@@ -26,7 +26,7 @@ class EventView extends React.Component{
     request.withCredentials = true;
 
     request.onload = ()=>{
-      if(request.status === 201){
+      if(request.status === 200){
         console.log("event deleted", data);
       }
         this.goBack()

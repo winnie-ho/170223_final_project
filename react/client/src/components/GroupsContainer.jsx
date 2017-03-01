@@ -20,6 +20,10 @@ class GroupsContainer extends React.Component {
     this.getGroups()
   }
 
+  componentWillReceiveProps(){
+    this.getGroups()
+  }
+
   getGroups(){
     var url = "http://localhost:5000/groups"
     var request = new XMLHttpRequest()
@@ -51,7 +55,7 @@ class GroupsContainer extends React.Component {
     request.withCredentials = true;
 
     request.onload = () => {
-      if (request.status === 201) {
+      if (request.status === 200) {
         const user = JSON.parse(request.responseText);
       }
     }

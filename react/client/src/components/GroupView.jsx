@@ -40,6 +40,7 @@ class GroupView extends React.Component {
     console.log("getting data")
   }
 
+
   getData(){
     var url = "http://localhost:5000/groups"
     var request = new XMLHttpRequest()
@@ -51,9 +52,12 @@ class GroupView extends React.Component {
        if(request.status === 200){
         var data = JSON.parse(request.responseText)
         console.log("updated api data", data[this.groupSelected-1]);
-        this.setState({groupData: data[this.groupSelected-1]})
-        this.setState({events: data[this.groupSelected-1].events})
-        this.setState({messages: data[this.groupSelected-1].messages})
+        this.setState({
+          groupData: data[this.groupSelected-1],
+          events: data[this.groupSelected-1].events, 
+          messages: data[this.groupSelected-1].messages
+        })
+
        } else {
         console.log("Uh oh you're not logged in!")
         browserHistory.goBack()
@@ -70,8 +74,10 @@ class GroupView extends React.Component {
     request.withCredentials = true;
 
     request.onload = ()=>{
-      if(request.status === 201){
+      console.log("status:", request.status)
+      if(request.status === 200){
         const user = JSON.parse(request.responseText);
+        this.getData()
       }
     }
 
@@ -83,7 +89,6 @@ class GroupView extends React.Component {
     }
     request.send(JSON.stringify(data));
     console.log("message added", data);
-    this.getData()
     ReactDOM.findDOMNode(this.refs.form).value = "";
   }
 
@@ -105,7 +110,7 @@ class GroupView extends React.Component {
     request.withCredentials = true;
 
     request.onload = ()=>{
-      if(request.status === 201){
+      if(request.status === 200){
         console.log("group deleted", data);
       }
         this.props.router.push("/groups")
@@ -123,8 +128,9 @@ class GroupView extends React.Component {
     request.withCredentials = true;
 
     request.onload = () => {
-      if (request.status === 201) {
+      if (request.status === 200) {
         const user = JSON.parse(request.responseText);
+        this.getData()
       }
     }
     const data = {
@@ -135,7 +141,6 @@ class GroupView extends React.Component {
     request.send(JSON.stringify(data));
     console.log("group updated",data);
     this.setState({editGroup:false})
-    this.getData()
   }
 
   handleEditGroup(){
@@ -151,7 +156,7 @@ class GroupView extends React.Component {
   render(){
     var groupTitle = this.state.groupData.name
     var upperGroupTitle = `${this.state.groupData.name}`.toUpperCase()
-
+    console.log("GROUP TITLE: ", groupTitle)
     if (this.state.editGroup===true){
       var header = <div>
       <input onChange = {this.handleOnChangeGroupName}placeholder = "group name"></input>
@@ -164,10 +169,12 @@ class GroupView extends React.Component {
 
     return(
       <div className="group-view">
+        
+
         <h2>{header}</h2>
         <div className = "top-bar">
           <div>
-          <Link to = "/groups">←my groups</Link>
+          <Link to = "/groups">← my groups</Link>
           </div>
           <div className = "top-bar-right">
           <button onClick = {this.deleteGroup} className = "icon-button">✄</button>

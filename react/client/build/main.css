@@ -125,6 +125,15 @@ button:hover{
   opacity: 0.5;
 }
 
+.outer{
+  width: 90vw;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+}
+
 nav{
   height: 50px;
   display: flex;
@@ -132,8 +141,18 @@ nav{
   justify-content: space-between;
   align-items: center;
   align-content: flex-start;
-  max-width: 100%;
+  width: 80vw;
   /*border: red dashed 1px;*/
+}
+
+.logo{
+  width: 300px;
+  /*border: orange dashed 1px;*/
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-content: center;
+  align-items: center;
 }
 
 .listing{
@@ -141,7 +160,7 @@ nav{
   /*border: green dashed 1px;*/
   width: 100vw;
   display: flex;
-  justify-content: center;
+  justify-content: space-around;
 }
 
 .groups-scroll{
@@ -262,6 +281,10 @@ form{
   text-align: center;
 }
 
+.message-box{
+  width: 250px;
+}
+
 .message-list{
   height: 450px;
   /*border: red dashed 1px;*/
@@ -275,6 +298,11 @@ form{
   text-align: left;
   width: 300px;
   /*border: red dashed 1px;*/
+}
+
+
+.search-box{
+  width: 300px;
 }
 
 .events-scroll{
