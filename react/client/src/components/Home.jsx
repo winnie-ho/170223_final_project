@@ -89,9 +89,9 @@ if(this.state.currentUser){
   </div>
   mainDiv = <div className = "sign-in">
       <div className = "intro">
-        <h2> Hi! </h2>
+        <h3> Hi! </h3>
         <h2> {this.state.currentUser.name}</h2>
-        <Link to='/groups'><h3>my groups</h3></Link>
+        <Link to='/groups'><h3>MY GR<span className = "enter">◉</span>UPS</h3></Link>
       </div>
     </div>
     createAccDiv = <div></div>

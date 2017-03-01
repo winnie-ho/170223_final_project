@@ -21,7 +21,21 @@ body{
     from {font-size: 20px}
     to {font-size: 50px }
 }
+.enter {
+    color: black;
+    font-size: 20px;
 
+    -webkit-animation-name: enter;
+    -webkit-animation-duration: 1s;
+    animation-name: enter;
+    animation-duration: 1s;
+    animation-iteration-count: 1;
+}
+
+@keyframes enter {
+    from {font-size: 10px}
+    to {font-size: 20px }
+}
 
 .home{
   width: 1000px;
@@ -209,7 +223,24 @@ nav{
   opacity: 0.5;
   border: black 1px solid;
   border-radius: 10px;
-}
+
+  background-color: white;
+
+  -webkit-animation-name: group;
+  -webkit-animation-duration: 1s;
+  animation-name: group;
+  animation-duration: 1s;
+  animation-iteration-count: 1;
+  }
+
+  @keyframes group {
+      from {background-color: #cccccc}
+      to {background-color: white}
+  }
+
+
+
+
 
 .new-group{
   height:200px;
@@ -228,7 +259,19 @@ nav{
   opacity: 0.5;
   border: black 1px solid;
   border-radius: 10px;
-}
+
+  -webkit-animation-name: group;
+  -webkit-animation-duration: 1s;
+  animation-name: group;
+  animation-duration: 1s;
+  animation-iteration-count: 1;
+  }
+
+  @keyframes group {
+      from {background-color: #cccccc}
+      to {background-color: white}
+  }
+
 
 .new-group-form-div>input{
   flex: 0 0 200px;
@@ -388,7 +431,19 @@ form{
   opacity: 0.5;
   border: black 1px solid;
   border-radius: 10px;
-}
+
+  -webkit-animation-name: group;
+  -webkit-animation-duration: 1s;
+  animation-name: group;
+  animation-duration: 1s;
+  animation-iteration-count: 1;
+  }
+
+  @keyframes group {
+      from {background-color: #cccccc}
+      to {background-color: white}
+  }
+
 
 .event-list>button{
   border: none;

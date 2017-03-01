@@ -7,8 +7,6 @@ class EventView extends React.Component{
     this.goBack = this.goBack.bind(this);
     this.deleteEvent = this.deleteEvent.bind(this);
     console.log(this.props.location.query)
-
-
   }
 
   goBack(){
