@@ -25,7 +25,7 @@ class GroupsContainer extends React.Component {
   }
 
   getGroups(){
-    var url = "http://localhost:5000/groups"
+    var url = "http://localhost:5000/memberships"
     var request = new XMLHttpRequest()
     request.open("GET", url)
 
@@ -34,8 +34,10 @@ class GroupsContainer extends React.Component {
     request.onload = () => {
        if(request.status === 200){
         var data = JSON.parse(request.responseText)
-        this.setState( { groups: data } )
-        this.setState({ newGroup:false })
+        this.setState({groups: data})
+        this.setState({newGroup:false})
+
+        console.log("membership data", data)
 
        } else {
         console.log("Uh oh you're not logged in!")

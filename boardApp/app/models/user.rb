@@ -4,7 +4,8 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
-  has_many(:groups)
+  has_many(:groups, {through: :memberships})
   has_many(:events, {through: :groups})
   has_many(:messages, {through: :groups})
+  has_many(:membership)
 end

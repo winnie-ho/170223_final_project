@@ -11,7 +11,7 @@ const Group = (props) => (
         }
       }
     }>
-     {props.name}
+     {props.group.name}
    </Link>
   </div>
   )

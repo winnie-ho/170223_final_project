@@ -1,10 +1,11 @@
 Rails.application.routes.draw do
   devise_for :users, :controllers => {sessions: 'sessions', registrations: 'registrations'}
 
-  resources :groups do
-    resources :events 
-    resources :messages
+ resources :users
+    resources :memberships do
   end
-
-  resources :users
+  		resources :groups do
+		resources :events 
+		resources :messages
+	end
 end
