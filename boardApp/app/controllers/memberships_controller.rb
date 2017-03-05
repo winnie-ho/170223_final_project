@@ -9,7 +9,7 @@ before_action :authenticate_user!
 						:include => 
 						[
 							{events: {only: [:id, :name, :date, :time, :description, :location, :route]}},
-							{messages: {only: :msg}}
+							{messages: {only: [:msg, :user_id, :userName]}}
 						]
 			    	}
 			    })

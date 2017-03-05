@@ -11,7 +11,7 @@ render() {
   var messageNodes = this.props.messages.map((message, index)=>{
     return(
       <div className = "message-div" key = {index}>
-         <h6 key = {index}> {this.props.userName}</h6> <p>▻ {message.msg} </p>
+         <p key = {index}> <b>{message.userName} ▻ </b> {message.msg} </p>
       </div>
     )
   })

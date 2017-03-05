@@ -100,10 +100,10 @@ group4.events.create(
   }
 )
 
-group1.messages.create({msg: "Yes, cool with me."})
-group1.messages.create({msg: "I can't make it, sorry guys"})
-group4.messages.create({msg: "Last week!!"})
-group4.messages.create({msg: "Last project presentations ahh!😖."})
-group4.messages.create({msg: "Footlights for afters?!"})
-group4.messages.create({msg: "It's part of the project process!"})
+group1.messages.create({msg: "Yes, cool with me.", user: user_one, userName: user_one.name })
+group1.messages.create({msg: "I can't make it, sorry guys", user: user_two, userName: user_two.name})
+group4.messages.create({msg: "Last week!!", user: user_one, userName: user_one.name})
+group4.messages.create({msg: "Last project presentations ahh!😖.", user: user_two, userName: user_two.name})
+group4.messages.create({msg: "Footlights for afters?!", user: user_one, userName: user_one.name})
+group4.messages.create({msg: "It's part of the project process!", user: user_two, userName: user_two.name})
 

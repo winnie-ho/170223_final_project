@@ -203,7 +203,7 @@ class GroupView extends React.Component {
             <input ref="form" type = "text" onChange = {this.handleOnChangeMsg} placeholder = "message" className = "message-box"/> 
             <button onClick = {this.addMessage}>POST</button>
             </form>
-            <MessagesContainer userName = {this.props.location.query.userName} userId = {this.state.userId} messages={this.state.messages}/>
+            <MessagesContainer userId = {this.state.userId} messages={this.state.messages}/>
           </div>
 
 

@@ -88,7 +88,7 @@ class GroupsContainer extends React.Component {
     console.log(this.state.newGroup)
     return(
       <div className="listing">
-        <GroupsListing newGroup = {this.state.newGroup} setGroup = {this.setAddedGroup}addGroup={this.addGroup} groups = {this.state.groups} handleNewGroup = {this.handleNewGroup} userName = {this.props.location.query.userName}/>
+        <GroupsListing newGroup = {this.state.newGroup} setGroup = {this.setAddedGroup}addGroup={this.addGroup} groups = {this.state.groups} handleNewGroup = {this.handleNewGroup} />
       </div>
     )
   }
