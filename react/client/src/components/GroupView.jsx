@@ -10,7 +10,6 @@ class GroupView extends React.Component {
     super(props)
     console.log("props in groupView", this.props)
     this.groupSelected = props.location.query.groupId
-    this.userName = props.location.query.userName
     this.addMessage = this.addMessage.bind(this)
     this.handleOnChangeMsg = this.handleOnChangeMsg.bind(this);
     this.addEventUpdate = this.addEventUpdate.bind(this)
@@ -25,6 +24,7 @@ class GroupView extends React.Component {
       events: [],
       messages: [],
       userId: null,
+      userName: null,
       msg: null,
       name: null,
       date: null,
@@ -68,6 +68,7 @@ class GroupView extends React.Component {
       if(item.group_id == this.groupSelected){
         console.log("match!!!")
         this.setState({
+          userName: item.userName,
           userId: item.user_id,
           groupData: item.group,
           events: item.group.events,
@@ -75,6 +76,7 @@ class GroupView extends React.Component {
         })
       }
     }
+    console.log("userName:", this.state.userName)
     console.log("user_ID:", this.state.userId)
     console.log("groupData", this.state.groupData)
     console.log("messages", this.state.messages)
@@ -100,7 +102,7 @@ class GroupView extends React.Component {
       message: {
         msg: this.state.msg,
         group_id: this.groupSelected,
-        userName: this.userName,
+        userName: this.state.userName,
         user_id: this.state.userId
       }
     }

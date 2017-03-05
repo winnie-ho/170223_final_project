@@ -33,6 +33,7 @@ ActiveRecord::Schema.define(version: 20170304143309) do
 
   create_table "memberships", force: :cascade do |t|
     t.integer  "user_id"
+    t.text     "userName"
     t.integer  "group_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

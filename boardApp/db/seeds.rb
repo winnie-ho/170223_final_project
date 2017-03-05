@@ -28,12 +28,12 @@ group2 = Group.create({name: "Cycling"})
 group3 = Group.create({name: "Atkins Run Group"})
 group4 = Group.create({name: "Cohort 8"})
 
-Membership.create({user: user_one, group: group1})
-Membership.create({user: user_one, group: group2})
-Membership.create({user: user_one, group: group4})
-Membership.create({user: user_two, group: group1})
-Membership.create({user: user_two, group: group4})
-Membership.create({user: user_two, group: group3})
+Membership.create({userName: user_one.name, user: user_one, group: group1})
+Membership.create({userName: user_one.name,user: user_one, group: group2})
+Membership.create({userName: user_one.name,user: user_one, group: group4})
+Membership.create({userName: user_two.name,user: user_two, group: group1})
+Membership.create({userName: user_two.name,user: user_two, group: group4})
+Membership.create({userName: user_two.name,user: user_two, group: group3})
 
 group3.events.create(
   { 
