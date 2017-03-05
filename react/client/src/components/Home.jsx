@@ -91,7 +91,16 @@ if(this.state.currentUser){
       <div className = "intro">
         <h3> Hi </h3>
         <h2> {this.state.currentUser.name}</h2>
-        <Link to='/groups'><h3>MY GR<span className = "enter">◉</span>UPS</h3></Link>
+        <Link to={
+          {
+            "pathname": "/groups",
+            "query":{
+              "userName": this.state.currentUser.name,
+              "userEmail": this.state.currentUser.email
+            }
+          }
+        }>
+        <h3>MY GR<span className = "enter">◉</span>UPS</h3></Link>
       </div>
     </div>
     createAccDiv = <div></div>

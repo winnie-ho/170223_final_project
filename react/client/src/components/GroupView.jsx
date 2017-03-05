@@ -8,7 +8,7 @@ class GroupView extends React.Component {
 
   constructor(props) {
     super(props)
-    // console.log("props in groupView", this.props)
+    console.log("props in groupView", this.props)
     this.groupSelected = props.location.query.groupId
     this.addMessage = this.addMessage.bind(this)
     this.handleOnChangeMsg = this.handleOnChangeMsg.bind(this);
@@ -203,7 +203,7 @@ class GroupView extends React.Component {
             <input ref="form" type = "text" onChange = {this.handleOnChangeMsg} placeholder = "message" className = "message-box"/> 
             <button onClick = {this.addMessage}>POST</button>
             </form>
-            <MessagesContainer userId = {this.state.userId} messages={this.state.messages}/>
+            <MessagesContainer userName = {this.props.location.query.userName} userId = {this.state.userId} messages={this.state.messages}/>
           </div>
 
 

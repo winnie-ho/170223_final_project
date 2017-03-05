@@ -6,6 +6,7 @@ class GroupsContainer extends React.Component {
 
   constructor(props) {
     super(props)
+    console.log("props in GroupsContainer", this.props)
     this.addGroup = this.addGroup.bind(this);
     this.setAddedGroup = this.setAddedGroup.bind(this);
     this.handleNewGroup = this.handleNewGroup.bind(this);
@@ -87,7 +88,7 @@ class GroupsContainer extends React.Component {
     console.log(this.state.newGroup)
     return(
       <div className="listing">
-        <GroupsListing newGroup = {this.state.newGroup}setGroup = {this.setAddedGroup}addGroup={this.addGroup} groups = {this.state.groups} handleNewGroup = {this.handleNewGroup}/>
+        <GroupsListing newGroup = {this.state.newGroup} setGroup = {this.setAddedGroup}addGroup={this.addGroup} groups = {this.state.groups} handleNewGroup = {this.handleNewGroup} userName = {this.props.location.query.userName}/>
       </div>
     )
   }
