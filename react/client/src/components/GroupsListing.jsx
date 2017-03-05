@@ -37,7 +37,6 @@ class GroupsListing extends React.Component{
     this.setState({update:true});
   }
 
-
   render() {
     if (this.props.newGroup === true){
       var newGroupForm = <GroupNew reset = {this.resetNewGroup} setGroup = {this.props.setGroup} addGroup = {this.props.addGroup}/>
@@ -45,7 +44,7 @@ class GroupsListing extends React.Component{
       newGroupForm = "+";
     }
 
-    console.log("props:", this.props)
+    console.log("props:", this.props.groups)
 
     return(
       <div className = "outer">
@@ -61,9 +60,9 @@ class GroupsListing extends React.Component{
 
         {/*does the search filtering for the search bar*/}
         {
-          this.props.groups.filter((group) => `${group.name}`.toUpperCase().indexOf(this.state.searchQuery.toUpperCase()) >= 0)
+          this.props.groups.filter((group) => `${group.group.name}`.toUpperCase().indexOf(this.state.searchQuery.toUpperCase()) >= 0)
           .map((group) => (
-            <Group { ...group } key={group.group_id}  groupId = {group.group_id} groups = {this.props.groups} />
+            <Group { ...group } key={group.group_id}  group={group.group} groupId={group.group_id} groups={this.props.groups} />
             ))
         }
           <div className = "new-group" onClick = {this.props.handleNewGroup}>
