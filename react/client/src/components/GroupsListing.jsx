@@ -44,7 +44,7 @@ class GroupsListing extends React.Component{
       newGroupForm = "+";
     }
 
-    console.log("props:", this.props.groups)
+    // console.log("props:", this.props.groups)
 
     return(
       <div className = "outer">

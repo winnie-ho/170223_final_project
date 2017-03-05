@@ -56,27 +56,6 @@ class GroupsContainer extends React.Component {
     request.send(null)
   }
 
-  getLastGroup(){
-    var url = "http://localhost:5000/groups"
-    var request = new XMLHttpRequest()
-    request.open("GET", url)
-
-    request.setRequestHeader("Content-Type", "application/json")
-    request.withCredentials = true
-    request.onload = () => {
-       if(request.status === 200){
-        var data = JSON.parse(request.responseText)
-        this.setState({recentGroup: data[data.length-1].group_id
-        }, this.addMembership())
-        console.log("data", data)
-        console.log("lastGroup", data[data.length-1].group_id)
-       } else {
-        console.log("Uh oh you're not logged in!")
-        browserHistory.goBack()
-       }
-    }
-    request.send(null)    
-  }
 
   addGroup(event){
     event.preventDefault();
@@ -102,6 +81,32 @@ class GroupsContainer extends React.Component {
   }
 
 
+  getLastGroup(){
+    var url = "http://localhost:5000/groups"
+    var request = new XMLHttpRequest()
+    request.open("GET", url)
+
+    request.setRequestHeader("Content-Type", "application/json")
+    request.withCredentials = true
+    request.onload = () => {
+       if(request.status === 200){
+        var data = JSON.parse(request.responseText)
+        var lastGroupId = data[data.length-1].id
+        this.setState({recentGroup: lastGroupId})
+        this.addMembership()
+        console.log("lastGroup", data[data.length-1].id)
+        console.log("lastGroupstate", this.state.recentGroup)
+        
+       } else {
+        console.log("Uh oh you're not logged in!")
+        browserHistory.goBack()
+       }
+    }
+    request.send(null)    
+  }
+
+
+
   addMembership(){
     const request = new XMLHttpRequest();
     request.open("POST", "http://localhost:5000/memberships.json");
@@ -117,8 +122,8 @@ class GroupsContainer extends React.Component {
 
     const data = {
         membership: {
-        userName: this.state.userName,
         user_id: this.state.userId,
+        userName: this.state.userName,
         group_id: this.state.recentGroup
       }
     }
@@ -136,7 +141,7 @@ class GroupsContainer extends React.Component {
   }
 
   render(){
-    console.log("groups to pass", this.state.groups)
+    // console.log("groups to pass", this.state.groups)
     return(
       <div className="listing">
         <GroupsListing newGroup={this.state.newGroup} setGroup={this.setAddedGroup} addGroup={this.addGroup} groups={this.state.groups} handleNewGroup = {this.handleNewGroup}/>
