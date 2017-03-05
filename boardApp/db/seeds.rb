@@ -30,6 +30,7 @@ group4 = Group.create({name: "Cohort 8"})
 
 Membership.create({user: user_one, group: group1})
 Membership.create({user: user_one, group: group2})
+Membership.create({user: user_one, group: group4})
 Membership.create({user: user_two, group: group1})
 Membership.create({user: user_two, group: group4})
 Membership.create({user: user_two, group: group3})
