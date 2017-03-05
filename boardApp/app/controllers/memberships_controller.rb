@@ -8,7 +8,7 @@ before_action :authenticate_user!
 					:group => {
 						:include => 
 						[
-							{events: {only: [:id, :name]}},
+							{events: {only: [:id, :name, :date, :time, :description, :location, :route]}},
 							{messages: {only: :msg}}
 						]
 			    	}

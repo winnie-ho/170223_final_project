@@ -45,7 +45,7 @@ class GroupsListing extends React.Component{
       newGroupForm = "+";
     }
 
-
+    console.log("props:", this.props)
 
     return(
       <div className = "outer">
@@ -63,7 +63,7 @@ class GroupsListing extends React.Component{
         {
           this.props.groups.filter((group) => `${group.name}`.toUpperCase().indexOf(this.state.searchQuery.toUpperCase()) >= 0)
           .map((group) => (
-            <Group { ...group } key={group.id}  groupId = {group.id} groups = {this.props.groups} />
+            <Group { ...group } key={group.group_id}  groupId = {group.group_id} groups = {this.props.groups} />
             ))
         }
           <div className = "new-group" onClick = {this.props.handleNewGroup}>

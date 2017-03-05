@@ -8,7 +8,7 @@ class GroupView extends React.Component {
 
   constructor(props) {
     super(props)
-    console.log("props in groupView", this.props)
+    // console.log("props in groupView", this.props)
     this.groupSelected = props.location.query.groupId
     this.addMessage = this.addMessage.bind(this)
     this.handleOnChangeMsg = this.handleOnChangeMsg.bind(this);
@@ -17,11 +17,13 @@ class GroupView extends React.Component {
     this.editGroup = this.editGroup.bind(this)
     this.handleOnChangeGroupName = this.handleOnChangeGroupName.bind(this)
     this.handleEditGroup = this.handleEditGroup.bind(this)
+    this.findGroup = this.findGroup.bind(this)
 
     this.state = { 
       groupData: [],
       events: [],
       messages: [],
+      userId: null,
       msg: null,
       name: null,
       date: null,
@@ -37,12 +39,11 @@ class GroupView extends React.Component {
 
   componentDidMount(){
     this.getData()
-    console.log("getting data")
   }
 
 
   getData(){
-    var url = "http://localhost:5000/groups"
+    var url = "http://localhost:5000/memberships"
     var request = new XMLHttpRequest()
     request.open("GET", url)
 
@@ -51,19 +52,32 @@ class GroupView extends React.Component {
     request.onload = () => {
        if(request.status === 200){
         var data = JSON.parse(request.responseText)
-        console.log("updated api data", data[this.groupSelected-1]);
-        this.setState({
-          groupData: data[this.groupSelected-1],
-          events: data[this.groupSelected-1].events, 
-          messages: data[this.groupSelected-1].messages
-        })
-
+        console.log("data", data)
+        this.findGroup(data)
        } else {
         console.log("Uh oh you're not logged in!")
         browserHistory.goBack()
        }
     }
     request.send(null)
+  }
+
+  findGroup(data){
+    for(var item of data){
+      if(item.group_id == this.groupSelected){
+        console.log("match!!!")
+        this.setState({
+          userId: item.user_id,
+          groupData: item.group,
+          events: item.group.events,
+          messages: item.group.messages
+        })
+      }
+    }
+    console.log("user_ID:", this.state.userId)
+    console.log("groupData", this.state.groupData)
+    console.log("messages", this.state.messages)
+    console.log("events", this.state.events)
   }
 
   addMessage(event){
@@ -189,13 +203,12 @@ class GroupView extends React.Component {
             <input ref="form" type = "text" onChange = {this.handleOnChangeMsg} placeholder = "message" className = "message-box"/> 
             <button onClick = {this.addMessage}>POST</button>
             </form>
-            <MessagesContainer groupId = {this.groupSelected} messages={this.state.messages}/>
+            <MessagesContainer userId = {this.state.userId} messages={this.state.messages}/>
           </div>
 
 
           <div className = "events-scroll">
             <h3>EVENTS</h3>
-
             <EventsContainer selectedEvent = {this.state.selectedEvent} router = {this.props.router} addEventUpdate = {this.addEventUpdate}groupId = {this.groupSelected} events={this.state.events}/>
           </div>
 
