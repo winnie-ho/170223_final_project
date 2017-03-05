@@ -10,6 +10,7 @@ class GroupView extends React.Component {
     super(props)
     console.log("props in groupView", this.props)
     this.groupSelected = props.location.query.groupId
+    this.userName = props.location.query.userName
     this.addMessage = this.addMessage.bind(this)
     this.handleOnChangeMsg = this.handleOnChangeMsg.bind(this);
     this.addEventUpdate = this.addEventUpdate.bind(this)
@@ -98,7 +99,9 @@ class GroupView extends React.Component {
     const data = {
       message: {
         msg: this.state.msg,
-        group_id: this.groupSelected
+        group_id: this.groupSelected,
+        userName: this.userName,
+        user_id: this.state.userId
       }
     }
     request.send(JSON.stringify(data));

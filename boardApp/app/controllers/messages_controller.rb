@@ -1,7 +1,7 @@
 class MessagesController < ApplicationController
 
   def messages_params()
-    params.require(:message).permit([:msg, :group_id])
+    params.require(:message).permit([:msg, :group_id, :user_id, :userName])
   end
 
   def index()

@@ -7,7 +7,8 @@ const Group = (props) => (
       {
         "pathname": "/groups/"+ props.groupId,
         "query": {
-          "groupId": props.groupId
+          "groupId": props.groupId,
+          "userName": props.userName
         }
       }
     }>
