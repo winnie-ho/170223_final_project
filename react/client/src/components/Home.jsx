@@ -21,7 +21,7 @@ class Home extends React.Component {
   fetchUser(){
     console.log("fetching user");
     const request = new XMLHttpRequest();
-    request.open("GET", "http://localhost:5000/users.json");
+    request.open("GET", "http://localhost:5000/users/1.json");
     request.setRequestHeader("content-type", "application/json");
     request.withCredentials = true;
 

@@ -6,6 +6,11 @@ before_action :authenticate_user!
   end
 
 	def index()
+	    memberships = Membership.all
+	    render ({:json => memberships.as_json})
+  	end
+
+  	def show()
 	    memberships = Membership.where({user: current_user})
 	    render ({:json => memberships.as_json(
 			:include=>{

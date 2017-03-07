@@ -502,11 +502,24 @@ form{
 
 }
 
+
+.members-div{
+  border: dashed 1px red;
+  width: 90vw;
+  height: 20px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  align-content: center;
+}
+
 .new-member{
   display: flex;
   flex-direction: row;
+  height: 20px;
   border: red dashed 1px;
-  justify-content: flex-start;
+  justify-content: flex-end;
   align-items: center;
   align-content: center;
 }

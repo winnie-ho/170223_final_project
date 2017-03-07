@@ -40,7 +40,7 @@ class GroupView extends React.Component {
 
 
   getData(){
-    var url = "http://localhost:5000/memberships";
+    var url = "http://localhost:5000/memberships/1";
     var request = new XMLHttpRequest();
     request.open("GET", url);
 
@@ -196,7 +196,8 @@ class GroupView extends React.Component {
             <button onClick = {this.handleEditGroup} className = "icon-button">✎</button>
           </div>
         </div>
-        <div className = "members">
+        <div className = "members-div">
+          GROUPIES:
           <MemberNew/>
         </div>
         <div className = "group-main">

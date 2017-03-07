@@ -29,7 +29,7 @@ class GroupsContainer extends React.Component {
   }
 
   getGroups(){
-    var url = "http://localhost:5000/memberships"
+    var url = "http://localhost:5000/memberships/1"
     var request = new XMLHttpRequest()
     request.open("GET", url)
 
@@ -109,7 +109,7 @@ class GroupsContainer extends React.Component {
 
   addMembership(){
     const request = new XMLHttpRequest();
-    request.open("POST", "http://localhost:5000/memberships.json");
+    request.open("POST", "http://localhost:5000/memberships/1.json");
     request.setRequestHeader("content-type", "application/json");
     request.withCredentials = true;
 

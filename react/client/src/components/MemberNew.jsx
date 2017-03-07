@@ -14,7 +14,6 @@ class MemberNew extends React.Component {
 	}
 
 	componentDidMount(){
-
     var url = "http://localhost:5000/users";
     var request = new XMLHttpRequest();
     request.open("GET", url);
