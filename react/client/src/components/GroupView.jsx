@@ -2,6 +2,7 @@ import React from "react"
 import ReactDOM from "react-dom"
 import MessagesContainer from "./MessagesContainer"
 import EventsContainer from "./EventsContainer"
+import MemberNew from "./MemberNew"
 import { Link, browserHistory, hashHistory } from "react-router";
 
 class GroupView extends React.Component {
@@ -27,11 +28,6 @@ class GroupView extends React.Component {
       userName: null,
       msg: null,
       name: null,
-      date: null,
-      time: null,
-      location: null,
-      description: null,
-      route: null,
       editGroup: false,
       editedGroupId: null,
       changedName: ""
@@ -193,12 +189,16 @@ class GroupView extends React.Component {
         <h2>{header}</h2>
         <div className = "top-bar">
           <div>
-          <Link to = "/groups">← my groups</Link>
+            <Link to = "/groups">← my groups</Link>
           </div>
           <div className = "top-bar-right">
-          <button onClick = {this.deleteGroup} className = "icon-button">✄</button>
-          <button onClick = {this.handleEditGroup} className = "icon-button">✎</button>
+            <button onClick = {this.deleteGroup} className = "icon-button">✄</button>
+            <button onClick = {this.handleEditGroup} className = "icon-button">✎</button>
           </div>
+        </div>
+        <div className = "members">
+          GROUPIES: <h1>+</h1>
+          <MemberNew/>
         </div>
         <div className = "group-main">
 
