@@ -8,17 +8,17 @@ import { Link, browserHistory, hashHistory } from "react-router";
 class GroupView extends React.Component {
 
   constructor(props) {
-    super(props)
-    console.log("props in groupView", this.props)
-    this.groupSelected = props.location.query.groupId
-    this.addMessage = this.addMessage.bind(this)
+    super(props);
+    console.log("props in groupView", this.props);
+    this.groupSelected = props.location.query.groupId;
+    this.addMessage = this.addMessage.bind(this);
     this.handleOnChangeMsg = this.handleOnChangeMsg.bind(this);
-    this.addEventUpdate = this.addEventUpdate.bind(this)
-    this.deleteGroup = this.deleteGroup.bind(this)
-    this.editGroup = this.editGroup.bind(this)
-    this.handleOnChangeGroupName = this.handleOnChangeGroupName.bind(this)
-    this.handleEditGroup = this.handleEditGroup.bind(this)
-    this.findGroup = this.findGroup.bind(this)
+    this.addEventUpdate = this.addEventUpdate.bind(this);
+    this.deleteGroup = this.deleteGroup.bind(this);
+    this.editGroup = this.editGroup.bind(this);
+    this.handleOnChangeGroupName = this.handleOnChangeGroupName.bind(this);
+    this.handleEditGroup = this.handleEditGroup.bind(this);
+    this.findGroup = this.findGroup.bind(this);
 
     this.state = { 
       groupData: [],
@@ -35,17 +35,17 @@ class GroupView extends React.Component {
   }
 
   componentDidMount(){
-    this.getData()
+    this.getData();
   }
 
 
   getData(){
-    var url = "http://localhost:5000/memberships"
-    var request = new XMLHttpRequest()
-    request.open("GET", url)
+    var url = "http://localhost:5000/memberships";
+    var request = new XMLHttpRequest();
+    request.open("GET", url);
 
-    request.setRequestHeader("Content-Type", "application/json")
-    request.withCredentials = true
+    request.setRequestHeader("Content-Type", "application/json");
+    request.withCredentials = true;
     request.onload = () => {
        if(request.status === 200){
         var data = JSON.parse(request.responseText)
@@ -55,8 +55,8 @@ class GroupView extends React.Component {
         console.log("Uh oh you're not logged in!")
         browserHistory.goBack()
        }
-    }
-    request.send(null)
+    };
+    request.send(null);
   }
 
   findGroup(data){
@@ -197,7 +197,6 @@ class GroupView extends React.Component {
           </div>
         </div>
         <div className = "members">
-          GROUPIES: <h1>+</h1>
           <MemberNew/>
         </div>
         <div className = "group-main">
