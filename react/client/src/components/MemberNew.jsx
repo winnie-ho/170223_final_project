@@ -45,22 +45,30 @@ class MemberNew extends React.Component {
 
 	render(){
 // filling in the options for selector
-		var memberOptions = this.state.users.map(function(user, index){return <option value = {index} key = {index}> {user.name} </option>
+		var memberOptions = this.state.users.map(function(user, index){
+			return <option value = {index} key = {index}>{user.name}</option>
 		})
 
 // conditional for on addMember
-		if(this.state.newMember == true){
-			var memberDD = <div><select>{memberOptions}</select></div>
-		}else{
-			memberDD = <div></div>
+		if(this.state.newMember === true){
+			var memberDD = 
+			<div>
+				<select>
+					{memberOptions}
+				</select>
+				<button>
+					ADD
+				</button>
+			</div>
+		} else if (this.state.newMember === false){
+			memberDD = <h1 onClick = {this.handleNewMember}>+</h1>;
 		}
 
 
 // defining the render
 		return(
-			<div>
-			    GROUPIES: <h1 onClick = {this.handleNewMember}>+</h1>
-			    {memberDD}
+			<div className = "new-member" >
+			    {memberDD}  
 			</div>
 			)
 	}

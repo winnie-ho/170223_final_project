@@ -501,3 +501,12 @@ form{
   align-items: center;
 
 }
+
+.new-member{
+  display: flex;
+  flex-direction: row;
+  border: red dashed 1px;
+  justify-content: flex-start;
+  align-items: center;
+  align-content: center;
+}
