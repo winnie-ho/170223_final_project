@@ -499,14 +499,13 @@ form{
   flex-direction: column;
   justify-content: center;
   align-items: center;
-
 }
 
 
 .members-div{
   border: dashed 1px red;
   width: 90vw;
-  height: 20px;
+  height: 100px;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -517,9 +516,21 @@ form{
 .new-member{
   display: flex;
   flex-direction: row;
-  height: 20px;
+  height: 100px;
   border: red dashed 1px;
   justify-content: flex-end;
   align-items: center;
   align-content: center;
+}
+
+.members-list-div{
+  border: red dashed 1px;
+  display: flex;
+  flex-direction: row;
+}
+
+.members-list{
+  border: red dashed 1px;
+  display: flex;
+  flex-direction: row;
 }

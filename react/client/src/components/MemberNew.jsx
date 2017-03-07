@@ -14,23 +14,22 @@ class MemberNew extends React.Component {
 	}
 
 	componentDidMount(){
-    var url = "http://localhost:5000/users";
-    var request = new XMLHttpRequest();
-    request.open("GET", url);
-
-    request.setRequestHeader("Content-Type", "application/json");
-    request.withCredentials = true;
-    request.onload = () => {
-       if(request.status === 200){
-        var data = JSON.parse(request.responseText);
-        this.setState({users: data});
-        console.log("data returning", data);
-        console.log("getting users", this.state.users);
-       } else {
-        console.log("Uh oh you're not logged in!");
-       }
-    };
-    request.send(null);   
+	    var url = "http://localhost:5000/users";
+	    var request = new XMLHttpRequest();
+	    request.open("GET", url);
+	    request.setRequestHeader("Content-Type", "application/json");
+	    request.withCredentials = true;
+	    request.onload = () => {
+	       if(request.status === 200){
+	        var data = JSON.parse(request.responseText);
+	        this.setState({users: data});
+	        console.log("data returning", data);
+	        console.log("getting users", this.state.users);
+	       } else {
+	        console.log("Uh oh you're not logged in!");
+	       }
+	    };
+	    request.send(null);   
 	
 	}
 

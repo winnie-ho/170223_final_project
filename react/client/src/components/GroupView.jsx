@@ -3,6 +3,7 @@ import ReactDOM from "react-dom"
 import MessagesContainer from "./MessagesContainer"
 import EventsContainer from "./EventsContainer"
 import MemberNew from "./MemberNew"
+import Members from "./Members"
 import { Link, browserHistory, hashHistory } from "react-router";
 
 class GroupView extends React.Component {
@@ -196,8 +197,10 @@ class GroupView extends React.Component {
             <button onClick = {this.handleEditGroup} className = "icon-button">✎</button>
           </div>
         </div>
+
         <div className = "members-div">
           GROUPIES:
+          <Members/>
           <MemberNew/>
         </div>
         <div className = "group-main">
