@@ -543,3 +543,13 @@ form{
   justify-content: flex-start;
   align-items: flex-start;
 }
+
+.attendance-control{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-around;
+  height: 30px;
+  width: 100px;
+  margin-bottom: 5px;
+}

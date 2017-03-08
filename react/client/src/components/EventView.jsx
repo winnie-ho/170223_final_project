@@ -8,21 +8,26 @@ class EventView extends React.Component{
     this.deleteEvent = this.deleteEvent.bind(this);
     this.addAttendee = this.addAttendee.bind(this);
     this.getAttendees = this.getAttendees.bind(this);
-    console.log(this.props.location.query);
+    this.parseEvent = this.parseEvent.bind(this);
 
     this.state = {
       attendees: [],
-      groupId: this.props.location.query.groupId,
-      eventId: this.props.location.query.id
+      event: null
     }
+  }
+
+  componentWillMount(){
+    this.parseEvent();
   }
 
   componentDidMount(){
     this.getAttendees();
   }
 
+
+
   getAttendees(){
-    var url = "http://localhost:5000/groups/"+ this.state.groupId + "/events/" +  this.state.eventId + "/attendees";
+    var url = "http://localhost:5000/groups/"+ this.state.event.group_id + "/events/" +  this.state.event.id + "/attendees";
     var request = new XMLHttpRequest();
     request.open("GET", url);
 
@@ -64,6 +69,11 @@ class EventView extends React.Component{
     request.send()
   }
 
+  parseEvent(){
+    var eventString = this.props.location.query.event;
+    var eventObject = JSON.parse(eventString);
+    this.setState({event: eventObject});
+  }
 
   addAttendee(){
     event.preventDefault();
@@ -79,7 +89,7 @@ class EventView extends React.Component{
     }
     const data = {
       attendee:{
-        event_id: this.props.location.query.id,
+        event_id: this.state.event.id,
         user_id: this.props.location.query.userId,
         userName: this.props.location.query.userName
       }
@@ -90,6 +100,7 @@ class EventView extends React.Component{
   }
 
   render() {
+    console.log("THIS", this.state.event);
 
     var attendeesNodes = this.state.attendees.map((attendee, index)=>{
         return(
@@ -112,14 +123,17 @@ class EventView extends React.Component{
           </div>
         </div>
         </div>
-          <h2>{this.props.location.query.name}</h2>
-          <h3>{this.props.location.query.date.slice(0,10)}</h3>
-          <h4>{this.props.location.query.time.slice(11,16)}</h4>
-          <h4>{this.props.location.query.location}</h4>
-          <h4>{this.props.location.query.description}</h4>
+          <h2>{this.state.event.name}</h2>
+          <h3>{this.state.event.date.slice(0,10)}</h3>
+          <h4>{this.state.event.time.slice(11,16)}</h4>
+          <h4>{this.state.event.location}</h4>
+          <h4>{this.state.event.description}</h4>
           
-          <h1 onClick = {this.addAttendee}>+</h1>
-          <h3>GOING </h3>
+            <h3> GOING </h3>
+          <div className = "attendance-control">
+            <h1 onClick = {this.addAttendee}>+</h1>
+            <h1>-</h1>
+          </div>
           {attendeesNodes}
 
         </div>

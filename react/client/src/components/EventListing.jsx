@@ -23,16 +23,9 @@ class EventListing extends React.Component{
                 {
                   "pathname": "/groups/:id/showEvent",
                   "query":{
-                    "groupId": this.props.groupId,
                     "userName": this.props.userName,
                     "userId": this.props.userId,
-                    "id": event.id,
-                    "name": event.name,
-                    "date": event.date,
-                    "time": event.time,
-                    "location": event.location,
-                    "description": event.description,
-                    "route": event.route
+                    "event": JSON.stringify(event)
                   }
                 }
               }>more▷</Link>
