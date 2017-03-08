@@ -53,9 +53,13 @@ event2 = Event.create(
     time: "09:30:00",
     location: "Cramond Shore",
     description: "Park Run along Cramond shore front",
-    route: "routeString"
+    route: "routeString",
+    group_id: group1.id
   }
 )
+
+event2.attendees.create({user_id: user_one.id, userName: user_one.name})
+event2.attendees.create({user_id: user_two.id, userName: user_two.name})
 
 group1.events.create(
   { 
@@ -100,6 +104,8 @@ group4.events.create(
     route: "NA"
   }
 )
+
+
 
 group1.messages.create({msg: "Yes, cool with me.", user: user_one, userName: user_one.name })
 group1.messages.create({msg: "I can't make it, sorry guys", user: user_two, userName: user_two.name})

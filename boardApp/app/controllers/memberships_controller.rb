@@ -13,11 +13,13 @@ before_action :authenticate_user!
   	def show()
 	    memberships = Membership.where({user: current_user})
 	    render ({:json => memberships.as_json(
-			:include=>{
+			:include => {
 					:group => {
 						:include => 
 						[
-							{events: {only: [:id, :name, :date, :time, :description, :location, :route]}},
+							{:events => {
+                :include => :attendees
+                }},
 							{messages: {only: [:msg, :user_id, :userName]}}
 						]
 			    	}

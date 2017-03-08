@@ -6,7 +6,16 @@ class EventView extends React.Component{
     super(props)
     this.goBack = this.goBack.bind(this);
     this.deleteEvent = this.deleteEvent.bind(this);
-    console.log(this.props.location.query)
+    this.parseAttendees = this.parseAttendees.bind(this);
+    console.log(this.props.location.query);
+
+    this.state = {
+      attendees: []
+    }
+  }
+
+  componentDidMount(){
+    this.parseAttendees();
   }
 
   goBack(){
@@ -32,8 +41,23 @@ class EventView extends React.Component{
     request.send()
   }
 
+  parseAttendees(){
+    var data = this.props.location.query.attendees;
+    var attendeesData = JSON.parse(data);
+
+    this.setState({attendees: attendeesData});
+  }
 
   render() {
+
+    var attendeesNodes = this.state.attendees.map((attendee, index)=>{
+        return(
+            <div key = {index}>
+              ⦿{attendee.userName}
+            </div>
+          )
+    })
+
     return(
         <div className = "event-view-div">
         <div>
@@ -52,6 +76,9 @@ class EventView extends React.Component{
           <h4>{this.props.location.query.time.slice(11,16)}</h4>
           <h4>{this.props.location.query.location}</h4>
           <h4>{this.props.location.query.description}</h4>
+
+          <h3>GOING:</h3>
+          {attendeesNodes}
 
         </div>
       )
