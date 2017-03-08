@@ -82,14 +82,15 @@ class MemberNew extends React.Component {
 	render(){
 // filling in the options for selector
 		var memberOptions = this.state.users.map(function(user, index){
-			return <option value = {index} key = {index}>{user.name}</option>
+			return <option placeholder = "select" value = {index} key = {index}>{user.name}</option>
 		})
 
 // conditional for on addMember
 		if(this.state.newMember === true){
 			var memberDD = 
 			<div>
-				<select onChange = {this.handleSelectorChange}>
+				<select defaultValue = "select" onChange = {this.handleSelectorChange}>
+					<option disabled = "true">select</option>
 					{memberOptions}
 				</select>
 				<button onClick = {this.addMember}>

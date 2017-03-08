@@ -60,18 +60,17 @@ class Members extends React.Component {
 	var membersNodes = this.state.members.map((member, index)=>{
 	    return(
 		    	<div key = {index} className = "members-list">
-		         {member}
+		        ◎ {member}  |
 		        </div>
 	    )
 	  })
 
 		return(
-			<div>
+			<div className = "members-inner">
 				<div className = "members-list-div">
-					Members: 
 					{membersNodes}
-					<MemberNew groupId = {this.props.groupId} getMemberships = {this.getMemberships}/>
 	        	</div>
+					<MemberNew groupId = {this.props.groupId} getMemberships = {this.getMemberships}/>
 			</div>
 			)
 	}

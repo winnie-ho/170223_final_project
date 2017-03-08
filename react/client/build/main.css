@@ -503,12 +503,12 @@ form{
 
 
 .members-div{
-  border: dashed 1px red;
-  width: 90vw;
+/*  border: dashed 1px red;
+*/  width: 90vw;
   height: 100px;
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
+  justify-content: flex-start;
   align-items: center;
   align-content: center;
 }
@@ -516,21 +516,30 @@ form{
 .new-member{
   display: flex;
   flex-direction: row;
-  height: 100px;
-  border: red dashed 1px;
-  justify-content: flex-end;
+  height: 20px;
+/*  border: blue dashed 1px;
+*/  justify-content: flex-end;
   align-items: center;
   align-content: center;
 }
 
 .members-list-div{
-  border: red dashed 1px;
-  display: flex;
+/*  border: green dashed 1px;
+*/  display: flex;
   flex-direction: row;
+  justify-content: flex-start;
 }
 
 .members-list{
-  border: red dashed 1px;
-  display: flex;
+/*  border: red dashed 1px;
+*/  display: flex;
   flex-direction: row;
+}
+
+.members-inner{
+/*  border: dashed 1px pink;
+*/  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
 }
