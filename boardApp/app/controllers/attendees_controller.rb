@@ -11,8 +11,23 @@ class AttendeesController < ApplicationController
   	render({:json => attendees})
   end
 
+  def show()
+    attendee = Attendee.find(params[:id])
+    render({:json => attendee})
+  end
+
   def create()
     attendee = Attendee.create(attendees_params)
     render({:json => attendee})
   end
+
+  def destroy()
+    attendee = Attendee.find(params[:id])
+    if attendee.destroy!
+      render({:json => {status: :success}})
+    else
+      render({:json => {status: :update_failed}})
+    end
+  end
+  
 end

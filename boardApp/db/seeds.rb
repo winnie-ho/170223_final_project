@@ -58,9 +58,6 @@ event2 = Event.create(
   }
 )
 
-event2.attendees.create({user_id: user_one.id, userName: user_one.name})
-event2.attendees.create({user_id: user_two.id, userName: user_two.name})
-
 group1.events.create(
   { 
     name: "Foxlake Night Trail",
