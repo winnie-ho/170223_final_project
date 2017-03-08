@@ -2,7 +2,6 @@ import React from "react"
 import ReactDOM from "react-dom"
 import MessagesContainer from "./MessagesContainer"
 import EventsContainer from "./EventsContainer"
-import MemberNew from "./MemberNew"
 import Members from "./Members"
 import { Link, browserHistory, hashHistory } from "react-router";
 
@@ -201,7 +200,6 @@ class GroupView extends React.Component {
         <div className = "members-div">
           GROUPIES:
           <Members groupId = {this.groupSelected}/>
-          <MemberNew groupId = {this.groupSelected}/>
         </div>
         <div className = "group-main">
 

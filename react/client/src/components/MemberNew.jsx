@@ -1,10 +1,11 @@
 import React from "react"
 
+
 class MemberNew extends React.Component {
 
 	constructor(props){
 		super(props)
-
+		this.getUsers = this.getUsers.bind(this);
 		this.handleNewMember = this.handleNewMember.bind(this);
 		this.handleSelectorChange = this.handleSelectorChange.bind(this);
 		this.addMember = this.addMember.bind(this);
@@ -17,7 +18,11 @@ class MemberNew extends React.Component {
 	}
 
 	componentDidMount(){
-	    var url = "http://localhost:5000/users";
+  	this.getUsers();
+	}
+
+	getUsers(){
+			var url = "http://localhost:5000/users";
 	    var request = new XMLHttpRequest();
 	    request.open("GET", url);
 	    request.setRequestHeader("Content-Type", "application/json");
@@ -32,10 +37,8 @@ class MemberNew extends React.Component {
 	        console.log("Uh oh you're not logged in!");
 	       }
 	    };
-	    request.send(null);   
-	
+	    request.send(null); 
 	}
-
 
 	handleNewMember(){
 		this.setState({newMember: true});
@@ -58,6 +61,8 @@ class MemberNew extends React.Component {
       		if (request.status === 200) {
         const user = JSON.parse(request.responseText);
       		}
+      		this.setState({newMember: false});
+      		this.props.getMemberships();
     	}
 
     	const data = {

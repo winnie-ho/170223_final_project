@@ -21,11 +21,11 @@ class GroupsContainer extends React.Component {
   }
 
   componentDidMount(){
-    this.getGroups()
+    this.getGroups();
   }
 
   componentWillReceiveProps(){
-    this.getGroups()
+    this.getGroups();
   }
 
   getGroups(){

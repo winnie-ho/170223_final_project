@@ -1,9 +1,11 @@
 import React from "react"
+import MemberNew from "./MemberNew"
+
 
 class Members extends React.Component {
 	constructor(props){
 		super(props)
-
+		this.getMemberships = this.getMemberships.bind(this);
 
 		this.state = {
 			memberships: [],
@@ -38,7 +40,7 @@ class Members extends React.Component {
 	}
 
 	uniqueMembers(){
-		var allMemberships = []
+		var allMemberships = [];
 
 		for (var membership of this.state.memberships){
 				if(membership.group_id == this.props.groupId){
@@ -68,6 +70,7 @@ class Members extends React.Component {
 				<div className = "members-list-div">
 					Members: 
 					{membersNodes}
+					<MemberNew groupId = {this.props.groupId} getMemberships = {this.getMemberships}/>
 	        	</div>
 			</div>
 			)
