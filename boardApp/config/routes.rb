@@ -5,7 +5,9 @@ Rails.application.routes.draw do
     resources :memberships do
   end
   		resources :groups do
-		resources :events 
+		resources :events do
+			resources :attendees
+		end
 		resources :messages
 	end
 end

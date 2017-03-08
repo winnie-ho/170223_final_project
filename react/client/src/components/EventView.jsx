@@ -7,6 +7,7 @@ class EventView extends React.Component{
     this.goBack = this.goBack.bind(this);
     this.deleteEvent = this.deleteEvent.bind(this);
     this.parseAttendees = this.parseAttendees.bind(this);
+    this.addAttendee = this.addAttendee.bind(this);
     console.log(this.props.location.query);
 
     this.state = {
@@ -48,6 +49,29 @@ class EventView extends React.Component{
     this.setState({attendees: attendeesData});
   }
 
+  addAttendee(){
+    event.preventDefault();
+    var url = "http://localhost:5000/groups/:id/events/:id/attendees.json"
+    const request = new XMLHttpRequest();
+    request.open("POST", url);
+    request.setRequestHeader("content-type", "application/json");
+    request.withCredentials = true;
+    request.onload = () => {
+      if (request.status === 200) {
+        const user = JSON.parse(request.responseText);
+      }
+    }
+    const data = {
+      attendee:{
+        event_id: this.props.location.query.id,
+        user_id: this.props.location.query.userId,
+        userName: this.props.location.query.userName
+      }
+    }
+    request.send(JSON.stringify(data));
+    console.log("attendee added",data);
+  }
+
   render() {
 
     var attendeesNodes = this.state.attendees.map((attendee, index)=>{
@@ -76,8 +100,9 @@ class EventView extends React.Component{
           <h4>{this.props.location.query.time.slice(11,16)}</h4>
           <h4>{this.props.location.query.location}</h4>
           <h4>{this.props.location.query.description}</h4>
-
-          <h3>GOING:</h3>
+          
+          <h1 onClick = {this.addAttendee}>+</h1>
+          <h3>GOING </h3>
           {attendeesNodes}
 
         </div>

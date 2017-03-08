@@ -21,7 +21,6 @@ class EventsController < ApplicationController
     render({:json => event})
   end
 
-
   def update()
     event = Event.find(params[:id])
     if event.update_attributes(

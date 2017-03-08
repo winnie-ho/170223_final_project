@@ -23,6 +23,8 @@ class EventListing extends React.Component{
                 {
                   "pathname": "/groups/:id/showEvent",
                   "query":{
+                    "userName": this.props.userName,
+                    "userId": this.props.userId,
                     "id": event.id,
                     "name": event.name,
                     "date": event.date,
