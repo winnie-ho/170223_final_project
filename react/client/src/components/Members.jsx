@@ -6,13 +6,18 @@ class Members extends React.Component {
 
 
 		this.state = {
-			memberships: []
-
+			memberships: [],
+			members: []
 		}
 
 	}
 
 	componentDidMount(){
+  		this.getMemberships();
+
+	}
+
+	getMemberships(){
 		var url = "http://localhost:5000/memberships";
 		var request = new XMLHttpRequest();
 		request.open("GET", url);
@@ -24,18 +29,35 @@ class Members extends React.Component {
 	        this.setState({memberships: data});
 	        console.log("mememberships returning", data);
 	        console.log("getting memberships", this.state.memberships);
+	        this.uniqueMembers();
 	       	} else {
 	        console.log("Uh oh you're not logged in!");
 	       }
 	    };
-	    request.send(null);   
+	    request.send(null); 
 	}
 
+	uniqueMembers(){
+		var allMemberships = []
+
+		for (var membership of this.state.memberships){
+				if(membership.group_id == this.props.groupId){
+					allMemberships.push(membership.userName);
+				}
+		}
+
+		var uniqueMembers = [...new Set(allMemberships)];
+		this.setState({members: uniqueMembers})
+		console.log("Group Members:", uniqueMembers);
+	}
+
+
 	render(){
-	var membersNodes = this.state.memberships.map((member, index)=>{
+		
+	var membersNodes = this.state.members.map((member, index)=>{
 	    return(
 		    	<div key = {index} className = "members-list">
-		         {member.userName}
+		         {member}
 		        </div>
 	    )
 	  })
