@@ -6,17 +6,39 @@ class EventView extends React.Component{
     super(props)
     this.goBack = this.goBack.bind(this);
     this.deleteEvent = this.deleteEvent.bind(this);
-    this.parseAttendees = this.parseAttendees.bind(this);
     this.addAttendee = this.addAttendee.bind(this);
+    this.getAttendees = this.getAttendees.bind(this);
     console.log(this.props.location.query);
 
     this.state = {
-      attendees: []
+      attendees: [],
+      groupId: this.props.location.query.groupId,
+      eventId: this.props.location.query.id
     }
   }
 
   componentDidMount(){
-    this.parseAttendees();
+    this.getAttendees();
+  }
+
+  getAttendees(){
+    var url = "http://localhost:5000/groups/"+ this.state.groupId + "/events/" +  this.state.eventId + "/attendees";
+    var request = new XMLHttpRequest();
+    request.open("GET", url);
+
+    request.setRequestHeader("Content-Type", "application/json");
+    request.withCredentials = true;
+    request.onload = () => {
+       if(request.status === 200){
+        var data = JSON.parse(request.responseText)
+        console.log("data", data)
+        this.setState({attendees: data})
+       } else {
+        console.log("Uh oh you're not logged in!")
+        browserHistory.goBack()
+       }
+    };
+    request.send(null);
   }
 
   goBack(){
@@ -42,12 +64,6 @@ class EventView extends React.Component{
     request.send()
   }
 
-  parseAttendees(){
-    var data = this.props.location.query.attendees;
-    var attendeesData = JSON.parse(data);
-
-    this.setState({attendees: attendeesData});
-  }
 
   addAttendee(){
     event.preventDefault();
@@ -70,6 +86,7 @@ class EventView extends React.Component{
     }
     request.send(JSON.stringify(data));
     console.log("attendee added",data);
+    this.getAttendees();
   }
 
   render() {

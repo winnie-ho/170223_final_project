@@ -56,7 +56,7 @@ render() {
 
         <h1>+</h1></Link>
       </div>
-        <EventListing userId = {this.props.userId} userName = {this.props.userName} searchQuery = {this.state.searchQuery} events = {this.props.events} setEventView = {this.setEventView}/>
+        <EventListing groupId = {this.props.groupId} userId = {this.props.userId} userName = {this.props.userName} searchQuery = {this.state.searchQuery} events = {this.props.events} setEventView = {this.setEventView}/>
       
     </div>
     )
