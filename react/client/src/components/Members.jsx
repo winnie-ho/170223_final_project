@@ -29,7 +29,7 @@ class Members extends React.Component {
 	       if(request.status === 200){
 	        var data = JSON.parse(request.responseText);
 	        this.setState({memberships: data});
-	        console.log("mememberships returning", data);
+	        console.log("memberships returning", data);
 	        console.log("getting memberships", this.state.memberships);
 	        this.uniqueMembers();
 	       	} else {

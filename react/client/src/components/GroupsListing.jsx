@@ -12,10 +12,8 @@ class GroupsListing extends React.Component{
     this.doSearch = this.doSearch.bind(this)
     this.handleNewGroup = this.handleNewGroup.bind(this)
     this.resetNewGroup = this.resetNewGroup.bind(this)
-    this.updateGroupsListing = this.updateGroupsListing.bind(this)
     this.state = {
-      searchQuery: "",
-      update: false
+      searchQuery: ""
     }
   }
 
@@ -33,8 +31,7 @@ class GroupsListing extends React.Component{
     this.setState({newGroup:this.props.newGroup});
   }
 
-  updateGroupsListing(){
-    this.setState({update:true});
+  componentDidMount(){
   }
 
   render() {
@@ -44,7 +41,7 @@ class GroupsListing extends React.Component{
       newGroupForm = "+";
     }
 
-    // console.log("props:", this.props.groups)
+    console.log("props:", this.props.groups)
 
     return(
       <div className = "outer">

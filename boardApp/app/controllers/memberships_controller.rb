@@ -29,5 +29,16 @@ before_action :authenticate_user!
     membership = Membership.create(memberships_params())
     render({:json => membership})
   end
+
+  def destroy()
+  	membership = Membership.where({user: :current_user, group_id: id})
+  	if membership.destroy!
+  		render({:json => {status: :success}})
+  	else
+  		render({:json => {status: :update_failed}})
+  	end
+  end
+
+
 end
 

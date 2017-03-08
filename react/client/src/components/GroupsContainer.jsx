@@ -141,7 +141,7 @@ class GroupsContainer extends React.Component {
   }
 
   render(){
-    // console.log("groups to pass", this.state.groups)
+    console.log("groups to pass", this.state.groups)
     return(
       <div className="listing">
         <GroupsListing newGroup={this.state.newGroup} setGroup={this.setAddedGroup} addGroup={this.addGroup} groups={this.state.groups} handleNewGroup = {this.handleNewGroup}/>

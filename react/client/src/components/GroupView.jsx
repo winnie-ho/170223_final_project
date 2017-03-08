@@ -11,6 +11,7 @@ class GroupView extends React.Component {
     super(props);
     console.log("props in groupView", this.props);
     this.groupSelected = props.location.query.groupId;
+    console.log("groupSelected", this.groupSelected);
     this.addMessage = this.addMessage.bind(this);
     this.handleOnChangeMsg = this.handleOnChangeMsg.bind(this);
     this.addEventUpdate = this.addEventUpdate.bind(this);
@@ -31,7 +32,7 @@ class GroupView extends React.Component {
       editGroup: false,
       editedGroupId: null,
       changedName: ""
-      }
+    }
   }
 
   componentDidMount(){
@@ -118,7 +119,6 @@ class GroupView extends React.Component {
   deleteGroup(){
     event.preventDefault();
     var url = "http://localhost:5000/groups/" + this.groupSelected + ".json"
-
     const request = new XMLHttpRequest();
     request.open("DELETE", url);
     request.setRequestHeader("content-type", "application/json");
@@ -126,7 +126,23 @@ class GroupView extends React.Component {
 
     request.onload = ()=>{
       if(request.status === 200){
-        console.log("group deleted", data);
+        console.log("group delete: ", this.groupSelected);
+        this.props.router.push("/groups")
+      }
+    }
+    request.send()
+  }
+
+  deleteMembership(membershipToDelete){
+    event.preventDefault();
+    var url = "http://localhost:5000/memberships/" + membershipToDelete + ".json"
+    const request = new XMLHttpRequest();
+    request.open("DELETE", url);
+    request.setRequestHeader("content-type", "application/json");
+    request.withCredentials = true;
+    request.onload = ()=>{
+      if(request.status === 200){
+        console.log("membership deleted", data);
       }
         this.props.router.push("/groups")
     }
@@ -135,13 +151,11 @@ class GroupView extends React.Component {
 
   editGroup(){
     event.preventDefault();
-
     var url = "http://localhost:5000/groups/" + this.groupSelected + ".json"
     const request = new XMLHttpRequest();
     request.open("PUT", url);
     request.setRequestHeader("content-type", "application/json");
     request.withCredentials = true;
-
     request.onload = () => {
       if (request.status === 200) {
         const user = JSON.parse(request.responseText);
