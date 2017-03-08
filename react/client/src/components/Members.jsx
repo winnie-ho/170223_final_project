@@ -52,6 +52,7 @@ class Members extends React.Component {
 	}
 
 
+
 	render(){
 		
 	var membersNodes = this.state.members.map((member, index)=>{
@@ -64,8 +65,8 @@ class Members extends React.Component {
 
 		return(
 			<div>
-				Members
 				<div className = "members-list-div">
+					Members: 
 					{membersNodes}
 	        	</div>
 			</div>

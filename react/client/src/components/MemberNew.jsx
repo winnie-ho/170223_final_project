@@ -6,9 +6,12 @@ class MemberNew extends React.Component {
 		super(props)
 
 		this.handleNewMember = this.handleNewMember.bind(this);
+		this.handleSelectorChange = this.handleSelectorChange.bind(this);
+		this.addMember = this.addMember.bind(this);
 		this.state = {
 			newMember: false,
-			users: []
+			users: [],
+			selectedMember: null,
 		}
 
 	}
@@ -38,6 +41,36 @@ class MemberNew extends React.Component {
 		this.setState({newMember: true});
 	}
 
+	handleSelectorChange(event){
+		var userToAdd = event.target.value;
+		this.setState({selectedMember: this.state.users[userToAdd]});
+		console.log("Member to add:", this.state.users[userToAdd]);
+	}
+
+	addMember(event){
+		event.preventDefault();
+		const request = new XMLHttpRequest();
+    	request.open("POST", "http://localhost:5000/memberships.json");
+    	request.setRequestHeader("content-type", "application/json");
+    	request.withCredentials = true;
+
+    	request.onload = () => {
+      		if (request.status === 200) {
+        const user = JSON.parse(request.responseText);
+      		}
+    	}
+
+    	const data = {
+        	membership: {
+         		user_id: this.state.selectedMember.id,
+        		userName: this.state.selectedMember.name,
+        		group_id: this.props.groupId
+        	}
+    	}
+
+    	request.send(JSON.stringify(data));
+    	console.log("member added", data);
+	}
 
 
 
@@ -51,10 +84,10 @@ class MemberNew extends React.Component {
 		if(this.state.newMember === true){
 			var memberDD = 
 			<div>
-				<select>
+				<select onChange = {this.handleSelectorChange}>
 					{memberOptions}
 				</select>
-				<button>
+				<button onClick = {this.addMember}>
 					ADD
 				</button>
 			</div>
