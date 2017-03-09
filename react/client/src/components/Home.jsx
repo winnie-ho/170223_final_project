@@ -95,15 +95,7 @@ if(this.state.currentUser){
         <h2> {this.state.currentUser.name}</h2>
 
 
-        <Link to = {
-          {
-            "pathname": "/groups",
-            "query":{
-              "userName": this.state.currentUser.name,
-              "userId": this.state.currentUser.id
-            }
-          }
-        }>
+        <Link to = "/groups">
         <h3>MY GR<span className = "enter">◉</span>UPS</h3>
         </Link>
 

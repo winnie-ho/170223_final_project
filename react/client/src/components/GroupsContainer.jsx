@@ -1,6 +1,7 @@
 import React from "react"
 import { Link, browserHistory } from "react-router"
 import GroupsListing from "./GroupsListing"
+import dbHandler from "../dbHandler"
 
 class GroupsContainer extends React.Component {
 
@@ -28,48 +29,29 @@ class GroupsContainer extends React.Component {
   }
 
   getUser(){
-    var url = "http://localhost:5000/users/1"
-    var request = new XMLHttpRequest()
-    request.open("GET", url)
-    request.setRequestHeader("Content-Type", "application/json")
-    request.withCredentials = true
-    request.onload = () => {
-       if(request.status === 200){
-        var data = JSON.parse(request.responseText)
-        console.log("Users data in GroupsContainer:", data)
-          this.setState({
-            userId: data.id,
-            userName: data.name
-          })
-        console.log("setting userId:", this.state.userId)
-        console.log("setting userName:", this.state.userName)
-       } else {
-        console.log("Uh oh you're not logged in!")
-        browserHistory.goBack()
-       }
-    }
-    request.send(null)
+    var urlSpec = "users/1";
+    var word = "GET";
+    var callback = function(data){
+      this.setState({
+        userId: data.id,
+        userName: data.name
+      })
+        console.log("setting userId:", this.state.userId);
+        console.log("setting userName:", this.state.userName);
+    }.bind(this);
+    var DBQuery = new dbHandler();
+    DBQuery.callDB(urlSpec, word, callback);
   }
 
   getGroups(){
-    var url = "http://localhost:5000/memberships/1"
-    var request = new XMLHttpRequest()
-    request.open("GET", url)
-
-    request.setRequestHeader("Content-Type", "application/json")
-    request.withCredentials = true
-    request.onload = () => {
-       if(request.status === 200){
-        var data = JSON.parse(request.responseText)
-        console.log("data in GroupsContainer:", data)
-          this.setState({groups: data})
-        console.log("setting groups:", this.state.groups)
-       } else {
-        console.log("Uh oh you're not logged in!")
-        browserHistory.goBack()
-       }
-    }
-    request.send(null)
+    var urlSpec = "memberships/1";
+    var word = "GET";
+    var callback = function(data){
+      this.setState({groups: data})
+        console.log("setting groups:", this.state.groups);
+    }.bind(this);
+    var DBQuery = new dbHandler();
+    DBQuery.callDB(urlSpec, word, callback);
   }
 
 
