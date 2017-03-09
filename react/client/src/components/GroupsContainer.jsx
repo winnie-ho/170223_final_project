@@ -6,8 +6,6 @@ class GroupsContainer extends React.Component {
 
   constructor(props) {
     super(props)
-    this.userName = this.props.location.query.userName;
-    this.userId = this.props.location.query.userId;
     console.log("props in GroupsContainer", this.props)
     this.getUser = this.getUser.bind(this);
     this.getGroups = this.getGroups.bind(this);
@@ -140,8 +138,8 @@ class GroupsContainer extends React.Component {
 
     const data = {
         membership: {
-        user_id: this.userId,
-        userName: this.userName,
+        user_id: this.state.userId,
+        userName: this.state.userName,
         group_id: this.state.recentGroup
       }
     }
