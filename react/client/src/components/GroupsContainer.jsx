@@ -1,7 +1,7 @@
-import React from "react"
-import { Link, browserHistory } from "react-router"
-import GroupsListing from "./GroupsListing"
-import dbHandler from "../dbHandler"
+import React from "react";
+import { Link, browserHistory } from "react-router";
+import GroupsListing from "./GroupsListing";
+import dbHandler from "../dbHandler";
 
 class GroupsContainer extends React.Component {
 

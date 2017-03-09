@@ -3,63 +3,62 @@ import { Link, browserHistory, hashHistory } from "react-router";
 import SignOut from "../auth/SignOut";
 import SignIn from "../auth/SignIn";
 import SignUp from "../auth/SignUp";
+import dbHandler from "../dbHandler";
+
 
 class Home extends React.Component {
 
   constructor() {
     super()
-    this.setUser = this.setUser.bind(this)
-    this.goBack = this.goBack.bind(this)
-    this.createAccount = this.createAccount.bind(this)
+    this.setUser = this.setUser.bind(this);
+    this.goBack = this.goBack.bind(this);
+    this.createAccount = this.createAccount.bind(this);
+
     this.state = {
       currentUser: null,
       createAccount: false,
     }
   }
 
+  componentDidMount(){
+    this.getUser();
+  }
 
-  fetchUser(){
-    console.log("fetching user");
+  getUser(){
     const request = new XMLHttpRequest();
     request.open("GET", "http://localhost:5000/users/1.json");
     request.setRequestHeader("content-type", "application/json");
     request.withCredentials = true;
-
     request.onload = () => {
       if(request.status === 200){
         console.log("request.responseText", request.responseText);
         const receivedUser = JSON.parse(request.responseText);
         this.setUser(receivedUser);
       } else if (request.status === 401){
-        this.setUser(null)
+        this.setUser(null);
       }
     }
     request.send(null);
   }
 
-  componentDidMount(){
-    this.fetchUser()
-  }
-
   setUser(user){
-    this.setState({currentUser:user})
+    this.setState({currentUser:user});
   }
 
   goBack(){
-    this.setState({currentUser:null})
-    this.setState({createAccount:false})
-    console.log("current user", this.state.currentUser)
+    this.setState({currentUser:null});
+    this.setState({createAccount:false});
+    console.log("current user", this.state.currentUser);
   }
 
   createAccount() {
-    this.setState({currentUser:null})
-    this.setState({createAccount:true})
-    console.log("create account clicked", this.state.createAccount)
+    this.setState({currentUser:null});
+    this.setState({createAccount:true});
+    console.log("create account clicked", this.state.createAccount);
   }
 
   render() {
 
-    console.log("currentUser", this.state.currentUser)
   {/*initial state render - sign in*/}
   var mainDiv = <div className = "sign-in" >
     <h4>LOGIN</h4>
@@ -90,19 +89,19 @@ if(this.state.currentUser){
     <SignOut url="http://localhost:5000/users/sign_out.json" onSignOut={this.setUser}></SignOut>
   </div>
   mainDiv = <div className = "sign-in">
-      <div className = "intro">
-        <h3> Hi </h3>
-        <h2> {this.state.currentUser.name}</h2>
+    <div className = "intro">
+      <h3> Hi </h3>
+      <h2> {this.state.currentUser.name}</h2>
 
 
-        <Link to = "/groups">
-        <h3>MY GR<span className = "enter">◉</span>UPS</h3>
-        </Link>
+      <Link to = "/groups">
+      <h3>MY GR<span className = "enter">◉</span>UPS</h3>
+      </Link>
 
 
-      </div>
     </div>
-    createAccDiv = <div></div>
+  </div>
+  createAccDiv = <div></div>
 }
   
 {/*calling the render*/}

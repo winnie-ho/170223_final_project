@@ -4,6 +4,7 @@ import MessagesContainer from "./MessagesContainer"
 import EventsContainer from "./EventsContainer"
 import Members from "./Members"
 import { Link, browserHistory, hashHistory } from "react-router";
+import dbHandler from "../dbHandler";
 
 class GroupView extends React.Component {
 
@@ -39,62 +40,39 @@ class GroupView extends React.Component {
     this.getData();
   }
 
-
   getData(){
-    var url = "http://localhost:5000/memberships/1";
-    var request = new XMLHttpRequest();
-    request.open("GET", url);
-
-    request.setRequestHeader("Content-Type", "application/json");
-    request.withCredentials = true;
-    request.onload = () => {
-       if(request.status === 200){
-        var data = JSON.parse(request.responseText)
-        console.log("data", data)
-        this.findGroup(data)
-       } else {
-        console.log("Uh oh you're not logged in!")
-        browserHistory.goBack()
-       }
-    };
-    request.send(null);
+    var urlSpec = "memberships/1";
+    var word = "GET";
+    var callback = function(data){
+      this.findGroup(data);
+      console.log("data:", data);
+    }.bind(this);
+    var dataToSend = null;
+    var DBQuery = new dbHandler();
+    DBQuery.callDB(urlSpec, word, callback, dataToSend);
   }
 
   findGroup(data){
     for(var item of data){
       if(item.group_id == this.groupSelected){
-        console.log("match!!!")
         this.setState({
           userName: item.userName,
           userId: item.user_id,
           groupData: item.group,
           events: item.group.events,
           messages: item.group.messages
-        })
+        });
       }
     }
-    console.log("userName:", this.state.userName)
-    console.log("user_ID:", this.state.userId)
-    console.log("groupData", this.state.groupData)
-    console.log("messages", this.state.messages)
-    console.log("events", this.state.events)
   }
 
   addMessage(event){
     event.preventDefault();
-    const request = new XMLHttpRequest();
-    request.open("POST", "http://localhost:5000/groups/:id/messages.json");
-    request.setRequestHeader("content-type", "application/json");
-    request.withCredentials = true;
-
-    request.onload = ()=>{
-      console.log("status:", request.status)
-      if(request.status === 200){
-        const user = JSON.parse(request.responseText);
-        this.getData()
-      }
-    }
-
+    var urlSpec = "groups/:id/messages";
+    var word = "POST";
+    var callback = function(data){
+      this.getData();
+    }.bind(this);
     const data = {
       message: {
         msg: this.state.msg,
@@ -103,78 +81,54 @@ class GroupView extends React.Component {
         user_id: this.state.userId
       }
     }
-    request.send(JSON.stringify(data));
+    var dataToSend = JSON.stringify(data);
+    var DBQuery = new dbHandler();
+    DBQuery.callDB(urlSpec, word, callback, dataToSend);
     console.log("message added", data);
     ReactDOM.findDOMNode(this.refs.form).value = "";
   }
 
   addEventUpdate(event){
-    this.getData()
+    this.getData();
   }
 
   handleOnChangeMsg(event){
-    this.setState({msg: event.target.value})
+    this.setState({msg: event.target.value});
   }
 
   deleteGroup(){
     event.preventDefault();
-    var url = "http://localhost:5000/groups/" + this.groupSelected + ".json"
-    const request = new XMLHttpRequest();
-    request.open("DELETE", url);
-    request.setRequestHeader("content-type", "application/json");
-    request.withCredentials = true;
-
-    request.onload = ()=>{
-      if(request.status === 200){
-        console.log("group delete: ", this.groupSelected);
-        this.props.router.push("/groups")
-      }
-    }
-    request.send()
+    var urlSpec = "groups/" + this.groupSelected;
+    var word = "DELETE";
+    var callback = function(data){
+      this.props.router.push("/groups");
+    }.bind(this);
+    var DBQuery = new dbHandler();
+    var dataToSend = null;
+    var DBQuery = new dbHandler();
+    DBQuery.callDB(urlSpec, word, callback, dataToSend);
   }
 
-  deleteMembership(membershipToDelete){
+  editGroup(event){
     event.preventDefault();
-    var url = "http://localhost:5000/memberships/" + membershipToDelete + ".json"
-    const request = new XMLHttpRequest();
-    request.open("DELETE", url);
-    request.setRequestHeader("content-type", "application/json");
-    request.withCredentials = true;
-    request.onload = ()=>{
-      if(request.status === 200){
-        console.log("membership deleted", data);
-      }
-        this.props.router.push("/groups")
-    }
-    request.send()
-  }
-
-  editGroup(){
-    event.preventDefault();
-    var url = "http://localhost:5000/groups/" + this.groupSelected + ".json"
-    const request = new XMLHttpRequest();
-    request.open("PUT", url);
-    request.setRequestHeader("content-type", "application/json");
-    request.withCredentials = true;
-    request.onload = () => {
-      if (request.status === 200) {
-        const user = JSON.parse(request.responseText);
-        this.getData()
-      }
-    }
+    var urlSpec = "groups/" + this.groupSelected;
+    var word = "PUT";
+    var callback = function(data){
+      this.setState({editGroup:false},this.getData());
+    }.bind(this);
     const data = {
-        group:{
-              name:this.state.changedName
-              }
+      group: {
+        name: this.state.changedName
+      }
     }
-    request.send(JSON.stringify(data));
-    console.log("group updated",data);
-    this.setState({editGroup:false})
+    var dataToSend = JSON.stringify(data);
+    var DBQuery = new dbHandler();
+    DBQuery.callDB(urlSpec, word, callback, dataToSend);
+    console.log("group updated", data);
   }
 
   handleEditGroup(){
-    this.setState({editGroup: true})
-    console.log("edit clicked")
+    this.setState({editGroup: true});
   }
 
   handleOnChangeGroupName(event){
@@ -191,15 +145,13 @@ class GroupView extends React.Component {
       <input onChange = {this.handleOnChangeGroupName}placeholder = "group name"></input>
       <button onClick = {this.editGroup} >update</button>
       </div>
-      }else if (this.state.editGroup === false) {
+      } else if (this.state.editGroup === false) {
         header = <div> {upperGroupTitle}</div>
       }
     
 
     return(
       <div className="group-view">
-        
-
         <h2>{header}</h2>
         <div className = "top-bar">
           <div>
@@ -232,12 +184,10 @@ class GroupView extends React.Component {
             <EventsContainer userName = {this.state.userName} userId = {this.state.userId} selectedEvent = {this.state.selectedEvent} router = {this.props.router} addEventUpdate = {this.addEventUpdate} groupId = {this.groupSelected} events={this.state.events}/>
           </div>
 
-
         </div>
       </div>
     )
   }
-
 }
 
 export default GroupView
