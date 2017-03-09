@@ -50,7 +50,9 @@ render() {
         <Link className = "add-event-plus" to = {
           {
             "pathname": "/groups/:id/newEvent",
-            "query": {"groupId": this.props.groupId}
+            "query": {
+              "groupId": this.props.groupId
+            }
           }
         }>
 

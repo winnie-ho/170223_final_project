@@ -58,6 +58,8 @@ class Home extends React.Component {
   }
 
   render() {
+
+    console.log("currentUser", this.state.currentUser)
   {/*initial state render - sign in*/}
   var mainDiv = <div className = "sign-in" >
     <h4>LOGIN</h4>
@@ -91,8 +93,21 @@ if(this.state.currentUser){
       <div className = "intro">
         <h3> Hi </h3>
         <h2> {this.state.currentUser.name}</h2>
-        <Link to= "/groups">
-        <h3>MY GR<span className = "enter">◉</span>UPS</h3></Link>
+
+
+        <Link to = {
+          {
+            "pathname": "/groups",
+            "query":{
+              "userName": this.state.currentUser.name,
+              "userId": this.state.currentUser.id
+            }
+          }
+        }>
+        <h3>MY GR<span className = "enter">◉</span>UPS</h3>
+        </Link>
+
+
       </div>
     </div>
     createAccDiv = <div></div>

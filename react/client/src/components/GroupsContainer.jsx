@@ -6,26 +6,51 @@ class GroupsContainer extends React.Component {
 
   constructor(props) {
     super(props)
+    this.userName = this.props.location.query.userName;
+    this.userId = this.props.location.query.userId;
     console.log("props in GroupsContainer", this.props)
+    this.getUser = this.getUser.bind(this);
+    this.getGroups = this.getGroups.bind(this);
     this.addGroup = this.addGroup.bind(this);
     this.setAddedGroup = this.setAddedGroup.bind(this);
     this.handleNewGroup = this.handleNewGroup.bind(this);
+
     this.state = { 
       groups: [],
       addedGroup: null,
       newGroup: false,
-      userName: null,
       userId: null,
       recentGroup: null
     }
   }
 
-  componentDidMount(){
+  componentWillMount(){
     this.getGroups();
+    this.getUser();
   }
 
-  componentWillReceiveProps(){
-    this.getGroups();
+  getUser(){
+    var url = "http://localhost:5000/users/1"
+    var request = new XMLHttpRequest()
+    request.open("GET", url)
+    request.setRequestHeader("Content-Type", "application/json")
+    request.withCredentials = true
+    request.onload = () => {
+       if(request.status === 200){
+        var data = JSON.parse(request.responseText)
+        console.log("Users data in GroupsContainer:", data)
+          this.setState({
+            userId: data.id,
+            userName: data.name
+          })
+        console.log("setting userId:", this.state.userId)
+        console.log("setting userName:", this.state.userName)
+       } else {
+        console.log("Uh oh you're not logged in!")
+        browserHistory.goBack()
+       }
+    }
+    request.send(null)
   }
 
   getGroups(){
@@ -39,15 +64,8 @@ class GroupsContainer extends React.Component {
        if(request.status === 200){
         var data = JSON.parse(request.responseText)
         console.log("data in GroupsContainer:", data)
-        this.setState({
-          groups: data,
-          newGroup: false,
-          userName: data[0].userName,
-          userId: data[0].user_id
-        })
+          this.setState({groups: data})
         console.log("setting groups:", this.state.groups)
-        console.log("setting userName:", this.state.userName)
-        console.log("setting userId:", this.state.userId)
        } else {
         console.log("Uh oh you're not logged in!")
         browserHistory.goBack()
@@ -122,8 +140,8 @@ class GroupsContainer extends React.Component {
 
     const data = {
         membership: {
-        user_id: this.state.userId,
-        userName: this.state.userName,
+        user_id: this.userId,
+        userName: this.userName,
         group_id: this.state.recentGroup
       }
     }
