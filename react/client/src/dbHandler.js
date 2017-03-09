@@ -3,7 +3,7 @@ var dbHandler = function(){
 }
 
 dbHandler.prototype = {
-	callDB: function(urlSpec, word, callback){
+	callDB: function(urlSpec, word, callback, dataToSend){
 
 	var url = "http://localhost:5000/" + urlSpec;
   var request = new XMLHttpRequest();
@@ -21,7 +21,7 @@ dbHandler.prototype = {
         browserHistory.goBack();
       }
     }
-    request.send(null);
+    request.send(dataToSend);
 	}
 }
 ;

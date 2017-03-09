@@ -7,12 +7,13 @@ class GroupsContainer extends React.Component {
 
   constructor(props) {
     super(props)
-    console.log("props in GroupsContainer", this.props)
     this.getUser = this.getUser.bind(this);
     this.getGroups = this.getGroups.bind(this);
     this.addGroup = this.addGroup.bind(this);
-    this.setAddedGroup = this.setAddedGroup.bind(this);
+    this.getLastGroup = this.getLastGroup.bind(this);
+    this.addMembership = this.addMembership.bind(this);
     this.handleNewGroup = this.handleNewGroup.bind(this);
+    this.setAddedGroup = this.setAddedGroup.bind(this);
 
     this.state = { 
       groups: [],
@@ -39,8 +40,9 @@ class GroupsContainer extends React.Component {
         console.log("setting userId:", this.state.userId);
         console.log("setting userName:", this.state.userName);
     }.bind(this);
+    var dataToSend = null;
     var DBQuery = new dbHandler();
-    DBQuery.callDB(urlSpec, word, callback);
+    DBQuery.callDB(urlSpec, word, callback, dataToSend);
   }
 
   getGroups(){
@@ -51,95 +53,71 @@ class GroupsContainer extends React.Component {
         console.log("setting groups:", this.state.groups);
     }.bind(this);
     var DBQuery = new dbHandler();
-    DBQuery.callDB(urlSpec, word, callback);
+    var dataToSend = null;
+    var DBQuery = new dbHandler();
+    DBQuery.callDB(urlSpec, word, callback, dataToSend);
   }
-
 
   addGroup(event){
     event.preventDefault();
-    const request = new XMLHttpRequest();
-    request.open("POST", "http://localhost:5000/groups.json");
-    request.setRequestHeader("content-type", "application/json");
-    request.withCredentials = true;
-
-    request.onload = () => {
-      if (request.status === 200) {
-        const user = JSON.parse(request.responseText);
-        this.setState({ newGroup:false}, this.getLastGroup())
+    var urlSpec = "groups";
+    var word = "POST";
+    var callback = function(data){
+      this.setState({ newGroup:false}, this.getLastGroup());
+    }.bind(this);
+    const data = {
+      group: {
+        name: this.state.addedGroup
       }
     }
-
-    const data = {
-        group: {
-          name: this.state.addedGroup
-        }
-    }
-      request.send(JSON.stringify(data));
-      console.log("group added", data);
+    var dataToSend = JSON.stringify(data);
+    var DBQuery = new dbHandler();
+    DBQuery.callDB(urlSpec, word, callback, dataToSend);
+    console.log("group added", data);
   }
-
 
   getLastGroup(){
-    var url = "http://localhost:5000/groups"
-    var request = new XMLHttpRequest()
-    request.open("GET", url)
-
-    request.setRequestHeader("Content-Type", "application/json")
-    request.withCredentials = true
-    request.onload = () => {
-       if(request.status === 200){
-        var data = JSON.parse(request.responseText)
-        var lastGroupId = data[data.length-1].id
-        this.setState({recentGroup: lastGroupId})
-        this.addMembership()
-        console.log("lastGroup", data[data.length-1].id)
-        console.log("lastGroupstate", this.state.recentGroup)
-        
-       } else {
-        console.log("Uh oh you're not logged in!")
-        browserHistory.goBack()
-       }
-    }
-    request.send(null)    
+    var urlSpec = "groups";
+    var word = "GET";
+    var callback = function(data){
+      var lastGroupId = data[data.length-1].id
+      this.setState({recentGroup: lastGroupId})
+      this.addMembership()
+      console.log("recentGroup:", this.state.recentGroup)
+    }.bind(this);
+    var dataToSend = null;
+    var DBQuery = new dbHandler();
+    DBQuery.callDB(urlSpec, word, callback, dataToSend);
   }
 
-
-
-  addMembership(){
-    const request = new XMLHttpRequest();
-    request.open("POST", "http://localhost:5000/memberships.json");
-    request.setRequestHeader("content-type", "application/json");
-    request.withCredentials = true;
-
-    request.onload = () => {
-      if (request.status === 200) {
-        const user = JSON.parse(request.responseText);
-        this.setState({ newGroup:false },this.getGroups())
-      }
-    }
-
+  addMembership(event){
+    var urlSpec = "memberships";
+    var word = "POST";
+    var callback = function(data){
+      this.setState({ newGroup:false },this.getGroups())
+    }.bind(this);
     const data = {
-        membership: {
+      membership: {
         user_id: this.state.userId,
         userName: this.state.userName,
         group_id: this.state.recentGroup
       }
     }
-
-    request.send(JSON.stringify(data));
+    var dataToSend = JSON.stringify(data);
+    var DBQuery = new dbHandler();
+    DBQuery.callDB(urlSpec, word, callback, dataToSend);
     console.log("membership added", data);
   }
 
   handleNewGroup(){
-    this.setState({newGroup:true})
+    this.setState({newGroup:true});
   }
 
   setAddedGroup(addedGroup){
-    this.setState({addedGroup: addedGroup})
+    this.setState({addedGroup: addedGroup});
   }
 
   render(){
-    console.log("groups to pass", this.state.groups)
     return(
       <div className="listing">
         <GroupsListing newGroup={this.state.newGroup} setGroup={this.setAddedGroup} addGroup={this.addGroup} groups={this.state.groups} handleNewGroup = {this.handleNewGroup}/>
