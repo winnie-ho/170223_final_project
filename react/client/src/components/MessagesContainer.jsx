@@ -1,4 +1,4 @@
-import React from "react"
+import React from "react";
 
 class MessagesContainer extends React.Component{
 
@@ -7,7 +7,6 @@ constructor(props){
 }
 
 render() {
-
   var messageNodes = this.props.messages.map((message, index)=>{
     return(
       <div className = "message-div" key = {index}>
@@ -22,7 +21,6 @@ render() {
     </div>
     )
   }
-
 }
 
 

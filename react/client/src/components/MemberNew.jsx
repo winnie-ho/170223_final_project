@@ -21,7 +21,7 @@ class MemberNew extends React.Component {
 	}
 
 	getUsers(){
-		var urlSpec = "users";
+		var urlSpec = "/users";
     var word = "GET";
     var callback = function(data){
 			this.setState({users: data});
@@ -63,15 +63,12 @@ class MemberNew extends React.Component {
 
 	render(){
 		// filling in the options for selector
+		console.log("memberoptions", this.state.users);
 		var memberOptions = this.state.users.map(function(user, index){
-			return 
-				<option 
-					placeholder = "select" 
-					value = {index} 
-					key = {index}>{user.name}
-				</option>
+			return <option	placeholder = "select" value = {index} key = {index}>
+							{user.name}
+						 </option>
 		})
-
 		// conditional for on addMember
 		if(this.state.newMember === true){
 			var memberDD = 
