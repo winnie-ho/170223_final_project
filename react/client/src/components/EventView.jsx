@@ -1,10 +1,11 @@
-import React from "react"
-import { Link, browserHistory, hashHistory } from "react-router";
+import React from "react";
+import dbHandler from "../dbHandler";
+import {Link, browserHistory, hashHistory} from "react-router";
 
 class EventView extends React.Component{
   constructor(props){
     super(props)
-    console.log("carry through:", this.props.location.query)
+    this.eventId = this.props.location.query.id;
     this.goBack = this.goBack.bind(this);
     this.deleteEvent = this.deleteEvent.bind(this);
     this.addAttendee = this.addAttendee.bind(this);
@@ -29,30 +30,20 @@ class EventView extends React.Component{
   }
 
   getAttendees(){
-    var url = "http://localhost:5000/groups/" + this.state.event.group_id + "/events/" + this.state.event.id + "/attendees";
-    var request = new XMLHttpRequest();
-    request.open("GET", url);
-    request.setRequestHeader("content-type", "application/json");
-    request.withCredentials = true;
-    request.onload = () => {
-       if(request.status === 200){
-        var data = JSON.parse(request.responseText);
-        console.log("data", data);
-        for(var attendee of data){
-          if(attendee.userName == this.props.location.query.userName){
-            this.setState({attendees: data, going: true, attendeeId: data[data.length-1].id});
-          } else if (attendee.userName !== this.props.location.query.userName){
-            this.setState({going: false, attendees: data});
-            console.log("attendees:", this.state.attendees);
-            console.log("going status:", this.state.going);
-          }
+    var urlSpec = "/groups/" + this.state.event.group_id + "/events/" + this.state.event.id + "/attendees";
+    var word = "GET";
+    var callback = function(data){
+      for(var attendee of data){
+        if(attendee.userName == this.props.location.query.userName){
+          this.setState({attendees: data, going: true, attendeeId: data[data.length-1].id});
+        } else if (attendee.userName !== this.props.location.query.userName){
+          this.setState({going: false, attendees: data});
         }
-       } else {
-        console.log("Uh oh you're not logged in!")
-        browserHistory.goBack()
-       }
-    };
-    request.send(null);
+      }
+    }.bind(this);
+    var dataToSend = null;
+    var DBQuery = new dbHandler();
+    DBQuery.callDB(urlSpec, word, callback, dataToSend);
   }
 
   goBack(){
@@ -61,21 +52,15 @@ class EventView extends React.Component{
 
   deleteEvent(){
     event.preventDefault();
-    var eventId = this.props.location.query.id
-    var url = "http://localhost:5000/groups/:id/events/" + eventId + ".json"
-
-    const request = new XMLHttpRequest();
-    request.open("DELETE", url);
-    request.setRequestHeader("content-type", "application/json");
-    request.withCredentials = true;
-
-    request.onload = ()=>{
-      if(request.status === 200){
-        console.log("event deleted", data);
-      }
-        this.goBack()
-    }
-    request.send()
+    var urlSpec = "groups/" + this.state.event.group_id + "/events/" + this.state.event.id;
+    var word = "DELETE";
+    var callback = function(data){
+      console.log("event deleted", data);
+      this.goBack();
+    }.bind(this);
+    var dataToSend = null;
+    var DBQuery = new dbHandler();
+    DBQuery.callDB(urlSpec, word, callback, dataToSend);
   }
 
   parseEvent(){
@@ -128,6 +113,7 @@ class EventView extends React.Component{
   }
 
   render() {
+    console.log("event", this.state.event)
     console.log("THIS", this.state.event);
     console.log("going", this.state.going);
 
