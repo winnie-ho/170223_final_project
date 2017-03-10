@@ -169,6 +169,10 @@ button:hover{
   border-color:#FC7F2D;
 }
 
+select{
+  margin: 10px;
+}
+
 .outer{
   width: 90vw;
   display: flex;
@@ -179,7 +183,7 @@ button:hover{
 }
 
 nav{
-  height: 50px;
+  height: 150px;
   display: flex;
   flex-direction: row;
   justify-content: space-between;

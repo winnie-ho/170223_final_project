@@ -27,7 +27,6 @@ doSearch(event){
 }
 
 setEventView(event){
-  // this.props.router.push("/groups/:id/event/:id")
   this.setState({eventId: event.target.value})
   console.log("event id", this.state.eventId)
 
@@ -67,3 +66,4 @@ render() {
 
 
 export default EventsContainer
+  // this.props.router.push("/groups/:id/event/:id")
