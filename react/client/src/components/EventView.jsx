@@ -96,20 +96,16 @@ class EventView extends React.Component{
 
   removeAttendee(){
     event.preventDefault();
-    var url = "http://localhost:5000/groups/"+ this.state.event.group_id + "/events/" +  this.state.event.id + "/attendees/" + this.state.attendeeId + ".json";
-    const request = new XMLHttpRequest();
-    request.open("DELETE", url);
-    request.setRequestHeader("content-type", "application/json");
-    request.withCredentials = true;
-    request.onload = ()=>{
-      if(request.status === 200){
-        console.log("attendee removed");
-        this.setState({going: false, attendees: []});
-        this.getAttendees();
-        console.log("attendees after removal:", this.state.attendees);
-      }
-    }
-    request.send()
+    var urlSpec = "groups/" + this.state.event.group_id + "/events/" + this.state.event.id + "/attendees/" + this.state.attendeeId;
+    var word = "DELETE";
+    var callback = function(data){
+      console.log("attendee removed");
+      this.setState({going: false, attendees: []});
+      this.getAttendees();
+    }.bind(this);
+    var dataToSend = null;
+    var DBQuery = new dbHandler();
+    DBQuery.callDB(urlSpec, word, callback, dataToSend);
   }
 
   render() {
