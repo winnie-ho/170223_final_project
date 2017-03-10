@@ -70,19 +70,12 @@ class EventView extends React.Component{
   }
 
   addAttendee(){
-    event.preventDefault();
-    var url = "http://localhost:5000/groups/:id/events/:id/attendees.json"
-    const request = new XMLHttpRequest();
-    request.open("POST", url);
-    request.setRequestHeader("content-type", "application/json");
-    request.withCredentials = true;
-    request.onload = () => {
-      if (request.status === 200) {
-        const user = JSON.parse(request.responseText);
-        console.log("attendee added",data);
-        this.getAttendees();
-      }
-    }
+    var urlSpec = "groups/:id/events/:id/attendees";
+    var word = "POST";
+    var callback = function(data){
+      console.log("attendee added",data);
+      this.getAttendees();
+    }.bind(this);
     const data = {
       attendee:{
         event_id: this.state.event.id,
@@ -90,8 +83,9 @@ class EventView extends React.Component{
         userName: this.props.location.query.userName
       }
     }
-    request.send(JSON.stringify(data));
-
+    var dataToSend = JSON.stringify(data);
+    var DBQuery = new dbHandler();
+    DBQuery.callDB(urlSpec, word, callback, dataToSend);
   }
 
   removeAttendee(){
@@ -110,7 +104,6 @@ class EventView extends React.Component{
 
   render() {
     console.log("event", this.state.event)
-    console.log("THIS", this.state.event);
     console.log("going", this.state.going);
 
     var attendeesNodes = this.state.attendees.map((attendee, index)=>{
