@@ -1,5 +1,5 @@
-import React from "react"
-import { Link, browserHistory, hashHistory } from "react-router";
+import React from "react";
+import {Link} from "react-router";
 
 class EventListing extends React.Component{
   constructor(props){
@@ -19,24 +19,21 @@ class EventListing extends React.Component{
               <p>{event.date.slice(0,10)}</p>
               <p>{event.time.slice(11,16)}</p>
               </div>
-              <Link className = "more" to = {
-                {
-                  "pathname": "/groups/:id/showEvent",
-                  "query":{
-                    "userName": this.props.userName,
-                    "userId": this.props.userId,
-                    "event": JSON.stringify(event)
+                <Link className = "more" to = {
+                  {
+                    "pathname": "/groups/:id/showEvent",
+                    "query":{
+                      "userName": this.props.userName,
+                      "userId": this.props.userId,
+                      "event": JSON.stringify(event)
+                    }
                   }
-                }
-              }>more▷</Link>
-             
+                }>more▷</Link>
             </div>
           ))
         }
       </div>
-
-
-      )
+    )
   }
 
 }

@@ -10,9 +10,8 @@ class GroupView extends React.Component {
 
   constructor(props) {
     super(props);
-    console.log("props in groupView", this.props);
     this.groupSelected = props.location.query.groupId;
-    console.log("groupSelected", this.groupSelected);
+    this.findGroup = this.findGroup.bind(this);
     this.addMessage = this.addMessage.bind(this);
     this.handleOnChangeMsg = this.handleOnChangeMsg.bind(this);
     this.addEventUpdate = this.addEventUpdate.bind(this);
@@ -20,7 +19,6 @@ class GroupView extends React.Component {
     this.editGroup = this.editGroup.bind(this);
     this.handleOnChangeGroupName = this.handleOnChangeGroupName.bind(this);
     this.handleEditGroup = this.handleEditGroup.bind(this);
-    this.findGroup = this.findGroup.bind(this);
 
     this.state = { 
       groupData: [],
@@ -61,7 +59,7 @@ class GroupView extends React.Component {
           groupData: item.group,
           events: item.group.events,
           messages: item.group.messages
-        });
+        }); 
       }
     }
   }
@@ -139,7 +137,6 @@ class GroupView extends React.Component {
   render(){
     var groupTitle = this.state.groupData.name
     var upperGroupTitle = `${this.state.groupData.name}`.toUpperCase()
-    console.log("GROUP TITLE: ", groupTitle)
     if (this.state.editGroup===true){
       var header = <div>
       <input onChange = {this.handleOnChangeGroupName}placeholder = "group name"></input>

@@ -1,10 +1,10 @@
-import React from "react"
-import ReactDOM from "react-dom"
-import { Link, browserHistory, hashHistory } from "react-router";
+import React from "react";
+import ReactDOM from "react-dom";
+import dbHandler from "../dbHandler";
+import {Link, browserHistory, hashHistory} from "react-router";
 
 class EventNew extends React.Component{
   constructor(props){
-    console.log("group id through route:", props.location.query.groupId)
     super(props)
     this.handleOnChangeName = this.handleOnChangeName.bind(this);
     this.handleOnChangeDate = this.handleOnChangeDate.bind(this);
@@ -25,45 +25,36 @@ class EventNew extends React.Component{
     }
   }
 
-
-
   handleOnChangeName(event){
-    this.setState({name: event.target.value})
+    this.setState({name: event.target.value});
   }
 
   handleOnChangeDate(event){
-    this.setState({date: event.target.value})
+    this.setState({date: event.target.value});
   }
 
   handleOnChangeTime(event){
-    this.setState({time: event.target.value})
+    this.setState({time: event.target.value});
   }
 
   handleOnChangeLocation(event){
-    this.setState({location: event.target.value})
+    this.setState({location: event.target.value});
   }
 
   handleOnChangeDescription(event){
-    this.setState({description: event.target.value})
+    this.setState({description: event.target.value});
   }
 
   handleOnChangeRoute(event){
-    this.setState({Route: event.target.value})
+    this.setState({Route: event.target.value});
   }
 
   addEvent(event){
     event.preventDefault();
-    const request = new XMLHttpRequest();
-    request.open("POST", "http://localhost:5000/groups/:id/events.json");
-    request.setRequestHeader("content-type", "application/json");
-    request.withCredentials = true;
-
-    request.onload = ()=>{
-      if(request.status === 201){
-        const user = JSON.parse(request.responseText);
-      }
-    }
-
+    var urlSpec = "groups/:id/events";
+    var word = "POST";
+    var callback = function(data){
+    }.bind(this);
     const data = {
       event: {
         name: this.state.name,
@@ -75,7 +66,9 @@ class EventNew extends React.Component{
         group_id: this.state.groupSelected
       }
     }
-    request.send(JSON.stringify(data));
+    var dataToSend = JSON.stringify(data);
+    var DBQuery = new dbHandler();
+    DBQuery.callDB(urlSpec, word, callback, dataToSend);
     console.log("event added", data);
     this.props.router.goBack();
   }
@@ -94,11 +87,9 @@ class EventNew extends React.Component{
           <button onClick = {this.addEvent}>ADD</button>
         </form>
       </div>
-      )
+    )
   }
-
-
 }
 
 export default EventNew
-          // <input type = "text" onChange = {this.handleOnChangeRoute} placeholder = "route" className = "event-form-input"/>         
+        
