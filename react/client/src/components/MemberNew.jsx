@@ -1,5 +1,5 @@
-import React from "react"
-
+import React from "react";
+import dbHandler from "../dbHandler";
 
 class MemberNew extends React.Component {
 
@@ -14,7 +14,6 @@ class MemberNew extends React.Component {
 			users: [],
 			selectedMember: null,
 		}
-
 	}
 
 	componentDidMount(){
@@ -22,22 +21,14 @@ class MemberNew extends React.Component {
 	}
 
 	getUsers(){
-			var url = "http://localhost:5000/users";
-	    var request = new XMLHttpRequest();
-	    request.open("GET", url);
-	    request.setRequestHeader("Content-Type", "application/json");
-	    request.withCredentials = true;
-	    request.onload = () => {
-	       if(request.status === 200){
-	        var data = JSON.parse(request.responseText);
-	        this.setState({users: data});
-	        console.log("data returning", data);
-	        console.log("getting users", this.state.users);
-	       } else {
-	        console.log("Uh oh you're not logged in!");
-	       }
-	    };
-	    request.send(null); 
+		var urlSpec = "users";
+    var word = "GET";
+    var callback = function(data){
+			this.setState({users: data});
+    }.bind(this);
+    var dataToSend = null;
+    var DBQuery = new dbHandler();
+    DBQuery.callDB(urlSpec, word, callback, dataToSend); 
 	}
 
 	handleNewMember(){
@@ -47,45 +38,41 @@ class MemberNew extends React.Component {
 	handleSelectorChange(event){
 		var userToAdd = event.target.value;
 		this.setState({selectedMember: this.state.users[userToAdd]});
-		console.log("Member to add:", this.state.users[userToAdd]);
 	}
 
 	addMember(event){
 		event.preventDefault();
-		const request = new XMLHttpRequest();
-    	request.open("POST", "http://localhost:5000/memberships.json");
-    	request.setRequestHeader("content-type", "application/json");
-    	request.withCredentials = true;
-
-    	request.onload = () => {
-      		if (request.status === 200) {
-        const user = JSON.parse(request.responseText);
-      		}
-      		this.setState({newMember: false});
-      		this.props.getMemberships();
+    var urlSpec = "memberships";
+    var word = "POST";
+    var callback = function(data){
+      this.setState({newMember: false});
+  		this.props.getMemberships();
+    }.bind(this);
+    const data = {
+      membership: {
+     		user_id: this.state.selectedMember.id,
+    		userName: this.state.selectedMember.name,
+    		group_id: this.props.groupId
     	}
-
-    	const data = {
-        	membership: {
-         		user_id: this.state.selectedMember.id,
-        		userName: this.state.selectedMember.name,
-        		group_id: this.props.groupId
-        	}
-    	}
-
-    	request.send(JSON.stringify(data));
-    	console.log("member added", data);
+    }
+    var dataToSend = JSON.stringify(data);
+    var DBQuery = new dbHandler();
+    DBQuery.callDB(urlSpec, word, callback, dataToSend);
+    console.log("member added", data);
 	}
 
-
-
 	render(){
-// filling in the options for selector
+		// filling in the options for selector
 		var memberOptions = this.state.users.map(function(user, index){
-			return <option placeholder = "select" value = {index} key = {index}>{user.name}</option>
+			return 
+				<option 
+					placeholder = "select" 
+					value = {index} 
+					key = {index}>{user.name}
+				</option>
 		})
 
-// conditional for on addMember
+		// conditional for on addMember
 		if(this.state.newMember === true){
 			var memberDD = 
 			<div>
@@ -102,12 +89,12 @@ class MemberNew extends React.Component {
 		}
 
 
-// defining the render
+		// defining the render
 		return(
 			<div className = "new-member" >
 			    {memberDD}  
 			</div>
-			)
+		)
 	}
 }
 

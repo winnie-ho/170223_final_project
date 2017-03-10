@@ -1,4 +1,4 @@
-import React from 'react'
+import React from "react";
 
 class GroupNew extends React.Component {
 
@@ -7,7 +7,6 @@ class GroupNew extends React.Component {
     this.handleOnChangeName = this.handleOnChangeName.bind(this);
 
     this.state = { 
-      name: ""
     }
   }
 

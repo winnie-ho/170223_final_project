@@ -1,47 +1,44 @@
-import React from 'react'
+import React from "react"
 import Group from "./Group"
 import GroupNew from "./GroupNew"
-import { Link, browserHistory, hashHistory } from "react-router";
-
-
+import {Link, browserHistory, hashHistory} from "react-router";
 
 class GroupsListing extends React.Component{
 
   constructor(props) {
     super(props)
-    this.doSearch = this.doSearch.bind(this)
-    this.handleNewGroup = this.handleNewGroup.bind(this)
-    this.resetNewGroup = this.resetNewGroup.bind(this)
+    this.doSearch = this.doSearch.bind(this);
+    this.handleNewGroup = this.handleNewGroup.bind(this);
+    this.resetNewGroup = this.resetNewGroup.bind(this);
     this.state = {
       searchQuery: ""
     }
   }
 
   doSearch(event){
-    this.setState({searchQuery: event.target.value})
+    this.setState({searchQuery: event.target.value});
   }
 
   handleNewGroup(){
-    console.log("new group clicked");
     this.setState({newGroup:true});
   }
 
   resetNewGroup(){
-    console.log("reset", this.state.newGroup)
     this.setState({newGroup:this.props.newGroup});
   }
 
-  componentDidMount(){
-  }
-
   render() {
-    if (this.props.newGroup === true){
-      var newGroupForm = <GroupNew reset = {this.resetNewGroup} setGroup = {this.props.setGroup} addGroup = {this.props.addGroup}/>
+    //conditional for new group for to show
+    if(this.props.newGroup === true){
+      var newGroupForm = 
+      <GroupNew 
+        reset = {this.resetNewGroup} 
+        setGroup = {this.props.setGroup} 
+        addGroup = {this.props.addGroup}/>
     } else if (this.props.newGroup === false) {
       newGroupForm = "+";
     }
 
-    console.log("props:", this.props.groups)
 
     return(
       <div className = "outer">
@@ -50,30 +47,34 @@ class GroupsListing extends React.Component{
           <Link to = "/">←home </Link>
           <h1>WH<span className='title'>◉◎</span>P</h1>
           </div>
-          <input className='search-box' type='text' placeholder='🔎 search' value = {this.state.searchQuery} onChange={this.doSearch} />
+          <input 
+            className = "search-box" 
+            type = "text" 
+            placeholder = "🔎 search" 
+            value = {this.state.searchQuery} 
+            onChange = {this.doSearch} />
         </nav>
 
-        <div className='groups-scroll'>
+        <div className="groups-scroll"> 
 
         {/*does the search filtering for the search bar*/}
         {
           this.props.groups.filter((group) => `${group.group.name}`.toUpperCase().indexOf(this.state.searchQuery.toUpperCase()) >= 0)
           .map((group) => (
-            <Group { ...group } key={group.group_id}  group={group.group} groupId={group.group_id} groups={this.props.groups} />
+            <Group { ...group } 
+              key={group.group_id}  
+              group={group.group} 
+              groupId={group.group_id} 
+              groups={this.props.groups} />
             ))
         }
-          <div className = "new-group" onClick = {this.props.handleNewGroup}>
+        <div className = "new-group" onClick = {this.props.handleNewGroup}>
           {newGroupForm}
-          </div>
-
+        </div>
         </div>
       </div>
-      )
+    )
   }
-
-
-
-
 }
 
 export default GroupsListing

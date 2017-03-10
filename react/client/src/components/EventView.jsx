@@ -29,6 +29,16 @@ class EventView extends React.Component{
     this.getAttendees();
   }
 
+  parseEvent(){
+    var eventString = this.props.location.query.event;
+    var eventObject = JSON.parse(eventString);
+    this.setState({event: eventObject});
+  }
+
+  goBack(){
+    browserHistory.goBack();
+  }
+
   getAttendees(){
     var urlSpec = "/groups/" + this.state.event.group_id + "/events/" + this.state.event.id + "/attendees";
     var word = "GET";
@@ -46,10 +56,6 @@ class EventView extends React.Component{
     DBQuery.callDB(urlSpec, word, callback, dataToSend);
   }
 
-  goBack(){
-    browserHistory.goBack();
-  }
-
   deleteEvent(){
     event.preventDefault();
     var urlSpec = "groups/" + this.state.event.group_id + "/events/" + this.state.event.id;
@@ -61,12 +67,6 @@ class EventView extends React.Component{
     var dataToSend = null;
     var DBQuery = new dbHandler();
     DBQuery.callDB(urlSpec, word, callback, dataToSend);
-  }
-
-  parseEvent(){
-    var eventString = this.props.location.query.event;
-    var eventObject = JSON.parse(eventString);
-    this.setState({event: eventObject});
   }
 
   addAttendee(){
@@ -103,18 +103,16 @@ class EventView extends React.Component{
   }
 
   render() {
-    console.log("event", this.state.event)
-    console.log("going", this.state.going);
-
+    //mapping attendees for render
     var attendeesNodes = this.state.attendees.map((attendee, index)=>{
         return(
             <div key = {index}>
               ⦿{attendee.userName}
             </div>
-          )
+        )
     })
 
-//attendance control conditions
+    //attendance control conditions
     if(this.state.going === false || this.state.going === null){
       var attendanceControl = 
         <div className = "attendance-control">
@@ -130,32 +128,29 @@ class EventView extends React.Component{
 
     return(
         <div className = "event-view-div">
-        <div>
-        <div className = "top-bar">
-
-          <div className = "go-back" onClick = {this.goBack}>←back</div>
-
-          <div className = "top-bar-right">
-          <button onClick = {this.deleteEvent} className = "icon-button">✄</button>
-          <button className = "icon-button">✎</button>
+          <div>
+            <div className = "top-bar">
+              <div className = "go-back" onClick = {this.goBack}>
+                ←back
+              </div>
+              <div className = "top-bar-right">
+                <button onClick = {this.deleteEvent} className = "icon-button">✄</button>
+                <button className = "icon-button">✎</button>
+              </div>
+            </div>
           </div>
-        </div>
-        </div>
-          <h2>{this.state.event.name}</h2>
-          <h3>{this.state.event.date.slice(0,10)}</h3>
-          <h4>{this.state.event.time.slice(11,16)}</h4>
-          <h4>{this.state.event.location}</h4>
-          <h4>{this.state.event.description}</h4>
-          
-          <h3> GOING </h3>
-          {attendanceControl}
+            <h2>{this.state.event.name}</h2>
+            <h3>{this.state.event.date.slice(0,10)}</h3>
+            <h4>{this.state.event.time.slice(11,16)}</h4>
+            <h4>{this.state.event.location}</h4>
+            <h4>{this.state.event.description}</h4>
 
-          {attendeesNodes}
-
+            <h3> GOING </h3>
+            {attendanceControl}
+            {attendeesNodes}
         </div>
-      )
+    )
   }
-
 }
 
 export default EventView

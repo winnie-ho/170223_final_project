@@ -1,19 +1,18 @@
-import React from "react"
-import { Link } from "react-router"
+import React from "react";
+import {Link} from "react-router";
 
 const Group = (props) => (
   <div className="group">
-   <Link to={
+    <Link to={
       {
         "pathname": "/groups/"+ props.groupId,
         "query": {
           "groupId": props.groupId
         }
       }
-    }>
-     {props.group.name}
-   </Link>
+    }>{props.group.name}
+    </Link>
   </div>
-  )
+)
 
 export default Group

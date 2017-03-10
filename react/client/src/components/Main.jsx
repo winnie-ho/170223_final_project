@@ -1,15 +1,13 @@
-import React from 'react'
+import React from "react";
 
 const Main = (props) => (
-  <div className='container'> 
+  <div className = "container"> 
     {props.children}
   </div>
 )
 
-const { element } = React.PropTypes
+const {element} = React.PropTypes
 
-Main.propTypes = {
-  children: element.isRequired
-}
+Main.propTypes = {children: element.isRequired}
 
 export default Main
