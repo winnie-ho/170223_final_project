@@ -144,9 +144,12 @@ class EventView extends React.Component{
             <h4>{this.state.event.time.slice(11,16)}</h4>
             <h4>{this.state.event.location}</h4>
             <h4>{this.state.event.description}</h4>
+            <div className = "attendee-add-div">
+              <h3> GOING </h3>
 
-            <h3> GOING </h3>
-            {attendanceControl}
+                {attendanceControl}
+
+            </div>
             {attendeesNodes}
         </div>
     )

@@ -82,7 +82,10 @@ class MemberNew extends React.Component {
 				</button>
 			</div>
 		} else if (this.state.newMember === false){
-			memberDD = <h1 onClick = {this.handleNewMember}>+</h1>;
+			memberDD = 
+			<div className = "add-member-plus">
+			<h1 onClick = {this.handleNewMember}> + </h1>
+			</div>
 		}
 
 

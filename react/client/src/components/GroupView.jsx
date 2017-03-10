@@ -161,7 +161,6 @@ class GroupView extends React.Component {
         </div>
 
         <div className = "members-div">
-          GROUPIES:
           <Members groupId = {this.groupSelected}/>
         </div>
         <div className = "group-main">

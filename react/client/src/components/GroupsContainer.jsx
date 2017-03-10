@@ -120,7 +120,7 @@ class GroupsContainer extends React.Component {
   render(){
     return(
       <div className="listing">
-        <GroupsListing newGroup={this.state.newGroup} setGroup={this.setAddedGroup} addGroup={this.addGroup} groups={this.state.groups} handleNewGroup = {this.handleNewGroup}/>
+        <GroupsListing newGroup={this.state.newGroup} setGroup={this.setAddedGroup} addGroup={this.addGroup} groups={this.state.groups} handleNewGroup={this.handleNewGroup}/>
       </div>
     )
   }
