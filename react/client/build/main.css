@@ -496,6 +496,17 @@ form{
   /*border: blue dashed 1px;*/
 }
 
+.event-view{
+  margin:5px;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  align-content: center;
+  justify-content: center;
+  border: blue dashed 1px;
+}
+
 
 .more{
   justify-content: right;

@@ -1,23 +1,39 @@
 import React from "react";
 import dbHandler from "../dbHandler";
 import {Link, browserHistory, hashHistory} from "react-router";
+import EventNew from "./EventNew"
 
 class EventView extends React.Component{
   constructor(props){
     super(props)
     this.eventId = this.props.location.query.id;
-    this.goBack = this.goBack.bind(this);
     this.deleteEvent = this.deleteEvent.bind(this);
     this.addAttendee = this.addAttendee.bind(this);
     this.getAttendees = this.getAttendees.bind(this);
     this.parseEvent = this.parseEvent.bind(this);
     this.removeAttendee = this.removeAttendee.bind(this);
+    this.editEvent = this.editEvent.bind(this);
+    this.editEventInDB = this.editEventInDB.bind(this);
+    this.handleOnChangeName = this.handleOnChangeName.bind(this);
+    this.handleOnChangeDate = this.handleOnChangeDate.bind(this);
+    this.handleOnChangeTime = this.handleOnChangeTime.bind(this);
+    this.handleOnChangeLocation = this.handleOnChangeLocation.bind(this)
+    this.handleOnChangeDescription = this.handleOnChangeDescription.bind(this);
+    this.handleOnChangeRoute = this.handleOnChangeRoute.bind(this);
+    this.getEvent = this.getEvent.bind(this);
 
     this.state = {
       attendees: [],
       event: null,
       going: null,
-      attendeeId: null
+      attendeeId: null,
+      editEvent: false,
+      editName: null,
+      editDate: null,
+      editTime: null,
+      editLocation: null,
+      editDescription: null,
+      editRoute: null
     }
   }
 
@@ -27,6 +43,7 @@ class EventView extends React.Component{
 
   componentDidMount(){
     this.getAttendees();
+    this.getEvent();
   }
 
   parseEvent(){
@@ -35,8 +52,15 @@ class EventView extends React.Component{
     this.setState({event: eventObject});
   }
 
-  goBack(){
-    browserHistory.goBack();
+  getEvent(){
+    var urlSpec = "/groups/" + this.state.event.group_id + "/events/" + this.state.event.id;
+    var word = "GET";
+    var callback = function(data){
+      this.setState({event: data})
+    }.bind(this);
+    var dataToSend = null;
+    var DBQuery = new dbHandler();
+    DBQuery.callDB(urlSpec, word, callback, dataToSend);
   }
 
   getAttendees(){
@@ -102,14 +126,122 @@ class EventView extends React.Component{
     DBQuery.callDB(urlSpec, word, callback, dataToSend);
   }
 
+  editEvent(){
+    this.setState({
+      editEvent: true,
+      editName: this.state.event.name,
+      editDate: this.state.event.date,
+      editTime: this.state.event.time,
+      editLocation: this.state.event.location,
+      editDescription: this.state.event.description,
+      editRoute: this.state.event.route
+    });
+  }
+
+  editEventInDB(){
+    var urlSpec = "groups/" + this.state.event.group_id + "/events/" + this.state.event.id;
+    var word = "PUT";
+    var callback = function(data){
+      this.setState({editEvent: false}, this.getEvent());
+    }.bind(this);
+    const data = {
+      event: {
+        name: this.state.editName,
+        date: this.state.editDate,
+        time: this.state.editTime,
+        location: this.state.editLocation,
+        description: this.state.editDescription,
+        route: this.state.editRoute,
+        group_id: this.state.event.group_id
+      }
+    }
+    var dataToSend = JSON.stringify(data);
+    var DBQuery = new dbHandler();
+    DBQuery.callDB(urlSpec, word, callback, dataToSend);
+    console.log("event updated", data);
+  }
+
+  handleOnChangeName(event){
+    this.setState({editName: event.target.value});
+  }
+
+  handleOnChangeDate(event){
+    this.setState({editDate: event.target.value});
+  }
+
+  handleOnChangeTime(event){
+    this.setState({editTime: event.target.value});
+  }
+
+  handleOnChangeLocation(event){
+    this.setState({editLocation: event.target.value});
+  }
+
+  handleOnChangeDescription(event){
+    this.setState({editDescription: event.target.value});
+  }
+
+  handleOnChangeRoute(event){
+    this.setState({editRoute: event.target.value});
+  }
+
+
   render() {
+    //conditional for edit event form
+    if(this.state.editEvent === true){
+      var editEventForm = 
+        <form>
+          <input 
+          type = "text" 
+          onChange = {this.handleOnChangeName} 
+          placeholder = "name" 
+          defaultValue = {this.state.event.name} 
+          className = "event-form-input"/> 
+          <input 
+          type = "text" 
+          onChange = {this.handleOnChangeDate} 
+          placeholder = "date" 
+          defaultValue = {this.state.event.date.slice(0,10)} 
+          className = "event-form-input"/>
+          <input 
+          type = "text" 
+          onChange = {this.handleOnChangeTime} 
+          placeholder = "time" 
+          defaultValue = {this.state.event.time.slice(11,16)} 
+          className = "event-form-input"/> 
+          <input 
+          type = "text" 
+          onChange = {this.handleOnChangeLocation} 
+          placeholder = "location" 
+          defaultValue = {this.state.event.location} 
+          className = "event-form-input"/> 
+          <input 
+          type = "text" 
+          onChange = {this.handleOnChangeDescription} 
+          placeholder = "description" 
+          defaultValue = {this.state.event.description} 
+          className = "event-form-input"/> 
+          <button onClick = {this.editEventInDB}>UPDATE</button>
+        </form>
+
+    } else if (this.state.editEvent === false) {
+      editEventForm = 
+      <div className = "event-view">
+        <h2>{this.state.event.name}</h2>
+        <h3>{this.state.event.date.slice(0,10)}</h3>
+        <h4>{this.state.event.time.slice(11,16)}</h4>
+        <h4>{this.state.event.location}</h4>
+        <h4>{this.state.event.description}</h4>
+      </div>;
+    }
+
     //mapping attendees for render
     var attendeesNodes = this.state.attendees.map((attendee, index)=>{
-        return(
-            <div key = {index}>
-              ⦿{attendee.userName}
-            </div>
-        )
+      return(
+          <div key = {index}>
+            ⦿{attendee.userName}
+          </div>
+      )
     })
 
     //attendance control conditions
@@ -130,20 +262,23 @@ class EventView extends React.Component{
         <div className = "event-view-div">
           <div>
             <div className = "top-bar">
-              <div className = "go-back" onClick = {this.goBack}>
-                ←back
-              </div>
+              <Link to={
+                  {
+                    "pathname": "/groups/" + this.state.event.group_id,
+                    "query": {
+                      "groupId": this.state.event.group_id
+                    }
+                  }
+                }>←back
+              </Link>
               <div className = "top-bar-right">
                 <button onClick = {this.deleteEvent} className = "icon-button">✄</button>
-                <button className = "icon-button">✎</button>
+                <button onClick = {this.editEvent} className = "icon-button">✎</button>
               </div>
             </div>
           </div>
-            <h2>{this.state.event.name}</h2>
-            <h3>{this.state.event.date.slice(0,10)}</h3>
-            <h4>{this.state.event.time.slice(11,16)}</h4>
-            <h4>{this.state.event.location}</h4>
-            <h4>{this.state.event.description}</h4>
+          {editEventForm}
+            
             <div className = "attendee-add-div">
               <h3> GOING </h3>
 
