@@ -7,14 +7,13 @@ class EventListing extends React.Component{
   }
 
   render() {
-    var sortedArray = this.props.events.sort(function(a,b){
+    //sorting the events by date
+    this.props.events.sort(function(a,b){
       return new Date(a.date).getTime() - new Date(b.date).getTime() 
     });
-    console.log("props events", this.props.events);
-    console.log("Sorted Array", sortedArray);
 
     return(
-      <div className = "event-inner-div">
+      <div className = "events-scroll">
         {
           this.props.events.filter((event) => `${event.name}`.toUpperCase().indexOf(this.props.searchQuery.toUpperCase()) >= 0)
                 .map((event) => (

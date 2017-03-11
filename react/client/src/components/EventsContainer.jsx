@@ -42,9 +42,14 @@ setEventView(event){
 
 render() {
   return(
-    <div className="event-div" >
+    <div className="events-inner-div" >
       <div className = "event-tools">
-        <input className='search-box' type='text' placeholder='🔎 search' value = {this.state.searchQuery} onChange={this.doSearch} />
+        <input 
+        className='search-box' 
+        type='text' 
+        placeholder='🔎 search' 
+        value = {this.state.searchQuery} 
+        onChange={this.doSearch} />
         
         <Link className = "add-event-plus" to = {
           {
@@ -57,8 +62,12 @@ render() {
 
         <h1>+</h1></Link>
       </div>
-        <EventListing userId = {this.props.userId} userName = {this.props.userName} searchQuery = {this.state.searchQuery} events = {this.props.events} setEventView = {this.setEventView}/>
-      
+        <EventListing 
+        userId = {this.props.userId} 
+        userName = {this.props.userName} 
+        searchQuery = {this.state.searchQuery} 
+        events = {this.props.events} 
+        setEventView = {this.setEventView}/>
     </div>
     )
   }

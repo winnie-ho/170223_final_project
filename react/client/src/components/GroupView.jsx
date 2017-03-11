@@ -167,17 +167,33 @@ class GroupView extends React.Component {
 
           <div className = "message-board">
             <h3>MESSAGES</h3>
-            <form onSubmit = {this.addMessage} className = "new-message-form">
-            <input ref="form" type = "text" onChange = {this.handleOnChangeMsg} placeholder = "message" className = "message-box"/> 
+            <form 
+            onSubmit = {this.addMessage} 
+            className = "new-message-form">
+            <input 
+            ref="form" 
+            type = "text" 
+            onChange = {this.handleOnChangeMsg} 
+            placeholder = "✏︎ message" 
+            className = "message-box"/> 
             <button onClick = {this.addMessage}>POST</button>
             </form>
-            <MessagesContainer userId = {this.state.userId} messages={this.state.messages}/>
+            <MessagesContainer 
+            userId = {this.state.userId} 
+            messages={this.state.messages}/>
           </div>
 
 
-          <div className = "events-scroll">
+          <div className = "events-div">
             <h3>EVENTS</h3>
-            <EventsContainer userName = {this.state.userName} userId = {this.state.userId} selectedEvent = {this.state.selectedEvent} router = {this.props.router} addEventUpdate = {this.addEventUpdate} groupId = {this.groupSelected} events={this.state.events}/>
+            <EventsContainer 
+            userName = {this.state.userName} 
+            userId = {this.state.userId} 
+            selectedEvent = {this.state.selectedEvent} 
+            router = {this.props.router} 
+            addEventUpdate = {this.addEventUpdate} 
+            groupId = {this.groupSelected} 
+            events = {this.state.events}/>
           </div>
 
         </div>

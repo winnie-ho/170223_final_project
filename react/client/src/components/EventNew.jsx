@@ -13,6 +13,7 @@ class EventNew extends React.Component{
     this.handleOnChangeDescription = this.handleOnChangeDescription.bind(this);
     this.handleOnChangeRoute = this.handleOnChangeRoute.bind(this);
     this.addEvent = this.addEvent.bind(this);
+    this.goBack = this.goBack.bind(this);
 
     this.state = {
       name: null,
@@ -70,6 +71,10 @@ class EventNew extends React.Component{
     var DBQuery = new dbHandler();
     DBQuery.callDB(urlSpec, word, callback, dataToSend);
     console.log("event added", data);
+    this.goBack();
+  }
+
+  goBack(){
     this.props.router.goBack();
   }
 
@@ -77,6 +82,9 @@ class EventNew extends React.Component{
     console.log("this props", this.props);
     return(
       <div className = "new-event-form">
+      <div>
+        <p onClick = {this.goBack}> ← back </p>
+      </div>
       <h4>ADD EVENT</h4>
         <form>
           <input type = "text" onChange = {this.handleOnChangeName} placeholder = "name" className = "event-form-input"/> 

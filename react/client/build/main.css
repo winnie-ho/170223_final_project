@@ -361,6 +361,12 @@ form{
   /*border: red dashed 1px;*/
   margin-right: 70px;
   text-align: center;
+  background-color: #F3F3F3;
+  border-radius: 10px;
+  height: 500px;
+  width: 500px;
+  padding: 30px;
+
 }
 
 .message-box{
@@ -384,20 +390,24 @@ form{
 
 
 .search-box{
-  width: 300px;
+  width: 350px;
 }
 
-.events-scroll{
+.events-div{
   height: 500px;
-  /*border: red dashed 1px;*/
-  margin-left: 70px;
+  width: 500px;
+  padding: 30px;
+  border-radius: 10px;
+/*  border: red dashed 1px;
+*/  margin-left: 50px;
   display: flex;
   flex-direction: column;
+  justify-content: center;
   align-items: center;
-  width: 400px;
+  background-color: #F3F3F3;
 }
 
-.event-div{
+.event-inner-div{
   margin:10px;
   display: flex;
   flex-direction: column;
@@ -405,26 +415,23 @@ form{
   align-content: center;
   align-items: center;
   width: 350px;
-  /*border: red dashed 1px;*/
-  overflow-y: scroll;
-  overflow-x: hidden;
-}
+/*  border: red dashed 1px;
+*/}
 .event-tools{
-  width: 300px;
   height: 40px;
   display: flex;
   flex-direction: row;
   justify-content: center;
   align-items: center;
   align-content: center;
-  /*border: red dashed 1px;*/
-}
+/*  border: red dashed 1px;
+*/}
 
 .add-event-plus{
   margin-top: -8px;
 }
 
-.event-inner-div{
+.events-scroll{
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
@@ -432,7 +439,7 @@ form{
   align-items: center;
   overflow-y: scroll;
   overflow-x: hidden;
-  height: 500px;
+  height: 400px;
   width: 400px;
   /*border: green dashed 1px;*/
 }
@@ -454,6 +461,7 @@ form{
 .event-list:hover{
   margin: 5px;
   color: #FC7F2D;
+  background-color: white;
   border: black 1px solid;
   border-radius: 10px;
 
