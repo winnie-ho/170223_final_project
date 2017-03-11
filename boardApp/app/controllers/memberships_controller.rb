@@ -33,7 +33,7 @@ before_action :authenticate_user!
   end
 
   def destroy()
-  	membership = Membership.where({user: :current_user, group_id: id})
+  	membership = Membership.find(params[:id])
   	if membership.destroy!
   		render({:json => {status: :success}})
   	else

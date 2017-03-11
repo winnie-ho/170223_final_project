@@ -229,7 +229,7 @@ class EventView extends React.Component{
       <div className = "event-view">
         <h2>{this.state.event.name}</h2>
         <h3>{this.state.event.date.slice(0,10)}</h3>
-        <h4>{this.state.event.time.slice(11,16)}</h4>
+        <h3>{this.state.event.time.slice(11,16)}</h3>
         <h4>{this.state.event.location}</h4>
         <h4>{this.state.event.description}</h4>
       </div>;

@@ -34,7 +34,7 @@ class GroupView extends React.Component {
     }
   }
 
-  componentDidMount(){
+  componentWillMount(){
     this.getData();
   }
 
@@ -61,6 +61,8 @@ class GroupView extends React.Component {
           messages: item.group.messages
         }); 
       }
+      console.log("this userName", this.state.userName)
+      console.log("this userId", this.state.userId)
     }
   }
 
@@ -79,6 +81,7 @@ class GroupView extends React.Component {
         user_id: this.state.userId
       }
     }
+
     var dataToSend = JSON.stringify(data);
     var DBQuery = new dbHandler();
     DBQuery.callDB(urlSpec, word, callback, dataToSend);
@@ -161,7 +164,10 @@ class GroupView extends React.Component {
         </div>
 
         <div className = "members-div">
-          <Members groupId = {this.groupSelected}/>
+          <Members 
+          groupId = {this.groupSelected}
+          userId = {this.state.userId}
+          userName = {this.state.userName}/>
         </div>
         <div className = "group-main">
 
