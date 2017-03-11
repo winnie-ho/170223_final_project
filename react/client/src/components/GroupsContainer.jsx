@@ -20,6 +20,7 @@ class GroupsContainer extends React.Component {
       addedGroup: null,
       newGroup: false,
       userId: null,
+      userName: null,
       recentGroup: null
     }
   }
@@ -120,7 +121,14 @@ class GroupsContainer extends React.Component {
   render(){
     return(
       <div className="listing">
-        <GroupsListing newGroup={this.state.newGroup} setGroup={this.setAddedGroup} addGroup={this.addGroup} groups={this.state.groups} handleNewGroup={this.handleNewGroup}/>
+        <GroupsListing 
+        userId = {this.state.userId} 
+        userName = {this.state.userName} 
+        newGroup = {this.state.newGroup} 
+        setGroup = {this.setAddedGroup} 
+        addGroup = {this.addGroup} 
+        groups = {this.state.groups} 
+        handleNewGroup = {this.handleNewGroup}/>
       </div>
     )
   }

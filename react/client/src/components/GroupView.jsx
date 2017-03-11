@@ -10,8 +10,9 @@ class GroupView extends React.Component {
 
   constructor(props) {
     super(props);
-    this.groupSelected = props.location.query.groupId;
-    this.findGroup = this.findGroup.bind(this);
+    console.log("this props in group view", this.props);
+    this.groupSelected = this.props.location.state.groupId;
+    this.getData = this.getData.bind(this);
     this.addMessage = this.addMessage.bind(this);
     this.handleOnChangeMsg = this.handleOnChangeMsg.bind(this);
     this.addEventUpdate = this.addEventUpdate.bind(this);
@@ -24,8 +25,8 @@ class GroupView extends React.Component {
       groupData: [],
       events: [],
       messages: [],
-      userId: null,
-      userName: null,
+      userId: this.props.location.state.userId,
+      userName: this.props.location.state.userName,
       msg: null,
       name: null,
       editGroup: false,
@@ -34,36 +35,19 @@ class GroupView extends React.Component {
     }
   }
 
-  componentWillMount(){
+  componentDidMount(){
     this.getData();
   }
 
   getData(){
-    var urlSpec = "memberships/1";
+    var urlSpec = "groups/" + this.groupSelected;
     var word = "GET";
     var callback = function(data){
-      this.findGroup(data);
-      console.log("data:", data);
+      this.setState({groupData: data, messages: data.messages, events: data.events});
     }.bind(this);
     var dataToSend = null;
     var DBQuery = new dbHandler();
     DBQuery.callDB(urlSpec, word, callback, dataToSend);
-  }
-
-  findGroup(data){
-    for(var item of data){
-      if(item.group_id == this.groupSelected){
-        this.setState({
-          userName: item.userName,
-          userId: item.user_id,
-          groupData: item.group,
-          events: item.group.events,
-          messages: item.group.messages
-        }); 
-      }
-      console.log("this userName", this.state.userName)
-      console.log("this userId", this.state.userId)
-    }
   }
 
   addMessage(event){
@@ -149,7 +133,6 @@ class GroupView extends React.Component {
         header = <div> {upperGroupTitle}</div>
       }
     
-
     return(
       <div className="group-view">
         <h2>{header}</h2>
@@ -165,6 +148,7 @@ class GroupView extends React.Component {
 
         <div className = "members-div">
           <Members 
+          router = {this.props.router} 
           groupId = {this.groupSelected}
           userId = {this.state.userId}
           userName = {this.state.userName}/>
@@ -185,8 +169,9 @@ class GroupView extends React.Component {
             <button onClick = {this.addMessage}>POST</button>
             </form>
             <MessagesContainer 
-            userId = {this.state.userId} 
-            messages={this.state.messages}/>
+            userId = {this.state.userId}
+            messages = {this.state.messages} 
+            />
           </div>
 
 

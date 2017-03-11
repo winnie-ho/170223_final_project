@@ -21,6 +21,7 @@ class EventView extends React.Component{
     this.handleOnChangeDescription = this.handleOnChangeDescription.bind(this);
     this.handleOnChangeRoute = this.handleOnChangeRoute.bind(this);
     this.getEvent = this.getEvent.bind(this);
+    this.goBack = this.goBack.bind(this);
 
     this.state = {
       attendees: [],
@@ -50,6 +51,10 @@ class EventView extends React.Component{
     var eventString = this.props.location.query.event;
     var eventObject = JSON.parse(eventString);
     this.setState({event: eventObject});
+  }
+
+  goBack(){
+    this.props.router.goBack();
   }
 
   getEvent(){

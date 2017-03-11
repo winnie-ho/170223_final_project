@@ -3,11 +3,13 @@ import {Link} from "react-router";
 
 const Group = (props) => (
   <div className="group">
-    <Link to={
+    <Link to = {
       {
         "pathname": "/groups/"+ props.groupId,
-        "query": {
-          "groupId": props.groupId
+        "state": {
+          "groupId": props.groupId,
+          "userName": props.userName,
+          "userId": props.userId
         }
       }
     }>{props.group.name}

@@ -62,10 +62,12 @@ class GroupsListing extends React.Component{
           this.props.groups.filter((group) => `${group.group.name}`.toUpperCase().indexOf(this.state.searchQuery.toUpperCase()) >= 0)
           .map((group) => (
             <Group { ...group } 
-              key={group.id}  
-              group={group.group} 
-              groupId={group.group_id} 
-              groups={this.props.groups} />
+              key={group.id} 
+              userId = {this.props.userId}
+              userName = {this.props.userName} 
+              group = {group.group} 
+              groupId = {group.group_id} 
+              groups = {this.props.groups} />
             ))
         }
           <div className = "new-group" onClick = {this.props.handleNewGroup}>

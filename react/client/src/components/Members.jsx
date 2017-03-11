@@ -1,6 +1,7 @@
 import React from "react";
 import MemberNew from "./MemberNew";
 import dbHandler from "../dbHandler";
+import {Link, Router, browserHistory, hashHistory} from "react-router";
 
 class Members extends React.Component {
 	constructor(props){
@@ -9,6 +10,7 @@ class Members extends React.Component {
 		this.removeMember = this.removeMember.bind(this);
 		this.setUserMembership = this.setUserMembership.bind(this);
 		this.uniqueMembers = this.uniqueMembers.bind(this);
+		this.goBack = this.goBack.bind(this);
 
 		this.state = {
 			memberships: [],
@@ -61,7 +63,7 @@ class Members extends React.Component {
     var urlSpec = "memberships/" + this.state.userMembership;
     var word = "DELETE";
     var callback = function(data){
-    	this.getMemberships();
+    	this.goBack();
     }.bind(this);
     var DBQuery = new dbHandler();
     var dataToSend = null;
@@ -69,11 +71,11 @@ class Members extends React.Component {
     DBQuery.callDB(urlSpec, word, callback, dataToSend);
 	}
 
-	render(){
-		console.log("props", this.props)
-		console.log("userMembership", this.state.userMembership);
-		console.log("members", this.state.members);
+	goBack(){
+		this.props.router.goBack();
+	}
 
+	render(){
 		//mapping members for render
 		var membersNodes = this.state.members.map((member, index)=>{
 	    return(
@@ -83,24 +85,13 @@ class Members extends React.Component {
 	    )
 	  })
 
-	  //check if current user is member and render option to leave
-	  for(var member of this.state.members){
-	   	if(member === this.props.userName){
-	   		var removeMemberDiv = <div className = "add-member-plus" onClick = {this.removeMember}> <h1>-</h1> </div>
-	   	} else {
-	   		removeMemberDiv = <div></div>
-	   	}
-	  }
-
-
-
-
 		return(
 			<div className = "members-inner">
 				<div className = "members-add-div">
 				<h3>GROUPIES</h3>
 				<div className = "members-list-div">
-					{removeMemberDiv}
+					<div className = "add-member-plus" onClick = {this.removeMember}>
+	   		 <h1>-</h1> </div>
 				</div>
 				<MemberNew groupId = {this.props.groupId} getMemberships = {this.getMemberships}/>
 				</div>
