@@ -7,6 +7,12 @@ class EventListing extends React.Component{
   }
 
   render() {
+    var sortedArray = this.props.events.sort(function(a,b){
+      return new Date(a.date).getTime() - new Date(b.date).getTime() 
+    });
+    console.log("props events", this.props.events);
+    console.log("Sorted Array", sortedArray);
+
     return(
       <div className = "event-inner-div">
         {

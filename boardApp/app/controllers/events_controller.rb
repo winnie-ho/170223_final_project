@@ -8,7 +8,8 @@ class EventsController < ApplicationController
 
   def index()
     events = Event.where({group: params[:group_id]})
-    render({:json => events})
+    orderedEvents = events.order(:date)
+    render({:json => orderedEvents})
   end
 
   def show()
