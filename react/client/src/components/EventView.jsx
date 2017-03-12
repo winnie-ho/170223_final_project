@@ -2,6 +2,7 @@ import React from "react";
 import dbHandler from "../dbHandler";
 import {Link, browserHistory, hashHistory} from "react-router";
 import EventNew from "./EventNew"
+import MapView from "./MapView"
 
 class EventView extends React.Component{
   constructor(props){
@@ -262,7 +263,6 @@ class EventView extends React.Component{
         </div>
     }
 
-
     return(
         <div className = "event-view-div">
           <div>
@@ -286,11 +286,11 @@ class EventView extends React.Component{
             
             <div className = "attendee-add-div">
               <h3> GOING </h3>
-
                 {attendanceControl}
-
             </div>
             {attendeesNodes}
+            <MapView/>
+
         </div>
     )
   }

@@ -23,5 +23,4 @@ render() {
   }
 }
 
-
 export default MessagesContainer

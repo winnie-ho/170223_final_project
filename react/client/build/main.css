@@ -612,3 +612,8 @@ form{
   align-items: center;
   
 }
+
+.main-map{
+  width: 90vw;
+  height: 300px;
+}
