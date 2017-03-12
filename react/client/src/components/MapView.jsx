@@ -63,7 +63,21 @@ class MapView extends React.Component{
   //   })
   // }
 
-  
+  addPolyline(run, startPoint){
+    var line = new google.maps.Polygon({
+      path: google.maps.geometry.encoding.decodePath(run),
+      geodesic: true,
+      strokeColor: '#FF0000',
+      strokeOpacity: 1.0,
+      strokeWeight: 2,
+      fillOpacity: 0.5,
+      map: this.googleMap
+    });
+
+    line.setMap(null);
+    line.setMap(this.state.map);
+  this.state.map.setCenter(startPoint);
+  }
 
   render(){
   	console.log("MAP", this.state.map);
