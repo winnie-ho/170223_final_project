@@ -10,6 +10,7 @@ class GroupView extends React.Component {
 
   constructor(props) {
     super(props);
+    console.log("HERE", this.props);
     this.groupSelected = this.props.location.state.groupId;
     this.getData = this.getData.bind(this);
     this.addMessage = this.addMessage.bind(this);

@@ -266,15 +266,7 @@ class EventView extends React.Component{
     return(
         <div className = "event-view-div">
           <div className = "top-bar">
-            <Link to={
-                {
-                  "pathname": "/groups/" + this.state.event.group_id,
-                  "query": {
-                    "groupId": this.state.event.group_id
-                  }
-                }
-              }>←back
-            </Link>
+            <div onClick = {this.goBack} > ←back </div>
             <div className = "top-bar-right">
               <button onClick = {this.deleteEvent} className = "icon-button">✄</button>
               <button onClick = {this.editEvent} className = "icon-button">✎</button>
@@ -288,8 +280,8 @@ class EventView extends React.Component{
             <div className = "attendee-add-div">
               <h3> GOING </h3>
                 {attendanceControl}
-            </div>
                 {attendeesNodes}
+            </div>
           </div>
             <MapView/>
           </div>
