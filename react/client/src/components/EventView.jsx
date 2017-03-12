@@ -265,31 +265,36 @@ class EventView extends React.Component{
 
     return(
         <div className = "event-view-div">
-          <div>
-            <div className = "top-bar">
-              <Link to={
-                  {
-                    "pathname": "/groups/" + this.state.event.group_id,
-                    "query": {
-                      "groupId": this.state.event.group_id
-                    }
+          <div className = "top-bar">
+            <Link to={
+                {
+                  "pathname": "/groups/" + this.state.event.group_id,
+                  "query": {
+                    "groupId": this.state.event.group_id
                   }
-                }>←back
-              </Link>
-              <div className = "top-bar-right">
-                <button onClick = {this.deleteEvent} className = "icon-button">✄</button>
-                <button onClick = {this.editEvent} className = "icon-button">✎</button>
-              </div>
+                }
+              }>←back
+            </Link>
+            <div className = "top-bar-right">
+              <button onClick = {this.deleteEvent} className = "icon-button">✄</button>
+              <button onClick = {this.editEvent} className = "icon-button">✎</button>
             </div>
           </div>
+
+          <div className = "event-div">
+          <div className = "event-details">
           {editEventForm}
             
             <div className = "attendee-add-div">
               <h3> GOING </h3>
                 {attendanceControl}
             </div>
-            {attendeesNodes}
+                {attendeesNodes}
+          </div>
             <MapView/>
+          </div>
+
+          
 
         </div>
     )
