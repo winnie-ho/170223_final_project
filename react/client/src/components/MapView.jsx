@@ -1,5 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom";
+import MapStyle from "../mapStyle";
 
 class MapView extends React.Component{
   constructor(props){
@@ -10,6 +11,7 @@ class MapView extends React.Component{
 
     this.state = {
     	map: null,
+    	contentString: "hello"
     }
   }
 
@@ -19,9 +21,13 @@ class MapView extends React.Component{
   }
 
   createMap(){
+  	var mapStyle = new MapStyle();
+  	var style = mapStyle.getStyle();
   	var mapOptions = {
     zoom: 13,
-    center: {lat: 55.9533, lng:-3.1883 }}
+    center: {lat: 55.9533, lng:-3.1883 },
+    styles: style
+	  }
   	var map = new google.maps.Map(ReactDOM.findDOMNode(this.refs.map_canvas), mapOptions);
   	this.setState({map: map}, this.geoLocate(map));
 
@@ -31,7 +37,11 @@ class MapView extends React.Component{
   	navigator.geolocation.getCurrentPosition(function(position){
       var centre = {lat: position.coords.latitude, lng: position.coords.longitude};
       map.setCenter(centre);
-      this.addMarker(centre);
+      var marker = this.addMarker(centre);
+      var infoWindow = new google.maps.InfoWindow({
+      	content: "<h3>YOU ARE HERE</h3>"
+      });
+      infoWindow.open(map, marker);
   	}.bind(this))
   }
 
@@ -43,6 +53,15 @@ class MapView extends React.Component{
   	});
   	return marker;
   }
+
+  // addInfoWindow(map, marker, contentString){
+  //   var infoWindow = new google.maps.InfoWindow({
+  //     content: contentString,
+  //   });
+	 //  marker.addListener("click", function(){
+	 //  infoWindow.open(this.state.map, marker);
+  //   })
+  // }
 
   
 
