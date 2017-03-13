@@ -7,12 +7,12 @@ class StravaHook extends React.Component{
     super(props)
     this.getStravaRoutes = this.getStravaRoutes.bind(this);
     this.handleSelectorChange = this.handleSelectorChange.bind(this);
-    this.plotRoute = this.plotRoute.bind(this);
 
     this.state = {
-    	routes: [],
-      routeIdSelected: null,
-      routeSelected: null
+    	runs: [],
+      runIdSelected: null,
+      runSelected: null,
+      runLine: null,
     }
   }
 
@@ -24,7 +24,7 @@ class StravaHook extends React.Component{
     var url = "https://www.strava.com/api/v3/athlete/activities?per_page=200&access_token=a2ff6fffcab9df06d90661ad34b7e664690c4fc4";
     var word = "GET";
     var callback = function(data){
-      this.setState({routes: data});
+      this.setState({runs: data});
     }.bind(this);
     var dataToSend = null;
     var DBQuery = new dbHandler();
@@ -32,29 +32,21 @@ class StravaHook extends React.Component{
   }
 
   handleSelectorChange(event){
-    var routeIdSelected = event.target.value;
-    this.setState({routeIdSelected: routeIdSelected});
+    var runIdSelected = event.target.value;
+    this.setState({runIdSelected: runIdSelected});
 
-    var routeSelected = this.state.routes[routeIdSelected-1];
-    this.setState({routeSelected: routeSelected});
-    this.plotRoute();
+    var runSelected = this.state.runs[runIdSelected-1];
+    this.setState({runSelected: runSelected}, this.props.setRun(runSelected));
   }
 
-  plotRoute(){
-    console.log("routeSelected", this.state.routeSelected);
-    var runLine = this.state.routeSelected.map.summary_polyline;
-    console.log("runLine", runLine);
 
-    var startPoint = {lat: ((this.state.routeSelected.start_latlng[0] + this.state.routeSelected.end_latlng[0])/2), lng: ((this.state.routeSelected.start_latlng[1] + this.state.routeSelected.end_latlng[1])/2)};
-    mainMap.addPolyline(runLine, startPoint);
-  } 
-  
   render(){
     // filling in the options for selector
-    console.log("routes", this.state.routes);
-    var routeOptions = this.state.routes.map(function(route, index){
+    console.log("runs", this.state.runs);
+    console.log("runSelected", this.state.runSelected);
+    var runOptions = this.state.runs.map(function(run, index){
       return <option  placeholder = "select" value = {index} key = {index}>
-              {route.name}
+              {run.name}
              </option>
     })
 
@@ -62,7 +54,7 @@ class StravaHook extends React.Component{
       <div className = "strava-div">
         <select defaultValue = "select" onChange = {this.handleSelectorChange}>
         <option disabled = "true">select</option>
-        {routeOptions}
+        {runOptions}
         </select>
       </div>
     )

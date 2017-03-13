@@ -33,7 +33,6 @@ MapWrapper.prototype = {
 
 
 addPolyline: function(run,startPoint){
-
     var line = new google.maps.Polygon({
       path: google.maps.geometry.encoding.decodePath(run),
       geodesic: true,

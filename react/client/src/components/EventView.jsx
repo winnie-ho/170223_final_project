@@ -3,7 +3,6 @@ import dbHandler from "../dbHandler";
 import {Link, browserHistory, hashHistory} from "react-router";
 import EventNew from "./EventNew";
 import MapView from "./MapView";
-import StravaHook from "./StravaHook";
 
 class EventView extends React.Component{
   constructor(props){
@@ -36,7 +35,7 @@ class EventView extends React.Component{
       editTime: null,
       editLocation: null,
       editDescription: null,
-      editRoute: null
+      editRoute: null,
     }
   }
 
@@ -47,6 +46,10 @@ class EventView extends React.Component{
   componentDidMount(){
     this.getAttendees();
     this.getEvent();
+  }
+
+  conponentWillReceiveProps(){
+    this.setRun(run);
   }
 
   parseEvent(){
@@ -192,8 +195,8 @@ class EventView extends React.Component{
     this.setState({editRoute: event.target.value});
   }
 
-
   render() {
+    console.log("run", this.state.run);
     //conditional for edit event form
     if(this.state.editEvent === true){
       var editEventForm = 
@@ -278,18 +281,14 @@ class EventView extends React.Component{
           <div className = "event-details">
           {editEventForm}
             
-            <StravaHook/>
             <div className = "attendee-add-div">
               <h3> GOING </h3>
                 {attendanceControl}
             </div>
                 {attendeesNodes}
           </div>
-            <MapView/>
+            <MapView run = {this.state.run}/>
           </div>
-
-          
-
         </div>
     )
   }
