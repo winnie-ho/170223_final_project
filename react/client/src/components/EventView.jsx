@@ -23,6 +23,7 @@ class EventView extends React.Component{
     this.handleOnChangeRoute = this.handleOnChangeRoute.bind(this);
     this.getEvent = this.getEvent.bind(this);
     this.goBack = this.goBack.bind(this);
+    this.setRunLine = this.setRunLine.bind(this);
 
     this.state = {
       attendees: [],
@@ -36,6 +37,7 @@ class EventView extends React.Component{
       editLocation: null,
       editDescription: null,
       editRoute: null,
+      runLine: null,
     }
   }
 
@@ -191,6 +193,11 @@ class EventView extends React.Component{
     this.setState({editRoute: event.target.value});
   }
 
+  setRunLine(runLine){
+    this.setState({runLine: runLine});
+  }
+
+
   render() {
     //conditional for edit event form
     if(this.state.editEvent === true){
@@ -282,7 +289,7 @@ class EventView extends React.Component{
             </div>
                 {attendeesNodes}
           </div>
-            <MapView/>
+            <MapView setRunLine = {this.setRunLine} />
           </div>
         </div>
     )

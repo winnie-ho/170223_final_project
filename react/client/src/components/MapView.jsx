@@ -90,7 +90,8 @@ class MapView extends React.Component{
   plotRoute(){
     console.log("runSelected", this.state.runSelected);
     var runLine = this.state.runSelected.map.summary_polyline;
-    this.setState({runLine: runLine});
+    this.setState({runLine: runLine}, this.props.setRunLine());
+
 
     var middlePoint = {lat: ((this.state.runSelected.start_latlng[0] + this.state.runSelected.end_latlng[0])/2), lng: ((this.state.runSelected.start_latlng[1] + this.state.runSelected.end_latlng[1])/2)};
     var startPoint = {lat: this.state.runSelected.start_latlng[0], lng: this.state.runSelected.start_latlng[1]};
