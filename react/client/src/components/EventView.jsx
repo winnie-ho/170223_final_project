@@ -48,10 +48,6 @@ class EventView extends React.Component{
     this.getEvent();
   }
 
-  conponentWillReceiveProps(){
-    this.setRun(run);
-  }
-
   parseEvent(){
     var eventString = this.props.location.query.event;
     var eventObject = JSON.parse(eventString);
@@ -196,7 +192,6 @@ class EventView extends React.Component{
   }
 
   render() {
-    console.log("run", this.state.run);
     //conditional for edit event form
     if(this.state.editEvent === true){
       var editEventForm = 
@@ -287,7 +282,7 @@ class EventView extends React.Component{
             </div>
                 {attendeesNodes}
           </div>
-            <MapView run = {this.state.run}/>
+            <MapView/>
           </div>
         </div>
     )

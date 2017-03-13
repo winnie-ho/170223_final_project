@@ -42,9 +42,9 @@ class StravaHook extends React.Component{
   }
 
 
+
   render(){
     // filling in the options for selector
-    console.log("runs", this.state.runs);
     console.log("runSelected", this.state.runSelected);
     var runOptions = this.state.runs.map(function(run, index){
       return <option  placeholder = "select" value = {index} key = {index}>
@@ -58,6 +58,7 @@ class StravaHook extends React.Component{
         <option disabled = "true">select</option>
         {runOptions}
         </select>
+        <button onClick = {this.props.plotRoute}>ADD ROUTE</button>
       </div>
     )
   }

@@ -16,7 +16,6 @@ class MapView extends React.Component{
 
     this.state = {
     	map: null,
-    	contentString: "hello",
       runLine: "",
       run: null,
       runSelected: [],
@@ -71,7 +70,6 @@ class MapView extends React.Component{
 
   setRun(run){
     this.setState({runSelected:run, runLine: null});
-    this.plotRoute();
   }
 
   addPolyline(runLine, startPoint){
@@ -108,7 +106,7 @@ class MapView extends React.Component{
     console.log("run", this.state.run);
     return(
       <div>
-        <StravaHook setRun = {this.setRun}/>
+        <StravaHook setRun = {this.setRun} plotRoute = {this.plotRoute}/>
         <div ref = "map_canvas" className = "main-map">
 
         </div>

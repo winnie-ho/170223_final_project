@@ -637,3 +637,7 @@ form{
   width: 600px;
   height: 600px;
 }
+
+.strava-div > select {
+  width: 400px;
+} 
