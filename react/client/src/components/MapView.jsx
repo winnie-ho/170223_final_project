@@ -10,8 +10,8 @@ class MapView extends React.Component{
     this.createMap = this.createMap.bind(this);
     this.geoLocate = this.geoLocate.bind(this);
     this.addMarker = this.addMarker.bind(this);
-    this.plotRoute = this.plotRoute.bind(this);
     this.setRun = this.setRun.bind(this);
+    this.plotRoute = this.plotRoute.bind(this);
 
 
     this.state = {
@@ -19,14 +19,13 @@ class MapView extends React.Component{
     	contentString: "hello",
       runLine: "",
       run: null,
-      runSelected: null,
+      runSelected: [],
     }
   }
 
   componentDidMount(){
     this.createMap();
   }
-
 
   createMap(){
     var mapStyle = new MapStyle();
@@ -37,8 +36,7 @@ class MapView extends React.Component{
     styles: style
     }
     var map = new google.maps.Map(ReactDOM.findDOMNode(this.refs.map_canvas), mapOptions);
-    this.setState({map: map}, this.geoLocate(map));
-
+    this.setState({map: map});
   }
 
   geoLocate(map){
@@ -62,27 +60,26 @@ class MapView extends React.Component{
     return marker;
   }
 
-  // addInfoWindow(map, marker, contentString){
-  //   var infoWindow = new google.maps.InfoWindow({
-  //     content: contentString,
-  //   });
-   //  marker.addListener("click", function(){
-   //  infoWindow.open(this.state.map, marker);
-  //   })
-  // }
+  addInfoWindow(map, marker, contentString){
+    var infoWindow = new google.maps.InfoWindow({
+      content: contentString,
+    });
+    marker.addListener("click", function(){
+    infoWindow.open(this.state.map, marker);
+    })
+  }
 
-  setRun(runSelected){
-    this.setState({runSelected: runSelected})
-    this.plotRoute()
-    console.log(this.state.runSelected);
+  setRun(run){
+    this.setState({runSelected:run, runLine: null});
+    this.plotRoute();
   }
 
   addPolyline(runLine, startPoint){
-    var line = new google.maps.Polygon({
+    var line = new google.maps.Polyline({
       path: google.maps.geometry.encoding.decodePath(runLine),
       strokeColor: '#FF0000',
       strokeOpacity: 1.0,
-      strokeWeight: 1,
+      strokeWeight: 2,
       map: this.googleMap
     });
 
@@ -93,12 +90,18 @@ class MapView extends React.Component{
 
 
   plotRoute(){
-    console.log("runSelected", this.state.runSelected.name);
+    console.log("runSelected", this.state.runSelected);
     var runLine = this.state.runSelected.map.summary_polyline;
     this.setState({runLine: runLine});
 
-    var startPoint = {lat: ((this.state.runSelected.start_latlng[0] + this.state.runSelected.end_latlng[0])/2), lng: ((this.state.runSelected.start_latlng[1] + this.state.runSelected.end_latlng[1])/2)};
-    this.addPolyline(runLine, startPoint);
+    var middlePoint = {lat: ((this.state.runSelected.start_latlng[0] + this.state.runSelected.end_latlng[0])/2), lng: ((this.state.runSelected.start_latlng[1] + this.state.runSelected.end_latlng[1])/2)};
+    var startPoint = {lat: this.state.runSelected.start_latlng[0], lng: this.state.runSelected.start_latlng[1]};
+    this.addPolyline(runLine, middlePoint);
+    var marker = this.addMarker(startPoint);
+    var infoWindow = new google.maps.InfoWindow({
+        content: "<h3>START</h3>" + this.state.runSelected.name 
+      });
+      infoWindow.open(this.state.map, marker);
   }
 
   render(){

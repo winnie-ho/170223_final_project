@@ -33,9 +33,11 @@ class StravaHook extends React.Component{
 
   handleSelectorChange(event){
     var runIdSelected = event.target.value;
+    console.log("runIdSelected", runIdSelected)
     this.setState({runIdSelected: runIdSelected});
 
-    var runSelected = this.state.runs[runIdSelected-1];
+    var runSelected = this.state.runs[runIdSelected];
+    console.log("runSelected", runSelected.name);
     this.setState({runSelected: runSelected}, this.props.setRun(runSelected));
   }
 
