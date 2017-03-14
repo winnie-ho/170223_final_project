@@ -39,7 +39,7 @@ body{
 }
 .enter {
     color: black;
-    font-size: 18px;
+    font-size: 14px;
 
     -webkit-animation-name: enter;
     -webkit-animation-duration: 1s;
@@ -50,7 +50,7 @@ body{
 
 @keyframes enter {
     from {font-size: 10px}
-    to {font-size: 18px }
+    to {font-size: 14px }
 }
 
 .enter: hover{
@@ -661,7 +661,7 @@ form{
 }
 
 .event-view-div{
-  height: 100vh;
+  height: 96vh;
   width: 100vw;
   margin-top: 0px;
   display: flex;
@@ -697,7 +697,7 @@ form{
   width: 75vw;
   height: 80vh;
   margin: 5px;
-  padding: 5px;
+  padding: 3px;
 }
 
 .event-specs{
@@ -711,11 +711,13 @@ form{
   align-content: center;
   align-items: center;
   justify-content: space-between;
+  margin: 0px;
+  padding: 0px;
 }
 .map-side{
   margin:2px;
   border: dashed 1px green;
-  width: 80vw;
+  width: 79vw;
   height: 80vh;
   display: flex;
   flex-direction: column;
