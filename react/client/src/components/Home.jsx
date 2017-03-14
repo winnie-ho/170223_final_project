@@ -63,7 +63,7 @@ class Home extends React.Component {
   var mainDiv = <div className = "sign-in" >
     <h4>LOGIN</h4>
     <SignIn url="http://localhost:5000/users/sign_in.json" onSignIn={this.setUser}></SignIn>
-    <div className = "create-acc" onClick = {this.createAccount}>
+    <div className = "link-hover" onClick = {this.createAccount}>
       <p>create account</p>
     </div>
   </div>
@@ -74,7 +74,7 @@ class Home extends React.Component {
     var createAccDiv = <div className = "create-account"> 
       <h4>SIGN UP</h4>
       <SignUp url="http://localhost:5000/users.json" create = {this.state.createAccount} onSignUp={this.setUser}></SignUp>
-      <div onClick = {this.goBack}>
+      <div className = "link-hover" onClick = {this.goBack}>
         <p> ← sign in </p>
       </div>
 
@@ -85,21 +85,18 @@ class Home extends React.Component {
 
   {/*3rd state render - enter*/}
 if(this.state.currentUser){
-  signOutDiv = <div className = "sign-out">
-    <SignOut url="http://localhost:5000/users/sign_out.json" onSignOut={this.setUser}></SignOut>
-  </div>
   mainDiv = <div className = "sign-in">
     <div className = "intro">
       <h3> Hi </h3>
       <h2> {this.state.currentUser.name}</h2>
-
-
       <Link to = "/groups">
-      <h3>MY GR<span className = "enter">◉</span>UPS</h3>
+        <h3>MY GR<span className = "enter">◉</span>UPS</h3>
       </Link>
-
-
     </div>
+  </div>
+
+  signOutDiv = <div>
+    <SignOut url="http://localhost:5000/users/sign_out.json" onSignOut={this.setUser}></SignOut>
   </div>
   createAccDiv = <div></div>
 }
@@ -108,7 +105,6 @@ if(this.state.currentUser){
     return (
       <div className="home">
         <div className ="top">
-          {signOutDiv}
           <h1>WH<span className='title'>◉◎</span>P</h1>
         
         </div>
@@ -118,6 +114,7 @@ if(this.state.currentUser){
           <div className = "create-account">
             { createAccDiv }
           </div>
+          {signOutDiv}
       </div>
     ) 
 

@@ -41,14 +41,15 @@ class GroupsListing extends React.Component{
 
 
     return(
-      <div className = "outer">
+      <div>
         <nav>
           <div className = "logo">
-          <Link to = "/">←home </Link>
-          <h1>WH<span className='title'>◉◎</span>P</h1>
+            <div>
+              <Link to = "/">←home </Link>
+            </div>
+            <h1>WH<span className='title'>◉◎</span>P</h1>
           </div>
           <input 
-            className = "search-box" 
             type = "text" 
             placeholder = "🔎 search" 
             value = {this.state.searchQuery} 

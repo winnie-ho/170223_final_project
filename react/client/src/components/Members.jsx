@@ -79,8 +79,8 @@ class Members extends React.Component {
 		//mapping members for render
 		var membersNodes = this.state.members.map((member, index)=>{
 	    return(
-		    	<div key = {index} className = "members-list">
-		        ◉ {member}  ◎
+		    	<div key = {index}>
+		        <p>◉ {member}  ◎</p>
 		      </div>
 	    )
 	  })

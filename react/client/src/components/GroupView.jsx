@@ -175,7 +175,7 @@ class GroupView extends React.Component {
           </div>
 
 
-          <div className = "events-div">
+          <div className = "events-board">
             <h3>EVENTS</h3>
             <EventsContainer 
             userName = {this.state.userName} 
