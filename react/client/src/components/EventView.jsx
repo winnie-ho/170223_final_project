@@ -3,6 +3,8 @@ import dbHandler from "../dbHandler";
 import {Link, browserHistory, hashHistory} from "react-router";
 import EventNew from "./EventNew";
 import MapView from "./MapView";
+import WeatherHook from "./WeatherHook";
+
 
 class EventView extends React.Component{
   constructor(props){
@@ -304,6 +306,7 @@ class EventView extends React.Component{
               </div>
 
                   {attendeesNodes}
+
             </div>
             <div onClick = {this.jumpRight} className = "location-arrow">▷ </div>
              <div onClick = {this.jumpLeft} className = "location-arrow">◀︎ </div>
