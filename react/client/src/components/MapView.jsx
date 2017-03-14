@@ -106,7 +106,7 @@ class MapView extends React.Component{
   render(){
     console.log("run", this.state.run);
     return(
-      <div>
+      <div className = "map-side">
         <StravaHook setRun = {this.setRun} plotRoute = {this.plotRoute}/>
         <div ref = "map_canvas" className = "main-map">
 

@@ -6,6 +6,11 @@ constructor(props){
   super(props)
 }
 
+componentDidMount(){
+  this.props.scrollMsg();
+  console.log ('i scrolled')
+}
+
 render() {
   var messageNodes = this.props.messages.map((message, index)=>{
     return(
@@ -18,6 +23,7 @@ render() {
   return(
     <div className = "message-list">
       {messageNodes}
+      <div className = "fake-message-div"></div>
     </div>
     )
   }

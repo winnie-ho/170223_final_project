@@ -238,7 +238,7 @@ class EventView extends React.Component{
 
     } else if (this.state.editEvent === false) {
       editEventForm = 
-      <div className = "event-view">
+      <div className = "event-specs">
         <h2>{this.state.event.name}</h2>
         <h3>{this.state.event.date.slice(0,10)}</h3>
         <h3>{this.state.event.time.slice(11,16)}</h3>
@@ -280,16 +280,22 @@ class EventView extends React.Component{
           </div>
 
           <div className = "event-div">
-          <div className = "event-details">
-          {editEventForm}
-            
-            <div className = "attendee-add-div">
-              <h3> GOING </h3>
-                {attendanceControl}
+
+
+            <div className = "event-details">
+              {editEventForm}
+              
+              <div className = "attendee-add-div">
+                <h3> GOING </h3>
+                  {attendanceControl}
+              </div>
+
+                  {attendeesNodes}
             </div>
-                {attendeesNodes}
-          </div>
+
+
             <MapView setRunLine = {this.setRunLine} />
+
           </div>
         </div>
     )

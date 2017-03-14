@@ -1,5 +1,3 @@
-
-
 body{
   font-family: GeoSansLight;
   display: flex;
@@ -166,12 +164,14 @@ button:hover{
 }
 
 select{
-  margin: 10px;
+  margin: 5px;
+  height: 23px;
+  border: gray 1px solid;
 }
 
 
 .logo{
-  border: orange dashed 1px;
+  /*border: orange dashed 1px;*/
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -188,28 +188,28 @@ nav{
   justify-content: center;
   align-items: center;
   align-content: center;
-  border: blue dashed 1px;
+  /*border: blue dashed 1px;*/
 }
 
 .listing{
   display: flex;
   justify-content: center;
   align-content: center;
-  margin: 5px;
-  border: green dashed 1px;
+  margin: auto;
+  /*border: green dashed 1px;*/
   width: 95vw;
   height: 95vh;
 }
 
 .groups-scroll{
-  border: blue dashed 1px;
+  /*border: blue dashed 1px;*/
   width: 90vw;
-  height: 350px;
+  height: 65vh;
   margin: 10px;
   display: flex;
   flex-wrap: wrap;
   flex-direction: row; 
-  justify-content: center;
+  justify-content: flex-start;
   align-content: flex-start;
   overflow-y: scroll;
   overflow-x: hidden;
@@ -224,9 +224,10 @@ nav{
   background-color: #F3F3F3;
   height: 150px;
   width: 150px;
-  margin: 5px;
+  margin: 8px;
+  padding-left: auto;
   border-radius: 10px;
-  border: red dashed 1px;
+  /*border: red dashed 1px;*/
 }
 
 .group:hover{
@@ -268,11 +269,11 @@ nav{
   align-items: center;
   justify-content: center;  
   font-size: 50px;
-  margin: 10px;
+  margin: 8px;
 }
 
 .new-group:hover{
-  margin: 10px;
+  margin: 8px;
   color: #FC7F2D;
   border: black 1px solid;
   border-radius: 10px;
@@ -315,7 +316,7 @@ form{
   display: flex;
   flex-direction: column;
   padding:5px;
-  border: dashed red 1px;
+  /*border: dashed red 1px;*/
   justify-content: center;
   align-content: space-between;
   align-items: center;
@@ -346,14 +347,14 @@ form{
   width: 40vw;
   display: flex;
   flex-direction: row;
-  border: dashed blue 1px;
+  /*border: dashed blue 1px;*/
   justify-content: flex-start;
   overflow-y: hidden;
   overflow-x: scroll;
 }
 
 .message-board{
-  border: green dashed 1px;
+  /*border: green dashed 1px;*/
   height: 65vh;
   width: 84vw;
   text-align: center;
@@ -369,7 +370,7 @@ form{
 
 .message-list{
   height: 50vh;
-  border: red dashed 1px;
+  /*border: red dashed 1px;*/
   overflow-y: scroll;
   overflow-x: hidden;
 }
@@ -383,14 +384,13 @@ form{
   border: red dashed 1px;
 }
 
-
-.search-box{
-  width: 300px;
+.fake-message-div{
+  height: 50px;
 }
 
 .events-board{
-  margin-left: -50px;
-  border: green dashed 1px;
+  margin-left: -60px;
+  /*border: green dashed 1px;*/
   height: 65vh;
   width: 84vw;
   text-align: center;
@@ -407,7 +407,7 @@ form{
   align-content: center;
   align-items: center;
   width: 90vw;
-  border: black dashed 1px;
+  /*border: black dashed 1px;*/
 }
 .event-tools{
   height: 40px;
@@ -416,7 +416,7 @@ form{
   justify-content: center;
   align-items: center;
   align-content: center;
-  border: red dashed 1px;
+  /*border: red dashed 1px;*/
 }
 
 .add-event-plus{
@@ -433,7 +433,7 @@ form{
   overflow-x: hidden;
   height: 50vh;
   width: 84vw;
-  border: green dashed 1px;
+  /*border: green dashed 1px;*/
 }
 
 .event-list{
@@ -511,8 +511,8 @@ form{
 
 
 .members-div{
-  border: dashed 1px red;
-  width: 90vw;
+/*  border: dashed 1px red;
+*/  width: 90vw;
   height: 100px;
   display: flex;
   flex-direction: row;
@@ -521,15 +521,15 @@ form{
   align-content: center;
 }
 .members-inner{
-  border: dashed 1px pink;
-  display: flex;
+/*  border: dashed 1px pink;
+*/  display: flex;
   flex-direction: column;
-  justify-content: flex-start;
+  justify-content: center;
+
   align-items: flex-start;
+  align-content: center;
   width: 90vw;
-  height: 20vw;
-  overflow-y: hidden;
-  overflow-x: scroll;
+  height: 70px;
 }
 
 .members-add-div{
@@ -540,12 +540,13 @@ form{
   align-content: flex-start;
   justify-content: center;
   height: 30px;
+
 }
 .new-member{
   display: flex;
   flex-direction: row;
   height: 20px;
-  border: blue dashed 1px;
+  /*border: blue dashed 1px;*/
   justify-content: flex-end;
   align-items: center;
   align-content: center;
@@ -562,52 +563,86 @@ form{
 }
 
 .members-list-div{
-  border: green dashed 1px;
+  /*border: green dashed 1px;*/
   display: flex;
   flex-direction: row;
-  justify-content: flex-start;
+  width: 90vw;
+  overflow-y: hidden;
+  overflow-x: scroll;
+
+}
+
+.memberNodes{
+  /*border: blue 1px dashed;*/
+  margin-top: -10px;
+  flex: 0 0 130px;
 }
 
 
+.event-view-div{
+  height: 90vh;
+  width: 90vw;
+  margin: 5px;
+  padding: 5px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  align-content: center;
+  /*border: black dashed 1px;*/
+}
+
 .event-div{
-  justify-content: center;
   display: flex;
   flex-direction: row;
-  /*border: dashed 1px red;*/
-  margin: 50px;
-  width: 80vw;
+  justify-content: flex-start;
+  align-content: center;
+  align-items: center;
+  margin:5px;
+  /*border: dashed 1px green;*/
+  width: 90vw;
+  height: 90vh;
   overflow-y: hidden;
   overflow-x: scroll;
 }
 
 
 .event-details{
+  /*border: dashed 1px red;*/
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
-  width: 600px;
-  height: 600px;
-}
-
-.event-view{
-  margin: 5px;
-  padding: 10px;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
   align-content: flex-start;
-  /*border: blue dashed 1px;*/
+  align-items: flex-start;
+  width: 100vw;
+  height: 80vh;
+  margin: 5px;
+  padding: 5px;
 }
 
+.event-specs{
+  width: 85vw;
+  margin: 5px;
+}
 
+.map-side{
+  margin:5px;
+  /*border: dashed 1px green;*/
+  width: 90vw;
+  height: 80vh;
+}
+
+.main-map{
+  width: 90vw;
+  height: 90vh;
+}
 .attendance-control{
   display: flex;
   flex-direction: row;
   align-items: center;
-  justify-content: space-around;
+  justify-content: flex-start;
   height: 30px;
-  margin-left: 5px;
-  margin-top: -10px;
+  width: 90vw;
+  margin:5px;
 }
 
 .attendance-control:hover{
@@ -615,23 +650,24 @@ form{
 }
 
 .attendee-add-div{
-  /*border: red dashed 1px;*/
+  /*border: black dashed 1px;*/
   display: flex;
   flex-direction: row;
-  align-items: center;
+  align-items: flex-start;
+  width: 80vw;
+  margin: 5px;
   
 }
 
-.main-map{
-  width: 600px;
-  height: 600px;
-}
 
 .strava-div{
   display: flex;
   justify-content: center;
+  align-content: center;
+  align-items: center;
 }
 
 .strava-div > select {
-  width: 400px;
+  width: 250px;
+  border: gray 1px solid;
 } 

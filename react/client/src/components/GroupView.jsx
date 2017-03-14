@@ -20,6 +20,7 @@ class GroupView extends React.Component {
     this.editGroup = this.editGroup.bind(this);
     this.handleOnChangeGroupName = this.handleOnChangeGroupName.bind(this);
     this.handleEditGroup = this.handleEditGroup.bind(this);
+    this.scrollMsg = this.scrollMsg.bind(this);
 
     this.state = { 
       groupData: [],
@@ -35,15 +36,18 @@ class GroupView extends React.Component {
     }
   }
 
-  componentDidMount(){
+  componentWillMount(){
     this.getData();
+  }
+
+  componentDidMount(){
   }
 
   getData(){
     var urlSpec = "groups/" + this.groupSelected;
     var word = "GET";
     var callback = function(data){
-      this.setState({groupData: data, messages: data.messages, events: data.events});
+      this.setState({groupData: data, messages: data.messages, events: data.events}, this.scrollMsg());
     }.bind(this);
     var dataToSend = null;
     var DBQuery = new dbHandler();
@@ -55,7 +59,7 @@ class GroupView extends React.Component {
     var urlSpec = "groups/:id/messages";
     var word = "POST";
     var callback = function(data){
-      this.getData();
+      this.getData() ;
     }.bind(this);
     const data = {
       message: {
@@ -71,6 +75,12 @@ class GroupView extends React.Component {
     DBQuery.callDB(urlSpec, word, callback, dataToSend);
     console.log("message added", data);
     ReactDOM.findDOMNode(this.refs.form).value = "";
+  }
+
+  scrollMsg(){
+    var msgScroll = document.querySelector(".message-list");
+    msgScroll.scrollTop = msgScroll.scrollHeight;
+    console.log("i scrolled")
   }
 
   addEventUpdate(event){
@@ -125,7 +135,7 @@ class GroupView extends React.Component {
     var groupTitle = this.state.groupData.name
     var upperGroupTitle = `${this.state.groupData.name}`.toUpperCase()
     if (this.state.editGroup===true){
-      var header = <div>
+      var header = <div className = "edit-group">
       <input onChange = {this.handleOnChangeGroupName}placeholder = "group name"></input>
       <button onClick = {this.editGroup} >update</button>
       </div>
@@ -157,6 +167,11 @@ class GroupView extends React.Component {
 
           <div className = "message-board">
             <h3>MESSAGES</h3>
+            <MessagesContainer 
+            userId = {this.state.userId}
+            messages = {this.state.messages}
+            scrollMsg = {this.scrollMsg}
+            />
             <form 
             onSubmit = {this.addMessage} 
             className = "new-message-form">
@@ -168,10 +183,6 @@ class GroupView extends React.Component {
             className = "message-box"/> 
             <button onClick = {this.addMessage}>POST</button>
             </form>
-            <MessagesContainer 
-            userId = {this.state.userId}
-            messages = {this.state.messages} 
-            />
           </div>
 
 
