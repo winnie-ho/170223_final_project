@@ -357,6 +357,15 @@ form{
   align-items: flex-start;
 }
 
+.arrow{
+/*  border: orange 1px dashed;
+*/  display: flex;
+  justify-content: left;
+  padding: 0px;
+  margin: 1px;
+  visibility: hidden;
+}
+
 .message-board{
 /*  border: red dashed 1px;
 */  margin-right: 70px;
@@ -392,12 +401,14 @@ form{
 /*  border: red dashed 1px;
 */}
 
-
+.fake-message-div{
+  height: 50px;
+}
 .search-box{
   width: 350px;
 }
 
-.events-div{
+.events-board{
   height: 500px;
   width: 500px;
   padding: 30px;
