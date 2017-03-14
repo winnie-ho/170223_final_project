@@ -1,3 +1,20 @@
+#app{
+  width: 100vw;
+  height: 100vh;
+  /*border: black 1px dashed;*/
+  display: flex;
+  justify-content: center;
+}
+
+.container{
+  width: 90vw;
+  height: 90vh;
+  display: flex;
+  justify-content: center;
+  /*border: gray 1px dashed;*/
+}
+
+}
 body{
   font-family: GeoSansLight;
   display: flex;
@@ -46,9 +63,11 @@ body{
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  align-content: center;
   /*border:blue 1px dashed;*/
-  margin-top: 90px;
+  margin-top:10vh;
 }
+
 .top{
   min-width: 100%;
   display: flex;
@@ -86,6 +105,7 @@ a:hover{
 }
 
 .sign-in{
+  width: 90vw;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -110,7 +130,7 @@ a:hover{
 }
 
 .intro{
-  width: 400px;
+  width: 90vw;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -135,7 +155,7 @@ a:hover{
 }
 
 input{
-  width: 300px;
+  width: 70vw;
   padding: 5px;
   margin: 5px;
   font-size: 14px;
@@ -171,7 +191,8 @@ select{
 
 
 .logo{
-  /*border: orange dashed 1px;*/
+  width: 80vw;
+  border: orange dashed 1px;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -188,29 +209,31 @@ nav{
   justify-content: center;
   align-items: center;
   align-content: center;
-  /*border: blue dashed 1px;*/
+  border: blue dashed 1px;
 }
 
 .listing{
   display: flex;
   justify-content: center;
   align-content: center;
+  align-items: center;
   margin: auto;
-  /*border: green dashed 1px;*/
-  width: 95vw;
+  border: green dashed 1px;
+  width: 90vw;
   height: 95vh;
 }
 
 .groups-scroll{
-  /*border: blue dashed 1px;*/
+  border: blue dashed 1px;
   width: 90vw;
   height: 65vh;
   margin: 10px;
   display: flex;
   flex-wrap: wrap;
   flex-direction: row; 
-  justify-content: flex-start;
+  justify-content: center;
   align-content: flex-start;
+  align-items: center;
   overflow-y: scroll;
   overflow-x: hidden;
 }
@@ -222,12 +245,12 @@ nav{
   justify-content: center;
   line-height: 20px;
   background-color: #F3F3F3;
-  height: 150px;
-  width: 150px;
+  height: 37vw;
+  width: 37vw;
   margin: 8px;
   padding-left: auto;
   border-radius: 10px;
-  /*border: red dashed 1px;*/
+  border: red dashed 1px;
 }
 
 .group:hover{
@@ -261,9 +284,9 @@ nav{
 
 
 .new-group{
-  height:150px;
-  width: 150px;
-  /*border: red dashed 1px;*/
+  height: 37vw;
+  width: 37vw;
+  border: red dashed 1px;
   display: flex;
   align-content: center;
   align-items: center;

@@ -74,6 +74,8 @@ class GroupsListing extends React.Component{
           <div className = "new-group" onClick = {this.props.handleNewGroup}>
             {newGroupForm}
           </div>
+          <div className = "new-group">
+          </div>
         </div>
       </div>
     )
