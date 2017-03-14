@@ -21,6 +21,7 @@ class GroupView extends React.Component {
     this.handleOnChangeGroupName = this.handleOnChangeGroupName.bind(this);
     this.handleEditGroup = this.handleEditGroup.bind(this);
     this.scrollMsg = this.scrollMsg.bind(this);
+    this.jumpRight = this.jumpRight.bind(this);
 
     this.state = { 
       groupData: [],
@@ -80,7 +81,6 @@ class GroupView extends React.Component {
   scrollMsg(){
     var msgScroll = document.querySelector(".message-list");
     msgScroll.scrollTop = msgScroll.scrollHeight;
-    console.log("i scrolled")
   }
 
   addEventUpdate(event){
@@ -131,6 +131,18 @@ class GroupView extends React.Component {
     this.setState({changedName: updatedName}) 
   }
 
+  jumpRight(){
+    var divScroll = document.querySelector(".group-main");
+    divScroll.scrollLeft = divScroll.scrollWidth;
+    console.log("jump right");
+  }
+
+  jumpLeft(){
+    var divScroll = document.querySelector(".group-main");
+    divScroll.scrollLeft = 0;
+    console.log("jump left");
+  }
+
   render(){
     var groupTitle = this.state.groupData.name
     var upperGroupTitle = `${this.state.groupData.name}`.toUpperCase()
@@ -166,7 +178,6 @@ class GroupView extends React.Component {
         <div className = "group-main">
 
           <div className = "message-board">
-            <h3>MESSAGES</h3>
             <MessagesContainer 
             userId = {this.state.userId}
             messages = {this.state.messages}
@@ -185,6 +196,8 @@ class GroupView extends React.Component {
             </form>
           </div>
 
+          <div className = "arrow" onClick = {this.jumpRight}> ▷ </div>
+          <div className = "arrow" onClick = {this.jumpLeft}> ◀︎ </div>
 
           <div className = "events-board">
             <h3>EVENTS</h3>
@@ -197,8 +210,8 @@ class GroupView extends React.Component {
             groupId = {this.groupSelected} 
             events = {this.state.events}/>
           </div>
-
         </div>
+          ⦿⦿
       </div>
     )
   }

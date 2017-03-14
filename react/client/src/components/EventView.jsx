@@ -297,6 +297,7 @@ class EventView extends React.Component{
             <MapView setRunLine = {this.setRunLine} />
 
           </div>
+          ⦿⦿
         </div>
     )
   }
