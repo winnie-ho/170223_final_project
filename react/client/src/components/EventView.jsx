@@ -24,6 +24,8 @@ class EventView extends React.Component{
     this.getEvent = this.getEvent.bind(this);
     this.goBack = this.goBack.bind(this);
     this.setRunLine = this.setRunLine.bind(this);
+    this.jumpRight = this.jumpRight.bind(this);
+    this.jumpLeft = this.jumpLeft.bind(this);
 
     this.state = {
       attendees: [],
@@ -197,6 +199,17 @@ class EventView extends React.Component{
     this.setState({runLine: runLine});
   }
 
+  jumpRight(){
+    var divScroll = document.querySelector(".event-div");
+    divScroll.scrollLeft = divScroll.scrollWidth;
+    console.log("jump right");
+  }
+
+  jumpLeft(){
+    var divScroll = document.querySelector(".event-div");
+    divScroll.scrollLeft = 0;
+    console.log("jump left");
+  }
 
   render() {
     //conditional for edit event form
@@ -242,7 +255,7 @@ class EventView extends React.Component{
         <h2>{this.state.event.name}</h2>
         <h3>{this.state.event.date.slice(0,10)}</h3>
         <h3>{this.state.event.time.slice(11,16)}</h3>
-        <h4>{this.state.event.location}</h4>
+        <h4>{this.state.event.location}  </h4> 
         <h4>{this.state.event.description}</h4>
       </div>;
     }
@@ -292,11 +305,13 @@ class EventView extends React.Component{
 
                   {attendeesNodes}
             </div>
+            <div onClick = {this.jumpRight} className = "location-arrow">▷ </div>
+             <div onClick = {this.jumpLeft} className = "location-arrow">◀︎ </div>
 
 
             <MapView setRunLine = {this.setRunLine} />
-
           </div>
+
           ⦿⦿
         </div>
     )

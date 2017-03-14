@@ -661,9 +661,9 @@ form{
 }
 
 .event-view-div{
-  height: 90vh;
-  width: 90vw;
-  margin-top: 20px;
+  height: 100vh;
+  width: 100vw;
+  margin-top: 0px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -680,8 +680,8 @@ form{
   margin:5px;
   padding: 0px;
   border: dashed 1px green;
-  width: 90vw;
-  height: 80vh;
+  width: 85vw;
+  height: 90vh;
   overflow-y: hidden;
   overflow-x: scroll;
 }
@@ -694,26 +694,36 @@ form{
   justify-content: flex-start;
   align-content: flex-start;
   align-items: flex-start;
-  width: 85vw;
+  width: 75vw;
   height: 80vh;
   margin: 5px;
   padding: 5px;
 }
 
 .event-specs{
-  width: 85vw;
+  width: 80vw;
   margin: 5px;
 }
 
+.location-arrow{
+  display: flex;
+  flex-direction: row;
+  align-content: center;
+  align-items: center;
+  justify-content: space-between;
+}
 .map-side{
-  margin:5px;
-  /*border: dashed 1px green;*/
-  width: 90vw;
+  margin:2px;
+  border: dashed 1px green;
+  width: 80vw;
   height: 80vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
 }
 
 .main-map{
-  width: 90vw;
+  width: 80vw;
   height: 90vh;
 }
 .attendance-control{
@@ -749,6 +759,7 @@ form{
 }
 
 .strava-div > select {
-  width: 250px;
+  margin-left: 5px;
+  width: 60vw;
   border: gray 1px solid;
 } 

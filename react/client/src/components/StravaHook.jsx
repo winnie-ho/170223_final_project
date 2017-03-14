@@ -55,7 +55,7 @@ class StravaHook extends React.Component{
         <option disabled = "true">select</option>
         {runOptions}
         </select>
-        <button onClick = {this.props.plotRoute}>ADD ROUTE</button>
+        <button onClick = {this.props.plotRoute}>ADD</button>
       </div>
     )
   }
