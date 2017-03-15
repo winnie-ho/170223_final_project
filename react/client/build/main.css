@@ -597,7 +597,16 @@ form{
   justify-content: flex-start;
   align-items: flex-start;
 }
-
+.event-view-div{
+  height: 96vh;
+  width: 100vw;
+  margin-top: 0px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  align-content: center;
+  /*border: black dashed 1px;*/
+}
 .event-div{
   justify-content: center;
   display: flex;
@@ -609,6 +618,16 @@ form{
   overflow-x: scroll;
 }
 
+.location-arrow{
+  display: flex;
+  flex-direction: row;
+  align-content: center;
+  align-items: center;
+  justify-content: space-between;
+  margin: 1px;
+  padding: 0px;
+  visibility: hidden;
+}
 
 .event-details{
   display: flex;
