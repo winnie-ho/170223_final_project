@@ -1,0 +1,6 @@
+{
+    "name": "WHOOP",
+    "description": "homework dashboard task",
+    "repository": "git@github.com:winnie-ho/170223_final_project.git" ,
+    "keywords": "["node", "express", "static"]",
+}
