@@ -1,18 +1,15 @@
 {
-  "name": "end_point",
+  "name": "WHOOP",
   "version": "1.0.0",
   "engines": {
     "node": "5.9.1"
   },
   "main": "server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node server.js",
-    "webpack:deploy": "webpack --config=webpack/webpack.config.js -p",
-    "heroku-postbuild": "npm run webpack:deploy"
   },
   "keywords": [],
-  "author": "",
+  "author": "Winnie Ho",
   "license": "ISC",
   "dependencies": {
     "express": "^4.13.4"
